@@ -38,7 +38,7 @@ return [
             'se reconectar',
             'com sua essência.',
         ],
-        'lead' => 'Atendimento psicológico individual para mulheres, com foco em autoconhecimento, ressignificação de histórias e construção de relações mais saudáveis consigo e com o outro.',
+         'lead' => 'Acolhimento, escuta e transformação emocional para mulheres que se sentem inseguras, sobrecarregadas ou desconectadas de si mesmas.',
         'primary_cta' => [
             'label' => 'Marcar primeiro atendimento',
             'href' => '#cta',
