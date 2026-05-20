@@ -88,7 +88,7 @@ echo "[info] JS URL: $JS_URL"
 failures=0
 
 home_html="$(curl -sS -L --max-time "$TIMEOUT" "$BASE_URL")"
-assert_contains "$home_html" 'Jersika Carvalho, psicóloga dedicada' 'hero psicologia presente' || failures=$((failures + 1))
+assert_contains "$home_html" 'Um espaço seguro para mulheres que desejam' 'hero psicologia presente' || failures=$((failures + 1))
 assert_contains "$home_html" 'Áreas de cuidado no atendimento psicológico' 'serviços de psicologia presentes' || failures=$((failures + 1))
 assert_contains "$home_html" 'Solicite seu agendamento com a Jersika' 'formulário de agendamento presente' || failures=$((failures + 1))
 
