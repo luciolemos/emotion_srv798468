@@ -60,7 +60,7 @@ return [
     'emotion' => [
         'name' => 'Clínica de Psicologia',
         'mark' => 'P',
-        'palette' => 'red',
+        'palette' => 'amber',
         'typography' => 'clinical',
         'schema_type' => 'MedicalBusiness',
         'request_prefix' => 'PSI',

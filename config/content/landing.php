@@ -38,9 +38,9 @@ return [
         'badge_icon' => 'journal-heart',
         'badge' => 'Psicóloga | CRP 17/1671',
         'title_parts' => [
-            'Um espaço seguro para mulheres que desejam',
-            'se reconectar',
-            'com sua essência.',
+            'Jersika Carvalho, psicóloga dedicada',
+            'ao universo feminino',
+            'com escuta sensível e acolhimento.',
         ],
         'lead' => 'Atendimento psicológico individual para mulheres, com foco em autoconhecimento, ressignificação de histórias e construção de relações mais saudáveis consigo e com o outro.',
         'primary_cta' => [
