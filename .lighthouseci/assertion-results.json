@@ -1,62 +1,62 @@
 [
   {
     "name": "minScore",
-    "expected": 0.75,
-    "actual": 0.64,
+    "expected": 0.8,
+    "actual": 0.66,
     "values": [
-      0.61,
-      0.64
+      0.59,
+      0.66
     ],
     "operator": ">=",
     "passed": false,
     "auditProperty": "performance",
     "auditId": "categories",
-    "level": "warn",
+    "level": "error",
     "url": "http://127.0.0.1:8000/"
   },
   {
     "name": "maxNumericValue",
-    "expected": 3800,
-    "actual": 5540.972749999999,
+    "expected": 3200,
+    "actual": 5489.563500000001,
     "values": [
-      5608.870075000001,
-      5540.972749999999
+      5715.05845,
+      5489.563500000001
     ],
     "operator": "<=",
     "passed": false,
     "auditId": "largest-contentful-paint",
-    "level": "warn",
+    "level": "error",
     "url": "http://127.0.0.1:8000/",
     "auditTitle": "Largest Contentful Paint",
     "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"
   },
   {
     "name": "minScore",
-    "expected": 0.75,
-    "actual": 0.66,
+    "expected": 0.8,
+    "actual": 0.7,
     "values": [
-      0.66,
-      0.63
+      0.69,
+      0.7
     ],
     "operator": ">=",
     "passed": false,
     "auditProperty": "performance",
     "auditId": "categories",
-    "level": "warn",
+    "level": "error",
     "url": "http://127.0.0.1:8000/?palette=red"
   },
   {
     "name": "maxNumericValue",
-    "expected": 3800,
-    "actual": 5446.9286999999995,
+    "expected": 3200,
+    "actual": 5378.154900000001,
     "values": [
-      5450.458499999999,
-      5446.9286999999995
+      5438.72025,
+      5378.154900000001
     ],
     "operator": "<=",
     "passed": false,
     "auditId": "largest-contentful-paint",
-    "level": "warn",
+    "level": "error",
     "url": "http://127.0.0.1:8000/?palette=red",
     "auditTitle": "Largest Contentful Paint",
     "auditDocumentationLink": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/"

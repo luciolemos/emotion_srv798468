@@ -63,18 +63,31 @@
   <link rel="shortcut icon" href="{{ base_url }}/{{ app_logo }}">
   <link rel="apple-touch-icon" href="{{ base_url }}/{{ app_logo }}">
 
-  {% if typography_profile == 'feminine' or (app_slug|default('') in ['psicologia', 'emotion']) %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-  {% endif %}
+  {# Fontes externas removidas do caminho crítico para reduzir LCP em ambiente mobile throttled. #}
 
   {# ==============================
      CSS — LIBS
      ============================== #}
 
-  <link href="{{ base_url }}/assets/vendor/bootstrap/bootstrap.min.css?v={{ asset_version|default('1')|url_encode }}" rel="stylesheet">
-  <link href="{{ base_url }}/assets/vendor/bootstrap-icons/bootstrap-icons.css?v={{ asset_version|default('1')|url_encode }}" rel="stylesheet">
+  <link href="{{ base_url }}/assets/vendor/bootstrap/bootstrap.min.css?v={{ asset_version|default('1')|url_encode }}" rel="preload" as="style" data-async-css>
+  <link href="{{ base_url }}/assets/vendor/bootstrap-icons/bootstrap-icons.css?v={{ asset_version|default('1')|url_encode }}" rel="preload" as="style" data-async-css>
+  <noscript><link href="{{ base_url }}/assets/vendor/bootstrap/bootstrap.min.css?v={{ asset_version|default('1')|url_encode }}" rel="stylesheet"></noscript>
+  <noscript><link href="{{ base_url }}/assets/vendor/bootstrap-icons/bootstrap-icons.css?v={{ asset_version|default('1')|url_encode }}" rel="stylesheet"></noscript>
+  <script nonce="{{ csp_nonce ?? '' }}">
+  (function () {
+    const links = document.querySelectorAll('link[data-async-css][rel="preload"][as="style"]');
+    for (const link of links) {
+      const promote = () => {
+        link.removeEventListener('load', promote);
+        link.rel = 'stylesheet';
+      };
+      link.addEventListener('load', promote);
+      setTimeout(() => {
+        if (link.rel !== 'stylesheet') promote();
+      }, 2500);
+    }
+  })();
+  </script>
 
   {# ==============================
      CSS — APP

@@ -844,10 +844,10 @@ html[data-theme="light"] .navbar-logo-light {
 
 .hero-title-motion .hero-title-part {
   display: inline-block;
-  opacity: 0;
-  transform: translate3d(0, 40px, 0) scale(0.94);
-  will-change: transform, opacity;
-  animation: hero-title-enter 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+  animation: none;
 }
 
 .hero-title-motion .hero-title-part-1,
@@ -856,20 +856,21 @@ html[data-theme="light"] .navbar-logo-light {
 }
 
 .hero-title-motion .hero-title-part-1 {
-  animation-delay: 0.04s;
+  animation-delay: 0s;
 }
 
 .hero-title-motion .hero-title-part-2 {
-  animation-name: hero-title-enter, hero-title-pulse;
-  animation-duration: 760ms, 2.1s;
-  animation-delay: 0.18s, 0.95s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-in-out;
-  animation-fill-mode: forwards, both;
-  animation-iteration-count: 1, infinite;
+  animation: none;
 }
 
 .hero-title-motion .hero-title-part-3 {
-  animation-delay: 0.32s;
+  animation-delay: 0s;
+}
+
+.hero .lead {
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 36ch;
 }
 
 .hero-proof {
@@ -953,9 +954,13 @@ html.fx-ready .glass {
   border-radius: var(--hero-image-radius);
   border: var(--hero-image-border);
   box-shadow: 0 12px 28px rgba(0, 8, 20, 0.34);
-  animation: hero-card-float 4.8s ease-in-out infinite;
+  animation: none;
   object-position: var(--hero-image-object-position);
   filter: var(--hero-image-filter);
+}
+
+html.fx-ready .hero-media img {
+  animation: hero-card-float 4.8s ease-in-out infinite;
 }
 
 
