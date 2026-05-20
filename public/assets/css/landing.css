@@ -141,6 +141,32 @@ html[data-niche="emotion"] {
   --hero-image-filter: saturate(0.98) contrast(1.01) brightness(0.99);
 }
 
+html[data-niche="emotion"] {
+  --bg0: #2d1625;
+  --bg1: #3a1d30;
+  --bg2: #4a2540;
+  --card: rgba(78, 41, 68, 0.66);
+  --card-strong: rgba(88, 46, 77, 0.84);
+  --surface-thin: rgba(86, 45, 75, 0.52);
+  --surface-strong: rgba(98, 52, 86, 0.76);
+  --stroke: rgba(255, 163, 208, 0.34);
+  --stroke-soft: rgba(255, 163, 208, 0.2);
+  --body-overlay:
+    radial-gradient(circle at 16% 18%, rgba(255, 181, 219, 0.16), transparent 26%),
+    radial-gradient(circle at 82% 28%, rgba(255, 130, 194, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(64, 30, 50, 0.16), transparent 42%);
+  --nav-glass-bg: rgba(72, 38, 60, 0.72);
+  --nav-control-bg: rgba(87, 46, 72, 0.66);
+  --hero-badge-bg: rgba(78, 41, 65, 0.62);
+  --pill-bg: rgba(82, 42, 68, 0.68);
+  --steps-bg: rgba(79, 40, 66, 0.72);
+  --glass-bg-start: rgba(88, 48, 75, 0.76);
+  --glass-bg-end: rgba(65, 33, 55, 0.88);
+  --footer-bg-start: rgba(70, 35, 58, 0.88);
+  --footer-bg-end: rgba(54, 27, 45, 0.95);
+  --section-divider-mid: rgba(255, 163, 208, 0.36);
+}
+
 html[data-typography="technical"] {
   --font-body: "Roboto", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   --font-heading: "Arial", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -2308,33 +2334,33 @@ html[data-theme="light"] code {
 
 /* Emotion custom palette (based on public/assets/img/img_1.jpg) */
 html[data-niche="emotion"] {
-  --bg0: #f8e7ea;
-  --bg1: #f2dce1;
-  --bg2: #ebd0d7;
+  --bg0: #efbfd0;
+  --bg1: #e8afc4;
+  --bg2: #dfa0b8;
   --text: #2b2326;
   --muted: rgba(93, 72, 79, 0.9);
-  --card: rgba(255, 248, 249, 0.78);
-  --card-strong: rgba(255, 247, 248, 0.9);
-  --surface-thin: rgba(248, 232, 235, 0.66);
-  --surface-strong: rgba(243, 220, 225, 0.82);
-  --stroke: rgba(178, 104, 126, 0.26);
-  --stroke-soft: rgba(178, 104, 126, 0.16);
-  --gradA: 198, 103, 129;
-  --gradB: 180, 93, 119;
-  --gradC: 156, 83, 106;
+  --card: rgba(255, 242, 247, 0.76);
+  --card-strong: rgba(255, 238, 245, 0.9);
+  --surface-thin: rgba(241, 191, 210, 0.58);
+  --surface-strong: rgba(234, 171, 196, 0.74);
+  --stroke: rgba(173, 72, 109, 0.34);
+  --stroke-soft: rgba(173, 72, 109, 0.22);
+  --gradA: 205, 84, 126;
+  --gradB: 187, 73, 112;
+  --gradC: 161, 63, 96;
   --grid-opacity: 0;
   --body-accent-mask: none;
   --body-overlay: none;
-  --nav-glass-bg: #f4dfde;
-  --nav-control-bg: rgba(238, 214, 219, 0.9);
-  --hero-badge-bg: rgba(242, 223, 227, 0.82);
-  --pill-bg: rgba(242, 223, 227, 0.76);
-  --steps-bg: rgba(242, 223, 227, 0.84);
-  --glass-bg-start: rgba(255, 248, 249, 0.95);
-  --glass-bg-end: rgba(246, 234, 236, 0.92);
-  --footer-bg-start: #f4dfde;
-  --footer-bg-end: #f4dfde;
-  --section-divider-mid: rgba(198, 103, 129, 0.3);
+  --nav-glass-bg: #e8afc4;
+  --nav-control-bg: rgba(223, 160, 184, 0.86);
+  --hero-badge-bg: rgba(236, 179, 201, 0.82);
+  --pill-bg: rgba(236, 179, 201, 0.76);
+  --steps-bg: rgba(233, 169, 195, 0.82);
+  --glass-bg-start: rgba(255, 235, 244, 0.92);
+  --glass-bg-end: rgba(242, 198, 218, 0.88);
+  --footer-bg-start: #e8afc4;
+  --footer-bg-end: #dfa0b8;
+  --section-divider-mid: rgba(205, 84, 126, 0.34);
 }
 
 html[data-niche="emotion"] body::before,
@@ -2363,6 +2389,7 @@ html[data-niche="emotion"] .navbar-brand .brand-name {
 
 html[data-niche="emotion"] .navbar-logo-dark {
   display: block;
+  filter: brightness(0.62) contrast(1.2) saturate(0.92);
 }
 
 html[data-niche="emotion"] .navbar-logo-light {

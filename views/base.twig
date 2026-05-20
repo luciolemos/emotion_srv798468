@@ -43,13 +43,13 @@
   {% else %}
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   {% endif %}
-  <meta name="theme-color" content="#2b2326">
+  <meta name="theme-color" content="#2d1625">
   <script nonce="{{ csp_nonce ?? '' }}">
   (function () {
     const root = document.documentElement;
     const niche = root.getAttribute("data-niche") || "default";
     const themeColors = niche === "emotion"
-      ? { dark: "#2b2326", light: "#f8e7ea" }
+      ? { dark: "#2d1625", light: "#f8d8e7" }
       : { dark: "#0b0f19", light: "#f8fafc" };
     const theme = niche === "emotion" ? "dark" : "dark";
     root.setAttribute("data-theme", theme);
