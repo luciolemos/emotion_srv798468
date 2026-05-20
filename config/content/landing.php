@@ -11,7 +11,7 @@ return [
         'type' => 'website',
         'twitter_card' => 'summary_large_image',
         'image' => [
-            'src' => 'assets/img/social/psicologia-og-v4.jpg',
+            'src' => 'assets/img/social/psicologia-og-v4.jpg?v=20260520223235',
             'width' => 1200,
             'height' => 630,
             'alt' => 'Atendimento psicológico em ambiente reservado e acolhedor',
