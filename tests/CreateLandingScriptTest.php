@@ -60,7 +60,7 @@ final class CreateLandingScriptTest extends TestCase
         self::assertStringContainsString('APP_SLUG="psicologia"', (string) file_get_contents($target . '/.env'));
         self::assertStringContainsString('APP_WHATSAPP_NUMBER="557184005128"', (string) file_get_contents($target . '/.env'));
         self::assertStringContainsString('APP_WHATSAPP_MESSAGE="Oi, Jersika! Gostaria de agendar um atendimento psicológico."', (string) file_get_contents($target . '/.env'));
-        self::assertStringContainsString('location-map-banner', (string) file_get_contents($target . '/views/pages/home.twig'));
+        self::assertStringNotContainsString('location-map-banner', (string) file_get_contents($target . '/views/pages/home.twig'));
         self::assertStringContainsString('location-map-banner', (string) file_get_contents($target . '/public/assets/css/landing.css'));
         self::assertStringContainsString("'location' => [", (string) file_get_contents($target . '/config/content/landing.php'));
         self::assertStringContainsString("'map_embed_url' => 'https://maps.google.com/maps?", (string) file_get_contents($target . '/config/content/landing.php'));
