@@ -218,14 +218,20 @@ $checkAsset = static function (string $path, string $label, ?int $expectedWidth 
         return;
     }
 
-    if (preg_match('~^https?://~i', $path) === 1 || str_contains($path, '..')) {
+    $safePath = $path;
+    if (str_contains($safePath, '?')) {
+        $safePath = (string) parse_url($safePath, PHP_URL_PATH);
+    }
+    $safePath = trim($safePath);
+
+    if ($safePath === '' || preg_match('~^https?://~i', $safePath) === 1 || str_contains($safePath, '..')) {
         $line('fail', "{$label} deve apontar para asset local seguro: {$path}");
         return;
     }
 
-    $publicPath = $projectRoot . '/public/' . ltrim($path, '/');
+    $publicPath = $projectRoot . '/public/' . ltrim($safePath, '/');
     if (!is_file($publicPath)) {
-        $line('fail', "{$label} não encontrado: public/" . ltrim($path, '/'));
+        $line('fail', "{$label} não encontrado: public/" . ltrim($safePath, '/'));
         return;
     }
 

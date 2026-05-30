@@ -101,7 +101,7 @@ final class HomeRoutesTest extends TestCase
         self::assertStringContainsString('<meta property="og:type" content="website">', $decodedHtml);
         self::assertStringContainsString('<meta property="og:title" content="Clínica Médica | Teste">', $decodedHtml);
         self::assertMatchesRegularExpression(
-            '#<meta property="og:image" content="http://localhost/medico/assets/img/social/psicologia-og(?:-v[0-9]+)?\\.jpg">#',
+            '#<meta property="og:image" content="http://localhost/medico/assets/img/social/psicologia-og(?:-v[0-9]+)?\\.jpg(?:\\?v=[0-9]+)?">#',
             $decodedHtml
         );
         self::assertStringContainsString('<meta name="twitter:card" content="summary_large_image">', $decodedHtml);
@@ -130,7 +130,7 @@ final class HomeRoutesTest extends TestCase
         self::assertSame(200, $response->getStatusCode());
         self::assertStringContainsString('<link rel="canonical" href="https://example.com/medico/">', $decodedHtml);
         self::assertMatchesRegularExpression(
-            '#<meta property="og:image" content="https://example.com/medico/assets/img/social/psicologia-og(?:-v[0-9]+)?\\.jpg">#',
+            '#<meta property="og:image" content="https://example.com/medico/assets/img/social/psicologia-og(?:-v[0-9]+)?\\.jpg(?:\\?v=[0-9]+)?">#',
             $decodedHtml
         );
         self::assertSame('https://example.com/medico/', $structuredData['@graph'][0]['url'] ?? null);
