@@ -8,7 +8,8 @@ set -euo pipefail
 #   scripts/run-tests.sh --url "http://127.0.0.1:8000/" --with-contact-success
 
 BASE_URL=""
-DEFAULT_PALETTE="blue"
+DEFAULT_PALETTE=""
+DEFAULT_PALETTE_SET=0
 WITH_CONTACT_SUCCESS=0
 
 usage() {
@@ -18,7 +19,7 @@ Usage:
 
 Options:
   --url URL                Base URL da landing
-  --default-palette VALUE  Paleta default esperada no SSR (default: blue)
+  --default-palette VALUE  Paleta default esperada no SSR (default: APP_PALETTE do .env, fallback: blue)
   --with-contact-success   Executa smoke de contato com sucesso SMTP
   --help                   Mostra esta ajuda
 USAGE
@@ -32,6 +33,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     --default-palette)
       DEFAULT_PALETTE="${2:-}"
+      DEFAULT_PALETTE_SET=1
       shift 2
       ;;
     --with-contact-success)
@@ -49,6 +51,15 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+if [[ "$DEFAULT_PALETTE_SET" -eq 0 ]]; then
+  if [[ -f .env ]]; then
+    env_palette="$(grep -E '^APP_PALETTE=' .env | head -n1 | cut -d'=' -f2- | tr -d '"' | tr -d "'" | tr -d '[:space:]')"
+    DEFAULT_PALETTE="${env_palette:-blue}"
+  else
+    DEFAULT_PALETTE="blue"
+  fi
+fi
 
 if [[ -z "$BASE_URL" ]]; then
   echo "[error] informe --url" >&2

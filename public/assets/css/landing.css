@@ -844,10 +844,10 @@ html[data-theme="light"] .navbar-logo-light {
 
 .hero-title-motion .hero-title-part {
   display: inline-block;
-  opacity: 0;
-  transform: translate3d(0, 40px, 0) scale(0.94);
-  will-change: transform, opacity;
-  animation: hero-title-enter 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+  animation: none;
 }
 
 .hero-title-motion .hero-title-part-1,
@@ -856,20 +856,21 @@ html[data-theme="light"] .navbar-logo-light {
 }
 
 .hero-title-motion .hero-title-part-1 {
-  animation-delay: 0.04s;
+  animation-delay: 0s;
 }
 
 .hero-title-motion .hero-title-part-2 {
-  animation-name: hero-title-enter, hero-title-pulse;
-  animation-duration: 760ms, 2.1s;
-  animation-delay: 0.18s, 0.95s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-in-out;
-  animation-fill-mode: forwards, both;
-  animation-iteration-count: 1, infinite;
+  animation: none;
 }
 
 .hero-title-motion .hero-title-part-3 {
-  animation-delay: 0.32s;
+  animation-delay: 0s;
+}
+
+.hero .lead {
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 36ch;
 }
 
 .hero-proof {
@@ -953,9 +954,13 @@ html.fx-ready .glass {
   border-radius: var(--hero-image-radius);
   border: var(--hero-image-border);
   box-shadow: 0 12px 28px rgba(0, 8, 20, 0.34);
-  animation: hero-card-float 4.8s ease-in-out infinite;
+  animation: none;
   object-position: var(--hero-image-object-position);
   filter: var(--hero-image-filter);
+}
+
+html.fx-ready .hero-media img {
+  animation: hero-card-float 4.8s ease-in-out infinite;
 }
 
 
@@ -2334,7 +2339,8 @@ html[data-theme="light"] code {
 
 /* Emotion custom palette (based on public/assets/img/img_1.jpg) */
 html[data-niche="emotion"] {
-  --bg0: #efbfd0;
+  /* --bg0: #efbfd0; */
+  --bg0: #ffe9ee;
   --bg1: #e8afc4;
   --bg2: #dfa0b8;
   --text: #2b2326;
@@ -2351,15 +2357,18 @@ html[data-niche="emotion"] {
   --grid-opacity: 0;
   --body-accent-mask: none;
   --body-overlay: none;
-  --nav-glass-bg: #e8afc4;
+  /* --nav-glass-bg: #e8afc4; */
+  --nav-glass-bg: #ffdae6;
   --nav-control-bg: rgba(223, 160, 184, 0.86);
   --hero-badge-bg: rgba(236, 179, 201, 0.82);
   --pill-bg: rgba(236, 179, 201, 0.76);
   --steps-bg: rgba(233, 169, 195, 0.82);
   --glass-bg-start: rgba(255, 235, 244, 0.92);
   --glass-bg-end: rgba(242, 198, 218, 0.88);
-  --footer-bg-start: #e8afc4;
-  --footer-bg-end: #dfa0b8;
+  /* --footer-bg-start: #e8afc4; */
+  --footer-bg-start: #ffdae6;
+  /* --footer-bg-end: #dfa0b8; */
+  --footer-bg-end: #ffdae6;
   --section-divider-mid: rgba(205, 84, 126, 0.34);
 }
 
@@ -2458,16 +2467,17 @@ html[data-niche="emotion"] .btn:focus,
 html[data-niche="emotion"] .btn:active {
   color: #ffffff !important;
 }
-
+/* BOTÃO DO CTA DA HERO */
 html[data-niche="emotion"] .btn-primary {
   border: none !important;
   background: #c4606c;
+  /* background: #f3a2ad; */
   box-shadow: 0 10px 26px rgba(196, 96, 108, 0.35);
 }
 
 html[data-niche="emotion"] .btn-primary:hover {
   border: none !important;
-  background: #b65562;
+  background: #f1596e;
   transform: translateY(-1px);
 }
 
@@ -2492,10 +2502,11 @@ html[data-niche="emotion"] .lead {
     line-height: 1.64;
   }
 }
-
+/* BADGE DA HERO */
 html[data-niche="emotion"] .hero-badge,
 html[data-niche="emotion"] .pill {
-  background: #f1d4da !important;
+  /* background: #f1d4da !important; */
+  background: #f5b4c1 !important;
   border-color: #d9a8b5 !important;
   color: #7b3f52 !important;
 }
