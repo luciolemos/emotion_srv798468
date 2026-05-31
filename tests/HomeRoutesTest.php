@@ -164,7 +164,7 @@ final class HomeRoutesTest extends TestCase
 
         self::assertSame(200, $response->getStatusCode());
         self::assertStringContainsString('data-typography="clinical"', $html);
-        self::assertStringContainsString('Um espaço seguro para mulheres que desejam', $html);
+        self::assertStringContainsString('Você não precisa', $html);
         self::assertStringContainsString('Áreas de cuidado no atendimento psicológico', $html);
         self::assertStringContainsString('Desenvolvido por <a href="https://natalcode.com.br/" target="_blank" rel="noopener noreferrer">NatalCode</a> - Soluções Digitais', $html);
         self::assertStringNotContainsString('id="copyModeToggle"', $html);
