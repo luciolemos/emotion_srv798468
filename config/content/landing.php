@@ -38,19 +38,20 @@ return [
         'badge_icon' => 'journal-heart',
         'badge' => 'Psicóloga | CRP 17/1671',
         'title_parts' => [
-            'Um espaço seguro para mulheres que desejam',
-            'se reconectar',
-            'com sua essência.',
+            'Você não precisa',
+            'carregar tudo',
+            'sozinha.',
         ],
-        'lead' => 'Acolhimento, escuta e transformação emocional para mulheres que se sentem inseguras, sobrecarregadas ou desconectadas de si mesmas.',
+        'subtitle' => 'Muitas mulheres aprenderam a sustentar tudo ao redor, mas se perderam de si mesmas no caminho.',
+        'lead' => 'A terapia pode ser um espaço para fortalecer sua autoestima, compreender suas emoções e reconstruir uma relação mais leve consigo mesma.',
         'primary_cta' => [
-            'label' => 'Marcar primeiro atendimento',
-            'href' => '#cta',
+            'label' => 'Quero começar minha terapia',
+            'href' => '#agendar',
             'icon' => 'arrow-right-short',
         ],
         'secondary_cta' => [
             'label' => 'Conhecer a abordagem',
-            'href' => '#how',
+            'href' => '#sobre-mim',
             'icon' => 'journal-text',
         ],
         'trust_items' => [
@@ -128,6 +129,19 @@ return [
             ['icon' => 'person-lines-fill', 'title' => 'Acompanhamento contínuo', 'text' => 'Organização do processo terapêutico com presença, ética e continuidade no cuidado psicológico.'],
         ],
     ],
+    'psychotherapy' => [
+        'title' => 'Psicoterapia',
+        'text' => 'Atendimento individual com escuta sensível para acolher emoções, fortalecer autoestima e construir novos recursos internos.',
+    ],
+    'couple_therapy' => [
+        'title' => 'Terapia de Casal',
+        'text' => 'Espaço terapêutico para casais que desejam melhorar comunicação, elaborar conflitos e fortalecer o vínculo com mais presença e respeito.',
+        'items' => [
+            ['icon' => 'chat-dots', 'title' => 'Comunicação no relacionamento', 'text' => 'Trabalho para reduzir ruídos, ampliar escuta e facilitar conversas importantes sem escalada de conflito.'],
+            ['icon' => 'heart', 'title' => 'Reconexão afetiva', 'text' => 'Acompanhamento para lidar com distanciamento emocional, mágoas e desgaste da convivência.'],
+            ['icon' => 'people', 'title' => 'Combinados do casal', 'text' => 'Construção de acordos práticos sobre rotina, limites e expectativas para uma relação mais equilibrada.'],
+        ],
+    ],
     'how' => [
         'title' => 'Como funciona o acompanhamento de um processo terapêutico.',
         'text' => 'Um acompanhamento terapêutico conduzido com clareza, acolhimento e sensibilidade, oferecendo suporte humanizado desde o primeiro contato até o final de cada etapa da sua jornada emocional.',
@@ -177,7 +191,7 @@ return [
         'iframe_title' => 'Mapa: atendimento psicológico com Jersika Carvalho (Salvador, BA)',
     ],
     'cta' => [
-        'title' => 'Quer iniciar seu processo terapêutico com a Jersika?',
+        'title' => 'Quero iniciar minha terapia',
         'text' => 'Preencha seus dados para receber retorno e alinhar o primeiro atendimento psicológico de forma acolhedora e organizada.',
         'primary_label' => 'Solicitar agendamento',
         'secondary_label' => 'Falar no WhatsApp',

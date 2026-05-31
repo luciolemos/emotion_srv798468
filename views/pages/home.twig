@@ -43,6 +43,8 @@
 {% set services_section = content.services|default({}) %}
 {% set how = content.how|default({}) %}
 {% set structure = content.structure|default({}) %}
+{% set psychotherapy = content.psychotherapy|default({}) %}
+{% set couple_therapy = content.couple_therapy|default({}) %}
 {% set cta = content.cta|default({}) %}
 {% set form = content.form|default({}) %}
 {% set form_fields = form.fields|default({}) %}
@@ -77,18 +79,20 @@
           <span class="hero-title-part hero-title-part-3">{{ hero.title_parts[2]|default('para cuidar de cada solicitação com clareza.') }}</span>
         </h1>
 
+        {% if hero.subtitle|default('') %}
+        <p class="hero-subtitle text-secondary-emphasis mb-3">
+          {{ hero.subtitle }}
+        </p>
+        {% endif %}
+
         <p class="lead text-secondary-emphasis mb-4">
           {{ hero.lead|default('Atendimento com escuta atenta, agenda organizada e orientação clara para o próximo passo.') }}
         </p>
 
         <div class="d-flex flex-column flex-sm-row gap-2 gap-sm-3">
           {% set primary_cta = hero.primary_cta|default({}) %}
-          {% set secondary_cta = hero.secondary_cta|default({}) %}
           <a class="btn btn-primary btn-lg px-4 cta-track" href="{{ primary_cta.href|default('#form-orcamento') }}" data-cta-id="hero_primary">
             {{ primary_cta.label|default('Agendar consulta') }} <i class="bi bi-{{ primary_cta.icon|default('arrow-right-short') }}"></i>
-          </a>
-          <a class="btn btn-outline-light btn-lg px-4 cta-track" href="{{ secondary_cta.href|default('#features') }}" data-cta-id="hero_secondary">
-            {{ secondary_cta.label|default('Ver atendimentos') }} <i class="bi bi-{{ secondary_cta.icon|default('clipboard2-pulse') }} ms-1"></i>
           </a>
         </div>
 
@@ -170,7 +174,100 @@
   </div>
 </header>
 
-<section class="py-5 py-lg-6 section-tech">
+<section id="sobre-mim" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="text-center mb-4 mb-lg-5 section-heading">
+      <h2 class="fw-normal">{{ how.details_title|default('Sobre mim') }}</h2>
+      <p class="text-secondary-emphasis mb-0">
+        {{ how.bio|default(moments.text|default('Psicóloga com escuta sensível e prática voltada ao acolhimento emocional.')) }}
+      </p>
+    </div>
+    <div class="row g-3 g-lg-4 justify-content-center">
+      {% for detail in how.details|default([]) %}
+      <div class="col-md-6 col-lg-4">
+        <div class="quote-card hover-lift glass card-variant-docs p-4 h-100">
+          <div class="d-flex align-items-start gap-2">
+            <i class="bi bi-check2-circle"></i>
+            <span class="fw-semibold">{{ detail }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="psicoterapia" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="text-center mb-4 mb-lg-5 section-heading">
+      <h2 class="fw-normal">{{ psychotherapy.title|default('Psicoterapia') }}</h2>
+      <p class="text-secondary-emphasis mb-0">
+        {{ psychotherapy.text|default(services_section.text|default('Atendimento psicológico com foco em autoconhecimento, acolhimento e transformação emocional.')) }}
+      </p>
+    </div>
+
+    <div class="row g-3 g-lg-4">
+      {% for service in psychotherapy.items|default(services) %}
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card hover-lift glass card-variant-feature h-100 p-4">
+          <div class="feature-icon"><i class="bi bi-{{ service.icon|default('chat-heart') }}"></i></div>
+          <h3 class="h5 fw-semibold mt-3">{{ service.title }}</h3>
+          <p class="text-secondary-emphasis mb-0">{{ service.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="terapia-casal" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="text-center mb-4 mb-lg-5 section-heading">
+      <h2 class="fw-normal">{{ couple_therapy.title|default('Terapia de Casal') }}</h2>
+      <p class="text-secondary-emphasis mb-0">
+        {{ couple_therapy.text|default('Um espaço de escuta para casais que buscam melhorar comunicação, reconstruir confiança e fortalecer o vínculo afetivo.') }}
+      </p>
+    </div>
+    <div class="row g-3 g-lg-4 justify-content-center">
+      {% for item in couple_therapy.items|default([
+        {'icon': 'chat-dots', 'title': 'Comunicação com clareza', 'text': 'Sessões para reduzir conflitos recorrentes e ampliar escuta entre as duas partes.'},
+        {'icon': 'heart', 'title': 'Reconstrução de vínculo', 'text': 'Acompanhamento para lidar com distanciamento emocional, desgaste e perda de conexão.'},
+        {'icon': 'people', 'title': 'Acordos e convivência', 'text': 'Definição de combinados práticos para uma relação mais saudável no dia a dia.'}
+      ]) %}
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card hover-lift glass card-variant-feature h-100 p-4">
+          <div class="feature-icon"><i class="bi bi-{{ item.icon|default('chat-heart') }}"></i></div>
+          <h3 class="h5 fw-semibold mt-3">{{ item.title }}</h3>
+          <p class="text-secondary-emphasis mb-0">{{ item.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="agendar" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="text-center mb-4 mb-lg-5 section-heading">
+      <h2 class="fw-normal">{{ cta.title|default('Agendar') }}</h2>
+      <p class="text-secondary-emphasis mb-0">
+        {{ cta.text|default('Preencha seus dados para receber retorno e alinhar o primeiro atendimento.') }}
+      </p>
+    </div>
+    <div class="cta-box glass cta-box-no-bg p-4 p-lg-5 text-center">
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-2 gap-sm-3">
+        <a class="btn btn-primary btn-lg px-4 cta-track" href="#form-orcamento" data-cta-id="agendar_primary">
+          {{ cta.primary_label|default('Solicitar agendamento') }} <i class="bi bi-calendar2-check ms-1"></i>
+        </a>
+        <a class="btn btn-outline-light btn-lg px-4 cta-track" href="{{ whatsapp_url }}" target="_blank" rel="noopener" data-cta-id="agendar_whatsapp">
+          {{ cta.secondary_label|default('Falar no WhatsApp') }} <i class="bi bi-whatsapp ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 py-lg-6 section-tech d-none" aria-hidden="true">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ moments.title|default('Atendimento para diferentes necessidades') }}</h2>
@@ -190,7 +287,7 @@
   </div>
 </section>
 
-<section id="features" class="py-5 py-lg-6 section-tech">
+<section id="features" class="py-5 py-lg-6 section-tech d-none" aria-hidden="true">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ services_section.title|default('Serviços') }}</h2>
@@ -213,7 +310,7 @@
   </div>
 </section>
 
-<section id="how" class="py-5 py-lg-6 section-tech">
+<section id="how" class="py-5 py-lg-6 section-tech d-none" aria-hidden="true">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ how.title|default('Como funciona o atendimento') }}</h2>
@@ -254,7 +351,7 @@
   </div>
 </section>
 
-<section id="estrutura" class="py-5 py-lg-6 section-tech">
+<section id="estrutura" class="py-5 py-lg-6 section-tech d-none" aria-hidden="true">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal mb-2">{{ structure.title|default('Estrutura pensada para o paciente') }}</h2>
@@ -278,7 +375,7 @@
   </div>
 </section>
 
-<section id="cta" class="py-5 py-lg-6 section-tech">
+<section id="cta" class="py-5 py-lg-6 section-tech d-none" aria-hidden="true">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ cta.title|default('Precisa marcar uma consulta?') }}</h2>
@@ -462,7 +559,7 @@
   </div>
 </section>
 
-<section id="faq" class="py-5 py-lg-6 section-tech">
+<section id="faq" class="py-5 py-lg-6 section-tech d-none" aria-hidden="true">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ faq.title|default('Dúvidas frequentes') }}</h2>

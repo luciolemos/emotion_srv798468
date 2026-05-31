@@ -3,7 +3,10 @@ const { test, expect } = require('@playwright/test');
 test('clinic landing renders core content and contact flow', async ({ page }) => {
   await page.goto('./');
 
-  await expect(page.locator('#features')).toBeVisible();
+  await expect(page.locator('#sobre-mim')).toBeVisible();
+  await expect(page.locator('#psicoterapia')).toBeVisible();
+  await expect(page.locator('#terapia-casal')).toBeVisible();
+  await expect(page.locator('#agendar')).toBeVisible();
   await expect(page.locator('#form-orcamento')).toBeVisible();
 
   await page.locator('a[data-cta-id="hero_primary"]').first().click();
