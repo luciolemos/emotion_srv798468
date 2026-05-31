@@ -582,25 +582,86 @@
   const nav = document.getElementById("topNav");
   const toggler = document.querySelector('.navbar-toggler[data-bs-target="#topNav"]');
   const isNavOpen = () => nav && nav.classList.contains("show");
-  const closeNav = () => {
+
+  const getCollapseInstance = () => {
+    if (!nav) return null;
+    const bootstrapApi = window.bootstrap;
+    if (!bootstrapApi || !bootstrapApi.Collapse) return null;
+    return bootstrapApi.Collapse.getOrCreateInstance(nav, { toggle: false });
+  };
+
+  const closeNav = (onClosed) => {
     if (!nav) return;
+
+    const collapse = getCollapseInstance();
+    if (collapse) {
+      if (typeof onClosed === "function") {
+        if (!isNavOpen() && !nav.classList.contains("collapsing")) {
+          onClosed();
+          return;
+        }
+
+        nav.addEventListener(
+          "hidden.bs.collapse",
+          () => {
+            onClosed();
+          },
+          { once: true }
+        );
+      }
+
+      collapse.hide();
+      return;
+    }
+
+    // Fallback when Bootstrap API is not available.
     nav.classList.remove("show", "collapsing");
     nav.style.height = "";
     if (toggler) toggler.classList.add("collapsed");
     if (toggler) toggler.setAttribute("aria-expanded", "false");
+
+    if (typeof onClosed === "function") onClosed();
   };
 
   if (nav) {
     document.addEventListener("click", (event) => {
-      const link = event.target.closest("a.nav-link, a.btn, button.btn");
+      const link = event.target.closest("a.nav-link[href^='#']");
       if (!link) return;
       if (!nav.contains(link)) return;
+
+      const href = (link.getAttribute("href") || "").trim();
+      if (!href.startsWith("#")) {
+        setTimeout(closeNav, 0);
+        return;
+      }
+
+      if (isNavOpen()) {
+        event.preventDefault();
+        closeNav(() => {
+          const targetId = href.slice(1);
+          if (!targetId) return;
+
+          const targetEl = document.getElementById(targetId);
+          if (!targetEl) {
+            window.location.hash = href;
+            return;
+          }
+
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (window.location.hash !== href) {
+            history.replaceState(null, "", href);
+          }
+        });
+        return;
+      }
+
       setTimeout(closeNav, 0);
     });
   }
 
   document.addEventListener("click", (event) => {
     if (!isNavOpen()) return;
+    if (nav.classList.contains("collapsing")) return;
     const isToggler = toggler && (event.target === toggler || toggler.contains(event.target));
     if (nav.contains(event.target) || isToggler) return;
     setTimeout(closeNav, 0);
@@ -608,12 +669,9 @@
 
   window.addEventListener("scroll", () => {
     if (!isNavOpen()) return;
+    if (nav.classList.contains("collapsing")) return;
     closeNav();
   }, { passive: true });
-
-  window.addEventListener("hashchange", () => {
-    setTimeout(closeNav, 0);
-  });
 
   // Active nav link on scroll (single page)
   const navLinks = Array.from(document.querySelectorAll('.navbar .nav-link[href^="#"]'));
