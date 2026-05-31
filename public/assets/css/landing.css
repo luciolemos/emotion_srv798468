@@ -2559,6 +2559,295 @@ html[data-niche="emotion"] #form-orcamento {
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
 }
 
+html[data-niche="emotion"] #sobre-mim,
+html[data-niche="emotion"] #terapia-casal {
+  overflow-x: clip;
+}
+
+html[data-niche="emotion"] #sobre-mim .container {
+  max-width: 1240px;
+}
+
+html[data-niche="emotion"] .about-jersika-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 520px) minmax(320px, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+}
+
+html[data-niche="emotion"] .about-jersika-media {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+html[data-niche="emotion"] .about-jersika-shape {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+html[data-niche="emotion"] .about-jersika-shape-lilac {
+  width: clamp(74px, 8.4vw, 122px);
+  height: clamp(74px, 8.4vw, 122px);
+  left: clamp(-12px, -1.4vw, -20px);
+  top: clamp(-14px, -1.6vw, -24px);
+  background: rgba(215, 196, 222, 0.58);
+}
+
+html[data-niche="emotion"] .about-jersika-shape-rose {
+  width: clamp(124px, 12vw, 176px);
+  height: clamp(124px, 12vw, 176px);
+  right: clamp(-16px, -1.4vw, -26px);
+  bottom: clamp(-20px, -2.4vw, -34px);
+  background: rgba(241, 193, 215, 0.64);
+}
+
+html[data-niche="emotion"] .about-jersika-photo {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 32px 60px rgba(102, 62, 78, 0.16);
+}
+
+html[data-niche="emotion"] .about-jersika-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+html[data-niche="emotion"] .about-jersika-content {
+  max-width: 700px;
+}
+
+html[data-niche="emotion"] .about-jersika-content.section-heading {
+  margin-bottom: 0 !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+html[data-niche="emotion"] .about-jersika-content.section-heading h2 {
+  display: inline-block;
+}
+
+html[data-niche="emotion"] .about-jersika-content.section-heading p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html[data-niche="emotion"] .about-jersika-description {
+  max-width: 100%;
+  width: 100%;
+  text-align: left;
+}
+
+html[data-niche="emotion"] .about-jersika-list {
+  display: grid;
+  gap: 0.95rem;
+  width: 100%;
+  text-align: left;
+}
+
+html[data-niche="emotion"] .about-jersika-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 116, 151, 0.35);
+  background: linear-gradient(160deg, rgba(252, 225, 237, 0.95), rgba(238, 188, 213, 0.92));
+  color: #3f2a33;
+  font-size: clamp(1rem, 1.2vw, 1.24rem);
+  line-height: 1.35;
+  box-shadow: 0 8px 18px rgba(177, 92, 129, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+html[data-niche="emotion"] .about-jersika-item i {
+  font-size: 0.95rem;
+  color: #d392aa !important;
+}
+
+html[data-niche="emotion"] .couple-therapy-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(300px, 520px);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+}
+
+html[data-niche="emotion"] .couple-therapy-content.section-heading {
+  margin-bottom: 0 !important;
+}
+
+html[data-niche="emotion"] .couple-therapy-content.section-heading h2 {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+html[data-niche="emotion"] .couple-therapy-content.section-heading p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+html[data-niche="emotion"] .couple-therapy-description {
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+}
+
+html[data-niche="emotion"] .couple-therapy-list {
+  display: grid;
+  gap: 0.95rem;
+}
+
+html[data-niche="emotion"] .couple-therapy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.95rem 1.2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(200, 116, 151, 0.35);
+  background: linear-gradient(160deg, rgba(252, 225, 237, 0.95), rgba(238, 188, 213, 0.92));
+  color: #3f2a33;
+  box-shadow: 0 8px 18px rgba(177, 92, 129, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+@media (hover: hover) {
+  html[data-niche="emotion"] .about-jersika-item:hover,
+  html[data-niche="emotion"] .about-jersika-item:focus-within,
+  html[data-niche="emotion"] .couple-therapy-item:hover,
+  html[data-niche="emotion"] .couple-therapy-item:focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(194, 98, 140, 0.58);
+    box-shadow: 0 18px 34px rgba(177, 92, 129, 0.24);
+  }
+}
+
+html[data-niche="emotion"] .couple-therapy-item i {
+  font-size: 0.95rem;
+  color: #d392aa !important;
+  margin-top: 0.25rem;
+}
+
+html[data-niche="emotion"] .couple-therapy-item-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+html[data-niche="emotion"] .couple-therapy-item p {
+  color: #5d4451;
+  line-height: 1.5;
+}
+
+html[data-niche="emotion"] .couple-therapy-media {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+html[data-niche="emotion"] .couple-therapy-shape {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+html[data-niche="emotion"] .couple-therapy-shape-lilac {
+  width: clamp(74px, 8.4vw, 122px);
+  height: clamp(74px, 8.4vw, 122px);
+  left: clamp(-16px, -2vw, -26px);
+  top: clamp(-18px, -2vw, -28px);
+  background: rgba(215, 196, 222, 0.58);
+}
+
+html[data-niche="emotion"] .couple-therapy-shape-rose {
+  width: clamp(124px, 12vw, 176px);
+  height: clamp(124px, 12vw, 176px);
+  right: clamp(-22px, -2vw, -34px);
+  bottom: clamp(-28px, -3vw, -42px);
+  background: rgba(241, 193, 215, 0.64);
+}
+
+html[data-niche="emotion"] .couple-therapy-photo {
+  display: block;
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 32px 60px rgba(102, 62, 78, 0.16);
+}
+
+html[data-niche="emotion"] .couple-therapy-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 991.98px) {
+  html[data-niche="emotion"] .about-jersika-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  html[data-niche="emotion"] .about-jersika-media {
+    max-width: 430px;
+    margin-inline: auto;
+  }
+
+  html[data-niche="emotion"] .about-jersika-content {
+    max-width: 100%;
+  }
+
+  html[data-niche="emotion"] .about-jersika-description {
+    max-width: 52ch;
+  }
+
+  html[data-niche="emotion"] .couple-therapy-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  html[data-niche="emotion"] .couple-therapy-media {
+    max-width: 430px;
+    margin-inline: auto;
+    order: -1;
+  }
+}
+
+@media (max-width: 575.98px) {
+  html[data-niche="emotion"] .about-jersika-photo {
+    border-radius: 28px;
+  }
+
+  html[data-niche="emotion"] .about-jersika-photo img {
+    aspect-ratio: 4 / 5.3;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  html[data-niche="emotion"] .about-jersika-item {
+    border-radius: 24px;
+    align-items: flex-start;
+  }
+
+  html[data-niche="emotion"] .couple-therapy-photo {
+    border-radius: 28px;
+  }
+
+  html[data-niche="emotion"] .couple-therapy-photo img {
+    aspect-ratio: 4 / 5.3;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
 html[data-niche="emotion"] .whatsapp-float {
   background: #c85e88 !important;
   color: #ffffff !important;

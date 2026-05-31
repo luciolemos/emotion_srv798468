@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img" aria-labelledby="title desc">
+  <title id="title">Paleta Emotion</title>
+  <desc id="desc">Amostras de cores da identidade visual da landing Emotion.</desc>
+  <style>
+    text { font-family: Arial, Helvetica, sans-serif; fill: #2f2229; }
+    .title { font-size: 26px; font-weight: 700; }
+    .group { font-size: 18px; font-weight: 700; }
+    .label { font-size: 14px; font-weight: 600; }
+    .code { font-size: 13px; fill: #5d4451; }
+    .chip { stroke: #b7a6ad; stroke-width: 1; rx: 8; ry: 8; }
+  </style>
+
+  <rect x="0" y="0" width="980" height="520" fill="#fff7fa"/>
+  <text x="36" y="48" class="title">Identidade Visual Emotion · Paleta</text>
+
+  <text x="36" y="92" class="group">Fundos e superfícies</text>
+  <rect x="36" y="108" width="180" height="48" class="chip" fill="#f6d8e5"/>
+  <text x="226" y="128" class="label">--bg0</text>
+  <text x="226" y="147" class="code">#f6d8e5</text>
+  <rect x="490" y="108" width="180" height="48" class="chip" fill="#edbed2"/>
+  <text x="680" y="128" class="label">--bg1</text>
+  <text x="680" y="147" class="code">#edbed2</text>
+
+  <rect x="36" y="172" width="180" height="48" class="chip" fill="#e2a8c3"/>
+  <text x="226" y="192" class="label">--bg2</text>
+  <text x="226" y="211" class="code">#e2a8c3</text>
+  <rect x="490" y="172" width="180" height="48" class="chip" fill="#fce4f0"/>
+  <text x="680" y="192" class="label">--card</text>
+  <text x="680" y="211" class="code">rgba(252,228,240,.86)</text>
+
+  <rect x="36" y="236" width="180" height="48" class="chip" fill="#f6cee2"/>
+  <text x="226" y="256" class="label">--card-strong</text>
+  <text x="226" y="275" class="code">rgba(246,206,226,.94)</text>
+  <rect x="490" y="236" width="180" height="48" class="chip" fill="#eebad4"/>
+  <text x="680" y="256" class="label">--surface-thin</text>
+  <text x="680" y="275" class="code">rgba(238,186,212,.62)</text>
+
+  <text x="36" y="334" class="group">Acentos e ação</text>
+  <rect x="36" y="350" width="180" height="48" class="chip" fill="#c85e88"/>
+  <text x="226" y="370" class="label">--gradA / CTA</text>
+  <text x="226" y="389" class="code">#c85e88</text>
+  <rect x="490" y="350" width="180" height="48" class="chip" fill="#b14e77"/>
+  <text x="680" y="370" class="label">--gradB / CTA hover</text>
+  <text x="680" y="389" class="code">#b14e77</text>
+
+  <rect x="36" y="414" width="180" height="48" class="chip" fill="#923f63"/>
+  <text x="226" y="434" class="label">--gradC</text>
+  <text x="226" y="453" class="code">#923f63</text>
+  <rect x="490" y="414" width="180" height="48" class="chip" fill="#ffdae6"/>
+  <text x="680" y="434" class="label">--nav-glass-bg</text>
+  <text x="680" y="453" class="code">#ffdae6</text>
+</svg>

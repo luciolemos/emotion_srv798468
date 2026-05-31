@@ -2,6 +2,8 @@
 
 Este documento define a base visual da landing `emotion` para manter consistência entre layout, conteúdo e futuras iterações.
 
+![Paleta Emotion](./assets/paleta-emotion.svg)
+
 ## 1. Direção de Marca
 
 - Posicionamento: acolhimento emocional, escuta profissional, segurança e proximidade.
@@ -12,33 +14,41 @@ Este documento define a base visual da landing `emotion` para manter consistênc
 
 ### 2.1 Fundo e superfícies
 
-- `--bg0`: `#f6d8e5`
-- `--bg1`: `#edbed2`
-- `--bg2`: `#e2a8c3`
-- `--card`: `rgba(252, 228, 240, 0.86)`
-- `--card-strong`: `rgba(246, 206, 226, 0.94)`
-- `--surface-thin`: `rgba(238, 186, 212, 0.62)`
-- `--surface-strong`: `rgba(226, 162, 194, 0.78)`
+| Token | Cor |
+|---|---|
+| `--bg0` | `#f6d8e5` |
+| `--bg1` | `#edbed2` |
+| `--bg2` | `#e2a8c3` |
+| `--card` | `rgba(252, 228, 240, 0.86)` |
+| `--card-strong` | `rgba(246, 206, 226, 0.94)` |
+| `--surface-thin` | `rgba(238, 186, 212, 0.62)` |
+| `--surface-strong` | `rgba(226, 162, 194, 0.78)` |
 
 ### 2.2 Texto e contraste
 
-- `--text`: `#2f2229`
-- `--muted`: `rgba(93, 68, 81, 0.9)`
-- Texto de ação em botões primários: `#ffffff`
+| Uso | Cor |
+|---|---|
+| `--text` | `#2f2229` |
+| `--muted` | `rgba(93, 68, 81, 0.9)` |
+| Texto em CTA | `#ffffff` |
 
 ### 2.3 Acentos e gradientes
 
-- `--gradA`: `rgb(200, 94, 136)`
-- `--gradB`: `rgb(177, 78, 119)`
-- `--gradC`: `rgb(146, 63, 99)`
-- CTA principal (`Agendar`): gradiente entre `#c85e88` e `#b14e77`
+| Token/Uso | Cor |
+|---|---|
+| `--gradA` | `rgb(200, 94, 136)` |
+| `--gradB` | `rgb(177, 78, 119)` |
+| `--gradC` | `rgb(146, 63, 99)` |
+| CTA `Agendar` | `#c85e88 -> #b14e77` |
 
 ### 2.4 Navbar e elementos estruturais
 
-- `--nav-glass-bg`: `#ffdae6`
-- `--nav-control-bg`: `rgba(226, 176, 201, 0.86)`
-- `--stroke`: `rgba(200, 94, 136, 0.34)`
-- `--stroke-soft`: `rgba(200, 94, 136, 0.22)`
+| Token | Cor |
+|---|---|
+| `--nav-glass-bg` | `#ffdae6` |
+| `--nav-control-bg` | `rgba(226, 176, 201, 0.86)` |
+| `--stroke` | `rgba(200, 94, 136, 0.34)` |
+| `--stroke-soft` | `rgba(200, 94, 136, 0.22)` |
 
 ## 3. Tipografia
 
@@ -89,4 +99,3 @@ Este documento define a base visual da landing `emotion` para manter consistênc
 
 - Arquivo-fonte principal dos estilos: `public/assets/css/landing.css`
 - Escopo do tema: seletor `html[data-niche="emotion"]`
-
