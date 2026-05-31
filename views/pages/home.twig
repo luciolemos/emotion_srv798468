@@ -20,7 +20,9 @@
   as="image"
   media="{{ hero_mobile_media }}"
   href="{{ base_url }}/{{ hero_mobile.src }}"
+  {% if hero_mobile_sources|length > 0 %}
   imagesrcset="{% for source in hero_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+  {% endif %}
   imagesizes="{{ hero_mobile.sizes|default('92vw') }}"
   fetchpriority="high"
 >
@@ -30,7 +32,9 @@
   as="image"
   {% if hero_mobile.src|default('') %}media="{{ hero_image.desktop_media|default('(min-width: 577px)') }}"{% endif %}
   href="{{ base_url }}/{{ hero_image_src }}"
+  {% if hero_sources|length > 0 %}
   imagesrcset="{% for source in hero_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+  {% endif %}
   imagesizes="{{ hero_image_sizes }}"
   fetchpriority="high"
 >
@@ -143,11 +147,13 @@
               sizes="{{ hero_mobile.sizes|default('92vw') }}"
             >
             {% endif %}
+            {% if hero_sources|length > 0 %}
             <source
               type="image/webp"
               srcset="{% for source in hero_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
               sizes="{{ hero_image_sizes }}"
             >
+            {% endif %}
             <img
               src="{{ base_url }}/{{ hero_image_src }}"
               alt="{{ hero_image.alt|default('Atendimento em consultório') }}"
@@ -176,23 +182,63 @@
 
 <section id="sobre-mim" class="py-5 py-lg-6 section-tech">
   <div class="container">
-    <div class="text-center mb-4 mb-lg-5 section-heading">
-      <h2 class="fw-normal">{{ how.details_title|default('Sobre mim') }}</h2>
-      <p class="text-secondary-emphasis mb-0">
-        {{ how.bio|default(moments.text|default('Psicóloga com escuta sensível e prática voltada ao acolhimento emocional.')) }}
-      </p>
-    </div>
-    <div class="row g-3 g-lg-4 justify-content-center">
-      {% for detail in how.details|default([]) %}
-      <div class="col-md-6 col-lg-4">
-        <div class="quote-card hover-lift glass card-variant-docs p-4 h-100">
-          <div class="d-flex align-items-start gap-2">
-            <i class="bi bi-check2-circle"></i>
-            <span class="fw-semibold">{{ detail }}</span>
-          </div>
-        </div>
+    {% set about_image = how.image|default({}) %}
+    {% set about_image_src = about_image.src|default('assets/img/hero/jersika/jersika-desktop-640.webp') %}
+    {% set about_sources = about_image.sources|default([]) %}
+    {% set about_image_sizes = about_image.sizes|default('(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 840px') %}
+    {% set about_mobile = about_image.mobile|default({}) %}
+    {% set about_mobile_sources = about_mobile.sources|default([]) %}
+    {% set about_mobile_media = about_mobile.media|default('(max-width: 576px)') %}
+    {% set about_image_alt = about_image.alt|default('Jersika Carvalho') %}
+    {% set about_image_width = about_image.width|default(640) %}
+    {% set about_image_height = about_image.height|default(512) %}
+    <div class="about-jersika-grid">
+      <div class="about-jersika-media">
+        <span class="about-jersika-shape about-jersika-shape-lilac" aria-hidden="true"></span>
+        <span class="about-jersika-shape about-jersika-shape-rose" aria-hidden="true"></span>
+        <picture class="about-jersika-photo">
+          {% if about_mobile.src|default('') %}
+          <source
+            type="image/webp"
+            media="{{ about_mobile_media }}"
+            srcset="{% for source in about_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+            sizes="{{ about_mobile.sizes|default('92vw') }}"
+          >
+          {% endif %}
+          {% if about_sources|length > 0 %}
+          <source
+            type="image/webp"
+            srcset="{% for source in about_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+            sizes="{{ about_image_sizes }}"
+          >
+          {% endif %}
+          <img
+            src="{{ base_url }}/{{ about_image_src }}"
+            alt="{{ about_image_alt }}"
+            class="img-fluid"
+            loading="lazy"
+            decoding="async"
+            width="{{ about_image_width }}"
+            height="{{ about_image_height }}"
+          >
+        </picture>
       </div>
-      {% endfor %}
+
+      <div class="about-jersika-content section-heading">
+        <h2 class="fw-normal mb-3">{{ how.details_title|default('Sobre mim') }}</h2>
+        <p class="about-jersika-description text-secondary-emphasis mb-4">
+          {{ how.bio|default(moments.text|default('Psicóloga com escuta sensível e prática voltada ao acolhimento emocional.')) }}
+        </p>
+
+        <ul class="about-jersika-list list-unstyled mb-0">
+          {% for detail in how.details|default([]) %}
+          <li class="about-jersika-item">
+            <i class="bi bi-shield-check" aria-hidden="true"></i>
+            <span>{{ detail }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -222,26 +268,69 @@
 
 <section id="terapia-casal" class="py-5 py-lg-6 section-tech">
   <div class="container">
-    <div class="text-center mb-4 mb-lg-5 section-heading">
-      <h2 class="fw-normal">{{ couple_therapy.title|default('Terapia de Casal') }}</h2>
-      <p class="text-secondary-emphasis mb-0">
-        {{ couple_therapy.text|default('Um espaço de escuta para casais que buscam melhorar comunicação, reconstruir confiança e fortalecer o vínculo afetivo.') }}
-      </p>
-    </div>
-    <div class="row g-3 g-lg-4 justify-content-center">
-      {% for item in couple_therapy.items|default([
-        {'icon': 'chat-dots', 'title': 'Comunicação com clareza', 'text': 'Sessões para reduzir conflitos recorrentes e ampliar escuta entre as duas partes.'},
-        {'icon': 'heart', 'title': 'Reconstrução de vínculo', 'text': 'Acompanhamento para lidar com distanciamento emocional, desgaste e perda de conexão.'},
-        {'icon': 'people', 'title': 'Acordos e convivência', 'text': 'Definição de combinados práticos para uma relação mais saudável no dia a dia.'}
-      ]) %}
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card hover-lift glass card-variant-feature h-100 p-4">
-          <div class="feature-icon"><i class="bi bi-{{ item.icon|default('chat-heart') }}"></i></div>
-          <h3 class="h5 fw-semibold mt-3">{{ item.title }}</h3>
-          <p class="text-secondary-emphasis mb-0">{{ item.text }}</p>
-        </div>
+    {% set couple_image_src = couple_therapy.image_src|default(hero_image_src) %}
+    {% set couple_sources = couple_therapy.sources|default(hero_sources) %}
+    {% set couple_image_sizes = couple_therapy.sizes|default(hero_image_sizes) %}
+    {% set couple_mobile = couple_therapy.mobile|default(hero_mobile) %}
+    {% set couple_mobile_sources = couple_mobile.sources|default([]) %}
+    {% set couple_mobile_media = couple_mobile.media|default('(max-width: 576px)') %}
+    {% set couple_image_alt = couple_therapy.image_alt|default('Casal em sessão terapêutica') %}
+    {% set couple_image_width = couple_therapy.image_width|default(hero_image.width|default(1402)) %}
+    {% set couple_image_height = couple_therapy.image_height|default(hero_image.height|default(1122)) %}
+    <div class="couple-therapy-grid">
+      <div class="couple-therapy-content section-heading">
+        <h2 class="fw-normal mb-3">{{ couple_therapy.title|default('Terapia de Casal') }}</h2>
+        <p class="couple-therapy-description text-secondary-emphasis mb-4">
+          {{ couple_therapy.text|default('Um espaço de escuta para casais que buscam melhorar comunicação, reconstruir confiança e fortalecer o vínculo afetivo.') }}
+        </p>
+
+        <ul class="couple-therapy-list list-unstyled mb-0">
+          {% for item in couple_therapy.items|default([
+            {'icon': 'chat-dots', 'title': 'Comunicação com clareza', 'text': 'Sessões para reduzir conflitos recorrentes e ampliar escuta entre as duas partes.'},
+            {'icon': 'heart', 'title': 'Reconstrução de vínculo', 'text': 'Acompanhamento para lidar com distanciamento emocional, desgaste e perda de conexão.'},
+            {'icon': 'people', 'title': 'Acordos e convivência', 'text': 'Definição de combinados práticos para uma relação mais saudável no dia a dia.'}
+          ]) %}
+          <li class="couple-therapy-item">
+            <i class="bi bi-shield-check" aria-hidden="true"></i>
+            <div>
+              <span class="couple-therapy-item-title">{{ item.title }}</span>
+              <p class="mb-0">{{ item.text }}</p>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
-      {% endfor %}
+
+      <div class="couple-therapy-media">
+        <span class="couple-therapy-shape couple-therapy-shape-lilac" aria-hidden="true"></span>
+        <span class="couple-therapy-shape couple-therapy-shape-rose" aria-hidden="true"></span>
+        <picture class="couple-therapy-photo">
+          {% if couple_mobile.src|default('') %}
+          <source
+            type="image/webp"
+            media="{{ couple_mobile_media }}"
+            srcset="{% for source in couple_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+            sizes="{{ couple_mobile.sizes|default('92vw') }}"
+          >
+          {% endif %}
+          {% if couple_sources|length > 0 %}
+          <source
+            type="image/webp"
+            srcset="{% for source in couple_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+            sizes="{{ couple_image_sizes }}"
+          >
+          {% endif %}
+          <img
+            src="{{ base_url }}/{{ couple_image_src }}"
+            alt="{{ couple_image_alt }}"
+            class="img-fluid"
+            loading="lazy"
+            decoding="async"
+            width="{{ couple_image_width }}"
+            height="{{ couple_image_height }}"
+          >
+        </picture>
+      </div>
     </div>
   </div>
 </section>

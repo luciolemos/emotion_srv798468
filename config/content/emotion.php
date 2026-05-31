@@ -63,25 +63,25 @@ return [
             ],
         ],
         'image' => [
-            'src' => 'assets/img/hero/jersika_carvalho-desktop-640.webp',
+            'src' => 'assets/img/hero/terapia-casal/terapia-casal-desktop-640.webp',
             'sources' => [
-                ['path' => 'assets/img/hero/jersika_carvalho-desktop-640.webp', 'width' => 640],
-                ['path' => 'assets/img/hero/jersika_carvalho-desktop-960.webp', 'width' => 960],
-                ['path' => 'assets/img/hero/jersika_carvalho-desktop-1086.webp', 'width' => 1086],
+                ['path' => 'assets/img/hero/terapia-casal/terapia-casal-desktop-640.webp', 'width' => 640],
+                ['path' => 'assets/img/hero/terapia-casal/terapia-casal-desktop-960.webp', 'width' => 960],
+                ['path' => 'assets/img/hero/terapia-casal/terapia-casal-desktop-1086.webp', 'width' => 1086],
             ],
             'mobile' => [
-                'src' => 'assets/img/hero/jersika_carvalho-mobile-640.webp',
+                'src' => 'assets/img/hero/terapia-casal/terapia-casal-mobile-640.webp',
                 'sources' => [
-                    ['path' => 'assets/img/hero/jersika_carvalho-mobile-640.webp', 'width' => 640],
+                    ['path' => 'assets/img/hero/terapia-casal/terapia-casal-mobile-640.webp', 'width' => 640],
                 ],
                 'sizes' => '92vw',
                 'media' => '(max-width: 576px)',
                 'width' => 640,
-                'height' => 800,
+                'height' => 512,
             ],
-            'alt' => 'Profissional de psicologia em conversa acolhedora com paciente',
+            'alt' => 'Casal em sessão terapêutica',
             'width' => 640,
-            'height' => 853,
+            'height' => 512,
         ],
         'metrics' => [
             ['kpi' => 'CRP 17/1671', 'label' => 'Atuação ética e comprometida com o cuidado psicológico.'],
@@ -140,6 +140,27 @@ return [
         'details_badge' => 'Psicóloga',
         'bio' => 'Psicóloga dedicada ao universo feminino, com uma escuta sensível e uma prática voltada ao acolhimento, autoconhecimento e ressignificação de histórias.',
         'quote' => 'A terapia pode ser o caminho para reencontrar sua verdadeira essência.',
+        'image' => [
+            'src' => 'assets/img/hero/jersika/jersika-desktop-640.webp',
+            'sources' => [
+                ['path' => 'assets/img/hero/jersika/jersika-desktop-640.webp', 'width' => 640],
+                ['path' => 'assets/img/hero/jersika/jersika-desktop-960.webp', 'width' => 960],
+                ['path' => 'assets/img/hero/jersika/jersika-desktop-1086.webp', 'width' => 1086],
+            ],
+            'mobile' => [
+                'src' => 'assets/img/hero/jersika/jersika-mobile-640.webp',
+                'sources' => [
+                    ['path' => 'assets/img/hero/jersika/jersika-mobile-640.webp', 'width' => 640],
+                ],
+                'sizes' => '92vw',
+                'media' => '(max-width: 576px)',
+                'width' => 640,
+                'height' => 512,
+            ],
+            'alt' => 'Jersika Carvalho',
+            'width' => 640,
+            'height' => 512,
+        ],
         'details' => [
             'Psicóloga — CRP 17/1671',
             'Formação em Psicologia Corporal',
