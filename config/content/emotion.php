@@ -141,16 +141,16 @@ return [
         'bio' => 'Psicóloga dedicada ao universo feminino, com uma escuta sensível e uma prática voltada ao acolhimento, autoconhecimento e ressignificação de histórias.',
         'quote' => 'A terapia pode ser o caminho para reencontrar sua verdadeira essência.',
         'image' => [
-            'src' => 'assets/img/hero/jersika/jersika-desktop-640.webp',
+            'src' => 'assets/img/hero/about/about-desktop-640.webp',
             'sources' => [
-                ['path' => 'assets/img/hero/jersika/jersika-desktop-640.webp', 'width' => 640],
-                ['path' => 'assets/img/hero/jersika/jersika-desktop-960.webp', 'width' => 960],
-                ['path' => 'assets/img/hero/jersika/jersika-desktop-1086.webp', 'width' => 1086],
+                ['path' => 'assets/img/hero/about/about-desktop-640.webp', 'width' => 640],
+                ['path' => 'assets/img/hero/about/about-desktop-960.webp', 'width' => 960],
+                ['path' => 'assets/img/hero/about/about-desktop-1086.webp', 'width' => 1086],
             ],
             'mobile' => [
-                'src' => 'assets/img/hero/jersika/jersika-mobile-640.webp',
+                'src' => 'assets/img/hero/about/about-mobile-640.webp',
                 'sources' => [
-                    ['path' => 'assets/img/hero/jersika/jersika-mobile-640.webp', 'width' => 640],
+                    ['path' => 'assets/img/hero/about/about-mobile-640.webp', 'width' => 640],
                 ],
                 'sizes' => '92vw',
                 'media' => '(max-width: 576px)',
