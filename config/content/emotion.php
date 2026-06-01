@@ -138,7 +138,7 @@ return [
         ],
         'details_title' => 'Quem é Jersika Carvalho',
         'details_badge' => 'Psicóloga',
-        'bio' => 'Psicóloga dedicada ao universo feminino, com uma escuta sensível e uma prática voltada ao acolhimento, autoconhecimento e ressignificação de histórias.',
+        'bio' => 'Psicóloga dedicada ao cuidado emocional de mulheres, com atuação clínica pautada em escuta sensível, acolhimento qualificado e construção de processos terapêuticos orientados ao autoconhecimento e à ressignificação de histórias. Graduada em Psicologia (CRP 17/1671), possui formação em Psicologia Corporal e especialização em Família, além de estar em formação em Psicologia Analítica e em Terapia de Mulheres. Sua prática integra preparo técnico e presença clínica para oferecer um acompanhamento ético, humanizado e consistente, respeitando a singularidade de cada mulher, seu contexto de vida e seu tempo de elaboração.',
         'quote' => 'A terapia pode ser o caminho para reencontrar sua verdadeira essência.',
         'image' => [
             'src' => 'assets/img/hero/about/about-desktop-640.webp',

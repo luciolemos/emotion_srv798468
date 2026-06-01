@@ -2,6 +2,11 @@
 {% set app_logo = landing_content.seo.schema.logo|default('assets/img/clinic-mark.svg') %}
 {% set app_logo_dark = landing_content.seo.schema.logo_dark|default(app_logo) %}
 {% set app_logo_light = landing_content.seo.schema.logo_light|default(app_logo) %}
+{% set nav_social_links = [
+  {'href': facebook_url|default(''), 'icon': 'facebook', 'label': 'Facebook'},
+  {'href': instagram_url|default(''), 'icon': 'instagram', 'label': 'Instagram'},
+  {'href': whatsapp_url|default(''), 'icon': 'whatsapp', 'label': 'WhatsApp'}
+] %}
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3 nav-glass">
   <div class="container">
@@ -81,6 +86,21 @@
             {% endfor %}
           </div>
           {% endif %}
+
+          <nav class="nav-social d-none d-lg-flex align-items-center" aria-label="Redes sociais">
+            {% for social in nav_social_links %}
+              {% if social.href and social.href != '#' %}
+                <a
+                  class="nav-social-link"
+                  href="{{ social.href }}"
+                  {% if social.href starts with 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  aria-label="{{ social.label }}"
+                >
+                  <i class="bi bi-{{ social.icon }}"></i>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </nav>
         </div>
       </div>
     </div>

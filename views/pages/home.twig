@@ -98,6 +98,9 @@
           <a class="btn btn-primary btn-lg px-4 cta-track" href="{{ primary_cta.href|default('#form-orcamento') }}" data-cta-id="hero_primary">
             {{ primary_cta.label|default('Agendar consulta') }} <i class="bi bi-{{ primary_cta.icon|default('arrow-right-short') }}"></i>
           </a>
+          <a class="btn btn-outline-light btn-lg px-4 cta-track" href="{{ whatsapp_url }}" target="_blank" rel="noopener" data-cta-id="hero_whatsapp">
+            Falar pelo WhatsApp <i class="bi bi-whatsapp"></i>
+          </a>
         </div>
 
         <div class="d-flex flex-wrap gap-3 mt-4 small text-secondary-emphasis">
@@ -226,18 +229,9 @@
 
       <div class="about-jersika-content section-heading">
         <h2 class="fw-normal mb-3">{{ how.details_title|default('Sobre mim') }}</h2>
-        <p class="about-jersika-description text-secondary-emphasis mb-4">
+        <p class="about-jersika-description text-secondary-emphasis mb-0">
           {{ how.bio|default(moments.text|default('Psicóloga com escuta sensível e prática voltada ao acolhimento emocional.')) }}
         </p>
-
-        <ul class="about-jersika-list list-unstyled mb-0">
-          {% for detail in how.details|default([]) %}
-          <li class="about-jersika-item">
-            <i class="bi bi-shield-check" aria-hidden="true"></i>
-            <span>{{ detail }}</span>
-          </li>
-          {% endfor %}
-        </ul>
       </div>
     </div>
   </div>
