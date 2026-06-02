@@ -10,6 +10,7 @@ final class WhatsappLink
     {
         $number = preg_replace('/\D+/', '', (string) ($config['app_whatsapp_number'] ?? ''));
         $message = trim((string) ($config['app_whatsapp_message'] ?? ''));
+        $message = str_replace(["\\r\\n", "\\n", "\\r"], ["\r\n", "\n", "\r"], $message);
 
         if ($number !== '') {
             $url = 'https://wa.me/' . $number;

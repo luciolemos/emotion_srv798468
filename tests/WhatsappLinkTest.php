@@ -29,4 +29,17 @@ final class WhatsappLinkTest extends TestCase
             'whatsapp_url' => 'https://wa.me/5584999031906',
         ]));
     }
+
+    public function testConvertsEscapedNewLinesInMessage(): void
+    {
+        $url = WhatsappLink::fromConfig([
+            'app_whatsapp_number' => '+55 (71) 8400-5128',
+            'app_whatsapp_message' => 'Olá, Jersika!\nLinha 2\nLinha 3',
+        ]);
+
+        self::assertSame(
+            'https://wa.me/557184005128?text=Ol%C3%A1%2C%20Jersika%21%0ALinha%202%0ALinha%203',
+            $url
+        );
+    }
 }

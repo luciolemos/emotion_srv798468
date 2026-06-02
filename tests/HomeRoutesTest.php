@@ -60,9 +60,9 @@ final class HomeRoutesTest extends TestCase
         self::assertSame(200, $response->getStatusCode());
         self::assertStringContainsString('<title>Clínica Médica | Root</title>', $html);
         self::assertStringContainsString('href="/assets/css/landing.css?v=', $html);
-        self::assertStringContainsString('src="/assets/img/hero/jersika_carvalho-desktop-640.webp"', $html);
+        self::assertStringContainsString('src="/assets/img/img_diversas/jersika_carvalho-desktop-640.webp"', $html);
         self::assertStringContainsString('media="(max-width: 576px)"', $html);
-        self::assertStringContainsString('/assets/img/hero/jersika_carvalho-mobile-640.webp', $html);
+        self::assertStringContainsString('/assets/img/img_diversas/jersika_carvalho-mobile-640.webp', $html);
         self::assertStringNotContainsString('//assets/', $html);
     }
 

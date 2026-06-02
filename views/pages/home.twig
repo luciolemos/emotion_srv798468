@@ -77,10 +77,17 @@
           <span>{{ hero.badge|default(app_badge|default('Atendimento humanizado')) }}</span>
         </div>
 
+        {% set is_emotion = (app_slug|default('landing')) == 'emotion' %}
         <h1 class="display-5 fw-normal lh-sm mb-3 hero-title-motion">
           <span class="hero-title-part hero-title-part-1">{{ hero.title_parts[0]|default(app_name|default('Atendimento')) }}</span>
           <span class="text-gradient hero-title-part hero-title-part-2 hero-title-highlight">{{ hero.title_parts[1]|default('próximo e organizado') }}</span>
+          {% if is_emotion %}
+            {% if hero.title_parts[2] is defined and hero.title_parts[2]|trim != '' %}
+          <span class="hero-title-part hero-title-part-3">{{ hero.title_parts[2] }}</span>
+            {% endif %}
+          {% else %}
           <span class="hero-title-part hero-title-part-3">{{ hero.title_parts[2]|default('para cuidar de cada solicitação com clareza.') }}</span>
+          {% endif %}
         </h1>
 
         {% if hero.subtitle|default('') %}
@@ -95,11 +102,8 @@
 
         <div class="d-flex flex-column flex-sm-row gap-2 gap-sm-3">
           {% set primary_cta = hero.primary_cta|default({}) %}
-          <a class="btn btn-primary btn-lg px-4 cta-track" href="{{ primary_cta.href|default('#form-orcamento') }}" data-cta-id="hero_primary">
+          <a class="btn btn-primary btn-lg px-4 cta-track" href="{{ whatsapp_url }}" target="_blank" rel="noopener" data-cta-id="hero_primary">
             {{ primary_cta.label|default('Agendar consulta') }} <i class="bi bi-{{ primary_cta.icon|default('arrow-right-short') }}"></i>
-          </a>
-          <a class="btn btn-outline-light btn-lg px-4 cta-track" href="{{ whatsapp_url }}" target="_blank" rel="noopener" data-cta-id="hero_whatsapp">
-            Falar pelo WhatsApp <i class="bi bi-whatsapp"></i>
           </a>
         </div>
 
@@ -186,7 +190,7 @@
 <section id="sobre-mim" class="py-5 py-lg-6 section-tech">
   <div class="container">
     {% set about_image = how.image|default({}) %}
-    {% set about_image_src = about_image.src|default('assets/img/hero/jersika/jersika-desktop-640.webp') %}
+    {% set about_image_src = about_image.src|default('assets/img/about/about-desktop-640.webp') %}
     {% set about_sources = about_image.sources|default([]) %}
     {% set about_image_sizes = about_image.sizes|default('(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 840px') %}
     {% set about_mobile = about_image.mobile|default({}) %}
@@ -229,9 +233,46 @@
 
       <div class="about-jersika-content section-heading">
         <h2 class="fw-normal mb-3">{{ how.details_title|default('Sobre mim') }}</h2>
-        <p class="about-jersika-description text-secondary-emphasis mb-0">
-          {{ how.bio|default(moments.text|default('Psicóloga com escuta sensível e prática voltada ao acolhimento emocional.')) }}
+        {% set about_bio = how.bio|default(moments.text|default('Psicóloga com escuta sensível e prática voltada ao acolhimento emocional.')) %}
+        {% set about_paragraphs = about_bio|split('\n\n') %}
+        {% for paragraph in about_paragraphs %}
+        <p class="about-jersika-description text-secondary-emphasis {{ loop.last ? 'mb-0' : 'mb-3' }}">
+          {{ paragraph|trim }}
         </p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vivendo-assim" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="glass p-4 p-lg-5 emotional-section-card">
+          <div class="section-heading text-center mb-4">
+            <h2 class="fw-normal mb-3">Talvez você esteja vivendo assim…</h2>
+          </div>
+          <div class="row g-4 align-items-start">
+            <div class="col-lg-6">
+              <ul class="checklist emotional-checklist mb-0">
+                <li><i class="bi bi-heart"></i><span>Você sente que precisa dar conta de tudo.</span></li>
+                <li><i class="bi bi-heart"></i><span>Se cobra constantemente.</span></li>
+                <li><i class="bi bi-heart"></i><span>Tem dificuldade em descansar sem culpa.</span></li>
+                <li><i class="bi bi-heart"></i><span>Cuida de todos, mas quase nunca consegue cuidar de si.</span></li>
+                <li><i class="bi bi-heart"></i><span>Mesmo fazendo tanto, ainda se sente insuficiente.</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
+                Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.
+              </p>
+              <p class="text-secondary-emphasis mb-0">
+                E, aos poucos, vai deixando de se enxergar para além das suas funções.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -260,70 +301,146 @@
   </div>
 </section>
 
+<section id="escolher-se" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-11 col-xl-10">
+        <div class="glass p-4 p-lg-5 emotional-section-card">
+          <div class="section-heading text-center mb-4">
+            <h2 class="fw-normal mb-3">O que muda quando você começa a se escolher</h2>
+            <p class="text-secondary-emphasis mb-0">
+              O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.
+            </p>
+          </div>
+
+          <div class="row g-3 g-lg-4">
+            <div class="col-md-6">
+              <ul class="checklist emotional-checklist mb-0">
+                <li><i class="bi bi-check2-circle"></i><span>A reconhecer suas necessidades sem culpa.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A entender que seu valor não depende apenas do quanto você produz, entrega ou cuida dos outros.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A desenvolver relações mais saudáveis.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A estabelecer limites com mais segurança.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A confiar mais na própria voz.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A se posicionar sem sentir que está decepcionando alguém.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A construir uma relação mais gentil consigo mesma.</span></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
+                O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.
+              </p>
+              <p class="text-secondary-emphasis mb-3">
+                Porque quando uma mulher se reconecta com sua essência, ela deixa de viver apenas para corresponder às expectativas dos outros e passa a construir uma vida que também faz sentido para ela.
+              </p>
+              <p class="mb-0 emotional-section-highlight">
+                Você merece ocupar seu espaço sem precisar se esquecer de si mesma.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="terapia-casal" class="py-5 py-lg-6 section-tech">
   <div class="container">
-    {% set couple_image_src = couple_therapy.image_src|default(hero_image_src) %}
-    {% set couple_sources = couple_therapy.sources|default(hero_sources) %}
-    {% set couple_image_sizes = couple_therapy.sizes|default(hero_image_sizes) %}
-    {% set couple_mobile = couple_therapy.mobile|default(hero_mobile) %}
+    {% set couple_image_src = couple_therapy.image_src|default('assets/img/terapia/terapia-desktop-640.webp') %}
+    {% set couple_sources = couple_therapy.sources|default([
+      {'path': 'assets/img/terapia/terapia-desktop-640.webp', 'width': 640},
+      {'path': 'assets/img/terapia/terapia-desktop-960.webp', 'width': 960},
+      {'path': 'assets/img/terapia/terapia-desktop-1086.webp', 'width': 1086}
+    ]) %}
+    {% set couple_image_sizes = couple_therapy.sizes|default('(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 840px') %}
+    {% set couple_mobile = couple_therapy.mobile|default({
+      'src': 'assets/img/terapia/terapia-mobile-640.webp',
+      'sources': [{'path': 'assets/img/terapia/terapia-mobile-640.webp', 'width': 640}],
+      'sizes': '92vw',
+      'media': '(max-width: 576px)',
+      'width': 640,
+      'height': 480
+    }) %}
     {% set couple_mobile_sources = couple_mobile.sources|default([]) %}
     {% set couple_mobile_media = couple_mobile.media|default('(max-width: 576px)') %}
     {% set couple_image_alt = couple_therapy.image_alt|default('Casal em sessão terapêutica') %}
-    {% set couple_image_width = couple_therapy.image_width|default(hero_image.width|default(1402)) %}
-    {% set couple_image_height = couple_therapy.image_height|default(hero_image.height|default(1122)) %}
-    <div class="couple-therapy-grid">
-      <div class="couple-therapy-content section-heading">
+    {% set couple_image_width = couple_therapy.image_width|default(640) %}
+    {% set couple_image_height = couple_therapy.image_height|default(480) %}
+    <div class="couple-therapy-layout">
+      <div class="couple-therapy-intro section-heading text-center">
         <h2 class="fw-normal mb-3">{{ couple_therapy.title|default('Terapia de Casal') }}</h2>
         <p class="couple-therapy-description text-secondary-emphasis mb-4">
           {{ couple_therapy.text|default('Um espaço de escuta para casais que buscam melhorar comunicação, reconstruir confiança e fortalecer o vínculo afetivo.') }}
         </p>
-
-        <ul class="couple-therapy-list list-unstyled mb-0">
-          {% for item in couple_therapy.items|default([
-            {'icon': 'chat-dots', 'title': 'Comunicação com clareza', 'text': 'Sessões para reduzir conflitos recorrentes e ampliar escuta entre as duas partes.'},
-            {'icon': 'heart', 'title': 'Reconstrução de vínculo', 'text': 'Acompanhamento para lidar com distanciamento emocional, desgaste e perda de conexão.'},
-            {'icon': 'people', 'title': 'Acordos e convivência', 'text': 'Definição de combinados práticos para uma relação mais saudável no dia a dia.'}
-          ]) %}
-          <li class="couple-therapy-item">
-            <i class="bi bi-shield-check" aria-hidden="true"></i>
-            <div>
-              <span class="couple-therapy-item-title">{{ item.title }}</span>
-              <p class="mb-0">{{ item.text }}</p>
-            </div>
-          </li>
-          {% endfor %}
-        </ul>
       </div>
 
-      <div class="couple-therapy-media">
-        <span class="couple-therapy-shape couple-therapy-shape-lilac" aria-hidden="true"></span>
-        <span class="couple-therapy-shape couple-therapy-shape-rose" aria-hidden="true"></span>
-        <picture class="couple-therapy-photo">
-          {% if couple_mobile.src|default('') %}
-          <source
-            type="image/webp"
-            media="{{ couple_mobile_media }}"
-            srcset="{% for source in couple_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
-            sizes="{{ couple_mobile.sizes|default('92vw') }}"
-          >
-          {% endif %}
-          {% if couple_sources|length > 0 %}
-          <source
-            type="image/webp"
-            srcset="{% for source in couple_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
-            sizes="{{ couple_image_sizes }}"
-          >
-          {% endif %}
-          <img
-            src="{{ base_url }}/{{ couple_image_src }}"
-            alt="{{ couple_image_alt }}"
-            class="img-fluid"
-            loading="lazy"
-            decoding="async"
-            width="{{ couple_image_width }}"
-            height="{{ couple_image_height }}"
-          >
-        </picture>
+      <div class="couple-therapy-grid">
+        <div class="couple-therapy-content">
+
+          <div class="accordion couple-therapy-accordion" id="coupleTherapyAccordion">
+            {% for item in couple_therapy.items|default([
+              {'icon': 'chat-dots', 'title': 'Comunicação com clareza', 'text': 'Sessões para reduzir conflitos recorrentes e ampliar escuta entre as duas partes.'},
+              {'icon': 'heart', 'title': 'Reconstrução de vínculo', 'text': 'Acompanhamento para lidar com distanciamento emocional, desgaste e perda de conexão.'},
+              {'icon': 'people', 'title': 'Acordos e convivência', 'text': 'Definição de combinados práticos para uma relação mais saudável no dia a dia.'}
+            ]) %}
+            <div class="accordion-item couple-therapy-accordion-item">
+              <h3 class="accordion-header" id="coupleHeading{{ loop.index }}">
+                <button
+                  class="accordion-button couple-therapy-accordion-button {{ loop.first ? '' : 'collapsed' }}"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#coupleCollapse{{ loop.index }}"
+                  aria-expanded="{{ loop.first ? 'true' : 'false' }}"
+                  aria-controls="coupleCollapse{{ loop.index }}"
+                >
+                  <i class="bi bi-{{ item.icon|default('shield-check') }}" aria-hidden="true"></i>
+                  <span>{{ item.title }}</span>
+                </button>
+              </h3>
+              <div
+                id="coupleCollapse{{ loop.index }}"
+                class="accordion-collapse collapse {{ loop.first ? 'show' : '' }}"
+                aria-labelledby="coupleHeading{{ loop.index }}"
+                data-bs-parent="#coupleTherapyAccordion"
+              >
+                <div class="accordion-body couple-therapy-accordion-body">
+                  <p class="mb-0">{{ item.text }}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="couple-therapy-media">
+          <span class="couple-therapy-shape couple-therapy-shape-lilac" aria-hidden="true"></span>
+          <span class="couple-therapy-shape couple-therapy-shape-rose" aria-hidden="true"></span>
+          <picture class="couple-therapy-photo">
+            {% if couple_mobile.src|default('') %}
+            <source
+              type="image/webp"
+              media="{{ couple_mobile_media }}"
+              srcset="{% for source in couple_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+              sizes="{{ couple_mobile.sizes|default('92vw') }}"
+            >
+            {% endif %}
+            {% if couple_sources|length > 0 %}
+            <source
+              type="image/webp"
+              srcset="{% for source in couple_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+              sizes="{{ couple_image_sizes }}"
+            >
+            {% endif %}
+            <img
+              src="{{ base_url }}/{{ couple_image_src }}"
+              alt="{{ couple_image_alt }}"
+              class="img-fluid"
+              loading="lazy"
+              decoding="async"
+              width="{{ couple_image_width }}"
+              height="{{ couple_image_height }}"
+            >
+          </picture>
+        </div>
       </div>
     </div>
   </div>
