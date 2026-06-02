@@ -82,9 +82,7 @@
           <span class="hero-title-part hero-title-part-1">{{ hero.title_parts[0]|default(app_name|default('Atendimento')) }}</span>
           <span class="text-gradient hero-title-part hero-title-part-2 hero-title-highlight">{{ hero.title_parts[1]|default('próximo e organizado') }}</span>
           {% if is_emotion %}
-            {% if hero.title_parts[2] is defined and hero.title_parts[2]|trim != '' %}
-          <span class="hero-title-part hero-title-part-3">{{ hero.title_parts[2] }}</span>
-            {% endif %}
+            {# No nicho emotion, o título da hero usa propositalmente apenas 2 partes visíveis. #}
           {% else %}
           <span class="hero-title-part hero-title-part-3">{{ hero.title_parts[2]|default('para cuidar de cada solicitação com clareza.') }}</span>
           {% endif %}

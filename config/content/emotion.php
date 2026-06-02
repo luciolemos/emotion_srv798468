@@ -36,6 +36,7 @@ return [
         'title_parts' => [
             'Você cuida de todos. Mas, ',
             'quem está cuidando de você?',
+            'Você também merece cuidado.',
         ],
         'subtitle' => 'Talvez você esteja cansada de carregar tantas responsabilidades, se cobrar o tempo todo e sentir que se perdeu de si mesma.',
         'lead' => 'A terapia pode ser um espaço para fortalecer sua autoestima, compreender suas emoções e reconstruir uma relação mais leve consigo mesma.',
