@@ -2030,9 +2030,9 @@ html[data-theme="light"][data-niche="psicologia"] body {
 }
 
 html[data-theme="light"][data-niche="emotion"] body {
-  --light-bg0: #fdeff3;
-  --light-bg1: #fae4eb;
-  --light-bg2: #f5d7e2;
+  --light-bg0: #fbe1ec;
+  --light-bg1: #f9d8e6;
+  --light-bg2: #f6cedf;
   --light-accent-rgb: 199, 102, 136;
   --light-accent-strong-rgb: 120, 61, 86;
   --light-surface-rgb: 255, 246, 250;
@@ -2442,9 +2442,9 @@ html[data-theme="light"] code {
 
 /* Emotion custom palette (based on public/assets/img/img_1.jpg) */
 html[data-niche="emotion"] {
-  --bg0: #f7bfdc;
-  --bg1: #f7bfdc;
-  --bg2: #f7bfdc;
+  --bg0: #f9d3e5;
+  --bg1: #f9d3e5;
+  --bg2: #f9d3e5;
   --text: #2f2229;
   --muted: rgba(110, 79, 93, 0.9);
   --emotion-muted-solid: #6e5361;
@@ -2681,7 +2681,7 @@ html[data-niche="emotion"] .emotional-section-highlight {
 
 html[data-niche="emotion"] .about-jersika-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 520px) minmax(320px, 1fr);
+  grid-template-columns: minmax(300px, 620px) minmax(320px, 1fr);
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: center;
 }
@@ -2689,7 +2689,7 @@ html[data-niche="emotion"] .about-jersika-grid {
 html[data-niche="emotion"] .about-jersika-media {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 620px;
   margin-inline: auto;
 }
 
@@ -2917,6 +2917,14 @@ html[data-niche="emotion"] .couple-therapy-photo img {
 }
 
 @media (max-width: 575.98px) {
+  html[data-niche="emotion"] .about-jersika-content {
+    padding-inline: clamp(0.3rem, 3.6vw, 0.8rem);
+  }
+
+  html[data-niche="emotion"] .about-jersika-description {
+    margin-inline: 0;
+  }
+
   html[data-niche="emotion"] .about-jersika-photo {
     border-radius: 28px;
   }

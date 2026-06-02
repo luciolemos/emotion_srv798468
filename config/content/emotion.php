@@ -77,7 +77,7 @@ return [
                 'sizes' => '92vw',
                 'media' => '(max-width: 576px)',
                 'width' => 640,
-                'height' => 427,
+                'height' => 800,
             ],
             'alt' => 'Casal em sessão terapêutica',
             'width' => 640,
@@ -190,7 +190,7 @@ return [
             ],
             'alt' => 'Jersika Carvalho',
             'width' => 640,
-            'height' => 640,
+            'height' => 427,
         ],
         'details' => [
             'Psicóloga — CRP 17/1671',
