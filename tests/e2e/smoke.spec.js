@@ -9,7 +9,7 @@ test('clinic landing renders core content and contact flow', async ({ page }) =>
   await expect(page.locator('#agendar')).toBeVisible();
   await expect(page.locator('#form-orcamento')).toBeVisible();
 
-  await page.locator('a[data-cta-id="hero_primary"]').first().click();
+  await page.locator('a[data-cta-id="agendar_primary"]').first().click();
   await expect(page.locator('#form-orcamento')).toBeInViewport();
 
   await page.locator('#cta-nome').fill('Paciente Teste');

@@ -841,10 +841,7 @@ button:active {
 }
 
 .section-divider {
-  border: 0;
-  height: 1px;
-  margin: 0;
-  background: linear-gradient(90deg, transparent, var(--section-divider-mid), transparent);
+  display: none !important;
 }
 
 .navbar-logo-wrap {
@@ -2033,16 +2030,16 @@ html[data-theme="light"][data-niche="psicologia"] body {
 }
 
 html[data-theme="light"][data-niche="emotion"] body {
-  --light-bg0: #f8e7ea;
-  --light-bg1: #f2dce1;
-  --light-bg2: #ebd0d7;
-  --light-accent-rgb: 196, 96, 108;
-  --light-accent-strong-rgb: 122, 56, 67;
-  --light-surface-rgb: 252, 240, 243;
-  --light-surface-strong-rgb: 247, 227, 232;
-  --light-muted-rgb: 92, 78, 69;
-  --light-muted-mobile-rgb: 88, 74, 66;
-  --light-muted-tablet-rgb: 86, 72, 63;
+  --light-bg0: #fdeff3;
+  --light-bg1: #fae4eb;
+  --light-bg2: #f5d7e2;
+  --light-accent-rgb: 199, 102, 136;
+  --light-accent-strong-rgb: 120, 61, 86;
+  --light-surface-rgb: 255, 246, 250;
+  --light-surface-strong-rgb: 250, 236, 243;
+  --light-muted-rgb: 115, 84, 98;
+  --light-muted-mobile-rgb: 111, 81, 95;
+  --light-muted-tablet-rgb: 108, 78, 92;
 }
 
 html[data-theme="light"] body::before {
@@ -2343,7 +2340,7 @@ html[data-theme="light"] .accordion-button:not(.collapsed) {
 }
 
 html[data-theme="light"] .section-divider {
-  background: linear-gradient(90deg, transparent, rgba(var(--light-accent-rgb), 0.38), transparent);
+  display: none !important;
 }
 
 html[data-theme="light"] .location-map-bar {
@@ -2445,12 +2442,12 @@ html[data-theme="light"] code {
 
 /* Emotion custom palette (based on public/assets/img/img_1.jpg) */
 html[data-niche="emotion"] {
-  --bg0: #f6d8e5;
-  --bg1: #edbed2;
-  --bg2: #e2a8c3;
+  --bg0: #f7bfdc;
+  --bg1: #f7bfdc;
+  --bg2: #f7bfdc;
   --text: #2f2229;
-  --muted: rgba(93, 68, 81, 0.9);
-  --emotion-muted-solid: #5d4451;
+  --muted: rgba(110, 79, 93, 0.9);
+  --emotion-muted-solid: #6e5361;
   --emotion-nav-link: #6e4a59;
   --emotion-nav-link-active: #3f2a33;
   --emotion-brand: #7b4b59;
@@ -2479,10 +2476,10 @@ html[data-niche="emotion"] {
   --emotion-toggler-border: #c98c9b;
   --emotion-toggler-bg: rgba(255, 243, 246, 0.92);
   --emotion-toggler-icon: #8a4e5f;
-  --card: rgba(252, 228, 240, 0.86);
-  --card-strong: rgba(246, 206, 226, 0.94);
-  --surface-thin: rgba(238, 186, 212, 0.62);
-  --surface-strong: rgba(226, 162, 194, 0.78);
+  --card: rgba(255, 244, 250, 0.95);
+  --card-strong: rgba(255, 235, 246, 0.97);
+  --surface-thin: rgba(250, 220, 235, 0.72);
+  --surface-strong: rgba(246, 205, 225, 0.86);
   --stroke: rgba(200, 94, 136, 0.34);
   --stroke-soft: rgba(200, 94, 136, 0.22);
   --gradA: 200, 94, 136;
@@ -2491,50 +2488,50 @@ html[data-niche="emotion"] {
   --grid-opacity: 0;
   --body-accent-mask: none;
   --body-overlay: none;
-  --nav-glass-bg: #ffdae6;
-  --nav-control-bg: rgba(226, 176, 201, 0.86);
+  --nav-glass-bg: #ffe7f0;
+  --nav-control-bg: rgba(240, 196, 218, 0.88);
   --hero-badge-bg: rgba(238, 198, 218, 0.86);
   --pill-bg: rgba(238, 198, 218, 0.78);
   --steps-bg: rgba(234, 188, 212, 0.82);
-  --glass-bg-start: rgba(252, 228, 240, 0.95);
-  --glass-bg-end: rgba(236, 182, 209, 0.91);
-  --footer-bg-start: #f6d8e5;
-  --footer-bg-end: #eec6da;
+  --glass-bg-start: rgba(255, 238, 247, 0.97);
+  --glass-bg-end: rgba(245, 201, 223, 0.93);
+  --footer-bg-start: #ffe7f0;
+  --footer-bg-end: #ffe7f0;
   --section-divider-mid: rgba(200, 94, 136, 0.34);
 }
 
 html[data-niche="emotion"] body::before,
 html[data-niche="emotion"] body::after {
-  display: block !important;
-}
-
-html[data-niche="emotion"] body::after {
-  background:
-    radial-gradient(circle at 12% 16%, rgba(234, 142, 187, 0.3), transparent 30%),
-    radial-gradient(circle at 84% 22%, rgba(214, 124, 170, 0.28), transparent 28%),
-    radial-gradient(circle at 64% 88%, rgba(194, 106, 153, 0.24), transparent 34%);
-  opacity: 1;
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
 }
 
 html[data-niche="emotion"] .bg-blobs,
 html[data-niche="emotion"] .blob {
-  display: block !important;
+  display: none !important;
 }
 
-html[data-niche="emotion"] .bg-blobs {
-  opacity: 0.45 !important;
+html[data-niche="emotion"] .footer {
+  background: var(--nav-glass-bg);
+  border-top-color: transparent;
 }
 
-html[data-niche="emotion"] .blob-1 {
-  background: radial-gradient(circle at 30% 30%, rgba(200, 94, 136, 0.66), transparent 64%);
+html[data-niche="emotion"] .nav-glass {
+  background: var(--nav-glass-bg) !important;
+  border-bottom-color: transparent;
 }
 
-html[data-niche="emotion"] .blob-2 {
-  background: radial-gradient(circle at 30% 30%, rgba(177, 78, 119, 0.62), transparent 64%);
+html[data-niche="emotion"] body {
+  background-color: var(--bg0) !important;
 }
 
-html[data-niche="emotion"] .blob-3 {
-  background: radial-gradient(circle at 30% 30%, rgba(234, 147, 188, 0.54), transparent 64%);
+html[data-niche="emotion"] .section-tech .glass {
+  box-shadow: 0 14px 32px rgba(122, 61, 86, 0.22);
+}
+
+html[data-niche="emotion"].fx-ready .section-tech .glass {
+  box-shadow: 0 18px 40px rgba(122, 61, 86, 0.26);
 }
 
 html[data-niche="emotion"] .navbar .nav-link {
@@ -2629,7 +2626,18 @@ html[data-niche="emotion"] #psicoterapia,
 html[data-niche="emotion"] #terapia-casal,
 html[data-niche="emotion"] #agendar,
 html[data-niche="emotion"] #form-orcamento {
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
+  background-image: none;
+  background-color: transparent;
+}
+
+html[data-niche="emotion"] #sobre-mim {
+  background-color: transparent;
+  background-image: none;
+}
+
+html[data-niche="emotion"] #psicoterapia,
+html[data-niche="emotion"] #terapia-casal {
+  background-color: transparent;
 }
 
 html[data-niche="emotion"] #sobre-mim,
@@ -2639,6 +2647,36 @@ html[data-niche="emotion"] #terapia-casal {
 
 html[data-niche="emotion"] #sobre-mim .container {
   max-width: 1240px;
+}
+
+html[data-niche="emotion"] #psicoterapia .feature-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  line-height: 1.5;
+  font-weight: 500 !important;
+  letter-spacing: 0.005em;
+}
+
+html[data-niche="emotion"] .emotional-section-card {
+  border: 1px solid rgba(var(--emotion-primary-rgb), 0.24);
+}
+
+html[data-niche="emotion"] .emotional-checklist {
+  gap: 0.72rem;
+}
+
+html[data-niche="emotion"] .emotional-checklist li {
+  align-items: flex-start;
+}
+
+html[data-niche="emotion"] .emotional-checklist i {
+  margin-top: 0.18rem;
+  color: rgba(var(--emotion-primary-rgb), 0.92);
+}
+
+html[data-niche="emotion"] .emotional-section-highlight {
+  color: var(--emotion-title-strong);
+  font-weight: 600;
 }
 
 html[data-niche="emotion"] .about-jersika-grid {
@@ -2666,7 +2704,7 @@ html[data-niche="emotion"] .about-jersika-shape-lilac {
   height: clamp(74px, 8.4vw, 122px);
   left: clamp(-12px, -1.4vw, -20px);
   top: clamp(-14px, -1.6vw, -24px);
-  background: rgba(215, 196, 222, 0.58);
+  background: rgba(237, 208, 226, 0.62);
 }
 
 html[data-niche="emotion"] .about-jersika-shape-rose {
@@ -2674,7 +2712,7 @@ html[data-niche="emotion"] .about-jersika-shape-rose {
   height: clamp(124px, 12vw, 176px);
   right: clamp(-16px, -1.4vw, -26px);
   bottom: clamp(-20px, -2.4vw, -34px);
-  background: rgba(241, 193, 215, 0.64);
+  background: rgba(247, 206, 224, 0.66);
 }
 
 html[data-niche="emotion"] .about-jersika-photo {
@@ -2725,80 +2763,89 @@ html[data-niche="emotion"] .about-jersika-description {
 
 html[data-niche="emotion"] .couple-therapy-grid {
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(300px, 520px);
+  grid-template-columns: minmax(320px, 1fr) minmax(340px, 620px);
   gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: end;
+  align-items: center;
 }
 
-html[data-niche="emotion"] .couple-therapy-content.section-heading {
+html[data-niche="emotion"] .couple-therapy-layout {
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2.5rem);
+}
+
+html[data-niche="emotion"] .couple-therapy-intro.section-heading {
   margin-bottom: 0 !important;
 }
 
-html[data-niche="emotion"] .couple-therapy-content.section-heading h2 {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-html[data-niche="emotion"] .couple-therapy-content.section-heading p {
-  margin-left: 0;
-  margin-right: 0;
+html[data-niche="emotion"] .couple-therapy-content {
+  margin-bottom: 0 !important;
 }
 
 html[data-niche="emotion"] .couple-therapy-description {
   width: 100%;
-  max-width: 100%;
-  text-align: left;
 }
 
-html[data-niche="emotion"] .couple-therapy-list {
-  display: grid;
-  gap: 0.95rem;
-}
-
-html[data-niche="emotion"] .couple-therapy-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 0.95rem 1.2rem;
+html[data-niche="emotion"] .couple-therapy-accordion {
   border-radius: 24px;
+  overflow: hidden;
   border: 1px solid rgba(200, 116, 151, 0.35);
+  background: rgba(252, 225, 237, 0.55);
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-item {
+  border: 0;
+  border-bottom: 1px solid rgba(200, 116, 151, 0.25);
   background: linear-gradient(160deg, rgba(252, 225, 237, 0.95), rgba(238, 188, 213, 0.92));
-  color: var(--emotion-card-text);
-  box-shadow: 0 8px 18px rgba(177, 92, 129, 0.12);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
-@media (hover: hover) {
-  html[data-niche="emotion"] .couple-therapy-item:hover,
-  html[data-niche="emotion"] .couple-therapy-item:focus-within {
-    transform: translateY(-4px);
-    border-color: rgba(194, 98, 140, 0.58);
-    box-shadow: 0 18px 34px rgba(177, 92, 129, 0.24);
-  }
+html[data-niche="emotion"] .couple-therapy-accordion-item:last-child {
+  border-bottom: 0;
 }
 
-html[data-niche="emotion"] .couple-therapy-item i {
-  font-size: 0.95rem;
-  color: var(--emotion-icon-soft) !important;
-  margin-top: 0.25rem;
-}
-
-html[data-niche="emotion"] .couple-therapy-item-title {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-}
-
-html[data-niche="emotion"] .couple-therapy-item p {
-  color: var(--emotion-muted-solid);
+html[data-niche="emotion"] .couple-therapy-accordion-button {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1rem 1.2rem;
+  color: var(--emotion-card-text) !important;
+  font-family: var(--font-body);
+  font-size: 1.08rem;
   line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  background: transparent !important;
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-button i {
+  color: var(--emotion-icon-soft) !important;
+  font-size: 1rem;
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-button:not(.collapsed) {
+  font-weight: 600;
+  box-shadow: inset 0 -1px 0 rgba(200, 116, 151, 0.25);
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-button::after {
+  filter: none;
+  opacity: 0.75;
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-body {
+  padding: 0.85rem 1.2rem 1.1rem;
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-body p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--emotion-muted-solid);
+  line-height: 1.58;
 }
 
 html[data-niche="emotion"] .couple-therapy-media {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 620px;
   margin-inline: auto;
 }
 
@@ -2813,7 +2860,7 @@ html[data-niche="emotion"] .couple-therapy-shape-lilac {
   height: clamp(74px, 8.4vw, 122px);
   left: clamp(-16px, -2vw, -26px);
   top: clamp(-18px, -2vw, -28px);
-  background: rgba(215, 196, 222, 0.58);
+  background: rgba(237, 208, 226, 0.62);
 }
 
 html[data-niche="emotion"] .couple-therapy-shape-rose {
@@ -2821,7 +2868,7 @@ html[data-niche="emotion"] .couple-therapy-shape-rose {
   height: clamp(124px, 12vw, 176px);
   right: clamp(-22px, -2vw, -34px);
   bottom: clamp(-28px, -3vw, -42px);
-  background: rgba(241, 193, 215, 0.64);
+  background: rgba(247, 206, 224, 0.66);
 }
 
 html[data-niche="emotion"] .couple-therapy-photo {
@@ -2863,7 +2910,7 @@ html[data-niche="emotion"] .couple-therapy-photo img {
   }
 
   html[data-niche="emotion"] .couple-therapy-media {
-    max-width: 430px;
+    max-width: 500px;
     margin-inline: auto;
     order: -1;
   }
@@ -2885,9 +2932,10 @@ html[data-niche="emotion"] .couple-therapy-photo img {
   }
 
   html[data-niche="emotion"] .couple-therapy-photo img {
-    aspect-ratio: 4 / 5.3;
-    object-fit: cover;
+    aspect-ratio: auto;
+    object-fit: contain;
     object-position: center;
+    height: auto;
   }
 }
 
@@ -2974,6 +3022,26 @@ html[data-niche="emotion"] .pill {
   background: var(--emotion-badge-bg) !important;
   border-color: var(--emotion-badge-border) !important;
   color: var(--emotion-badge-text) !important;
+}
+
+html[data-niche="emotion"] .metric-kpi {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: balance;
+}
+
+html[data-niche="emotion"] .metric-label {
+  min-height: 2.9rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-wrap: balance;
 }
 
 html[data-niche="emotion"] .hero-badge span,

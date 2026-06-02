@@ -59,7 +59,7 @@ final class CreateLandingScriptTest extends TestCase
         self::assertStringContainsString('APP_CONTENT_FILE="psicologia"', (string) file_get_contents($target . '/.env'));
         self::assertStringContainsString('APP_SLUG="psicologia"', (string) file_get_contents($target . '/.env'));
         self::assertStringContainsString('APP_WHATSAPP_NUMBER="557184005128"', (string) file_get_contents($target . '/.env'));
-        self::assertStringContainsString('APP_WHATSAPP_MESSAGE="Oi, Jersika! Gostaria de agendar um atendimento psicológico."', (string) file_get_contents($target . '/.env'));
+        self::assertStringContainsString('APP_WHATSAPP_MESSAGE="Olá, Jersika!\\nConheci seu site e gostaria de receber mais informações sobre o atendimento psicológico.\\nGostaria de entender como funciona o processo e verificar a disponibilidade para agendamento."', (string) file_get_contents($target . '/.env'));
         self::assertStringNotContainsString('location-map-banner', (string) file_get_contents($target . '/views/pages/home.twig'));
         self::assertStringContainsString('location-map-banner', (string) file_get_contents($target . '/public/assets/css/landing.css'));
         self::assertStringContainsString("'location' => [", (string) file_get_contents($target . '/config/content/landing.php'));
@@ -68,8 +68,8 @@ final class CreateLandingScriptTest extends TestCase
         self::assertStringContainsString('phpstan:', (string) file_get_contents($target . '/.github/workflows/ci.yml'));
         self::assertStringContainsString('phpunit:', (string) file_get_contents($target . '/.github/workflows/ci.yml'));
         self::assertStringContainsString('visual-tests:', (string) file_get_contents($target . '/.github/workflows/ci.yml'));
-        self::assertFileExists($target . '/public/assets/img/hero/jersika_carvalho-desktop-640.webp');
-        self::assertFileExists($target . '/public/assets/img/hero/jersika_carvalho-mobile-640.webp');
+        self::assertFileExists($target . '/public/assets/img/img_diversas/jersika_carvalho-desktop-640.webp');
+        self::assertFileExists($target . '/public/assets/img/img_diversas/jersika_carvalho-mobile-640.webp');
         self::assertFileExists($target . '/public/assets/img/social/psicologia-og.jpg');
         self::assertFileDoesNotExist($target . '/public/assets/img/hero/medico-desktop-640.webp');
 

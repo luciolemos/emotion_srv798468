@@ -63,16 +63,16 @@ return [
             ],
         ],
         'image' => [
-            'src' => 'assets/img/hero/jersika_carvalho-desktop-640.webp',
+            'src' => 'assets/img/img_diversas/jersika_carvalho-desktop-640.webp',
             'sources' => [
-                ['path' => 'assets/img/hero/jersika_carvalho-desktop-640.webp', 'width' => 640],
-                ['path' => 'assets/img/hero/jersika_carvalho-desktop-960.webp', 'width' => 960],
-                ['path' => 'assets/img/hero/jersika_carvalho-desktop-1086.webp', 'width' => 1086],
+                ['path' => 'assets/img/img_diversas/jersika_carvalho-desktop-640.webp', 'width' => 640],
+                ['path' => 'assets/img/img_diversas/jersika_carvalho-desktop-960.webp', 'width' => 960],
+                ['path' => 'assets/img/img_diversas/jersika_carvalho-desktop-1086.webp', 'width' => 1086],
             ],
             'mobile' => [
-                'src' => 'assets/img/hero/jersika_carvalho-mobile-640.webp',
+                'src' => 'assets/img/img_diversas/jersika_carvalho-mobile-640.webp',
                 'sources' => [
-                    ['path' => 'assets/img/hero/jersika_carvalho-mobile-640.webp', 'width' => 640],
+                    ['path' => 'assets/img/img_diversas/jersika_carvalho-mobile-640.webp', 'width' => 640],
                 ],
                 'sizes' => '92vw',
                 'media' => '(max-width: 576px)',
