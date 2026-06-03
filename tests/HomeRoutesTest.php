@@ -328,7 +328,7 @@ final class HomeRoutesTest extends TestCase
         self::assertStringContainsString('id="form-orcamento"', $html);
         self::assertStringContainsString('id="faq"', $html);
         self::assertStringNotContainsString('id="projects"', $html);
-        self::assertStringNotContainsString('id="depoimentos"', $html);
+        self::assertStringContainsString('id="depoimentos"', $html);
     }
 
     public function testContatoWithInvalidPayloadRedirectsBackToFormAndStoresErrors(): void

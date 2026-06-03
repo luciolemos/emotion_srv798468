@@ -939,6 +939,23 @@ html[data-theme="light"] .navbar-logo-light {
   background: var(--hero-badge-bg);
 }
 
+.section-nav-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.15rem;
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--pill-bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  scroll-margin-top: 120px;
+}
+
 .hero-title-motion .hero-title-part {
   display: inline-block;
   opacity: 1;
@@ -977,11 +994,26 @@ html[data-theme="light"] .navbar-logo-light {
 }
 
 .hero-proof {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.72rem;
   max-width: 560px;
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms ease;
+}
+
+.hero-proof::before {
+  content: "";
+  position: absolute;
+  inset: -45% -65% auto;
+  height: 70%;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translate3d(-35%, 0, 0) rotate(-8deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
 }
 
 .proof-avatars {
@@ -995,6 +1027,7 @@ html[data-theme="light"] .navbar-logo-light {
   border-radius: 50%;
   border: 2px solid rgba(var(--gradA), 0.35);
   margin-left: -12px;
+  transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease, border-color 260ms ease, box-shadow 420ms ease;
 }
 
 .proof-avatars img:first-child {
@@ -1005,6 +1038,7 @@ html[data-theme="light"] .navbar-logo-light {
   display: grid;
   gap: 0.1rem;
   line-height: 1.25;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .proof-copy strong {
@@ -1014,6 +1048,32 @@ html[data-theme="light"] .navbar-logo-light {
 .proof-copy span {
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+.hero-proof:hover,
+.hero-proof:focus-within {
+  transform: translateY(-10px) scale(1.012);
+  box-shadow: 0 28px 50px -26px rgba(var(--gradA), 0.58);
+  border-color: rgba(var(--gradA), 0.48);
+}
+
+.hero-proof:hover::before,
+.hero-proof:focus-within::before {
+  opacity: 1;
+  animation: testimonial-shine 1.05s ease both;
+}
+
+.hero-proof:hover .proof-avatars img,
+.hero-proof:focus-within .proof-avatars img {
+  transform: translateY(-3px) scale(1.14) rotate(-2deg);
+  filter: saturate(1.14) contrast(1.05);
+  border-color: rgba(var(--gradA), 0.74);
+  box-shadow: 0 16px 26px -16px rgba(var(--gradA), 0.88);
+}
+
+.hero-proof:hover .proof-copy,
+.hero-proof:focus-within .proof-copy {
+  transform: translateY(-1px);
 }
 
 .glass {
@@ -1038,19 +1098,61 @@ html.fx-ready .glass {
 }
 
 .metric {
+  position: relative;
+  overflow: hidden;
   padding: 0.92rem 1rem;
   text-align: center;
   border: 1px solid var(--stroke-soft);
+  background: linear-gradient(180deg, rgba(var(--gradA), 0.1), rgba(var(--gradC), 0.06));
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 360ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms ease;
+  will-change: transform;
+}
+
+.metric::before {
+  content: "";
+  position: absolute;
+  inset: -55% -75% auto;
+  height: 72%;
+  background: linear-gradient(110deg, transparent 28%, rgba(255, 255, 255, 0.24) 50%, transparent 72%);
+  transform: translate3d(-40%, 0, 0) rotate(-8deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
 }
 
 .metric-kpi {
   font-weight: 800;
   font-size: 1.04rem;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .metric-label {
   font-size: 0.84rem;
   color: var(--muted);
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), color 220ms ease;
+}
+
+.metric:hover,
+.metric:focus-within {
+  transform: translateY(-9px) scale(1.02);
+  border-color: rgba(var(--gradA), 0.52);
+  box-shadow: 0 26px 44px -24px rgba(var(--gradA), 0.56);
+}
+
+.metric:hover::before,
+.metric:focus-within::before {
+  opacity: 1;
+  animation: testimonial-shine 1s ease both;
+}
+
+.metric:hover .metric-kpi,
+.metric:focus-within .metric-kpi {
+  transform: translateY(-1px);
+}
+
+.metric:hover .metric-label,
+.metric:focus-within .metric-label {
+  transform: translateY(-1px);
 }
 
 .hero-media img {
@@ -1080,6 +1182,22 @@ html.fx-ready .hero-media img {
     transform: none !important;
     text-shadow: none !important;
     filter: none !important;
+  }
+
+  .hero-proof::before {
+    display: none;
+  }
+
+  .metric::before {
+    display: none;
+  }
+
+  .journey-step::before {
+    display: none;
+  }
+
+  #psicoterapia .feature-card::before {
+    display: none;
   }
 
   .blob {
@@ -1140,6 +1258,61 @@ html.fx-ready .hero-media img {
   border: 1px solid var(--stroke);
 }
 
+#psicoterapia .feature-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms ease;
+}
+
+#psicoterapia .feature-card::before {
+  content: "";
+  position: absolute;
+  inset: -45% -65% auto;
+  height: 70%;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translate3d(-35%, 0, 0) rotate(-8deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+#psicoterapia .feature-card h3,
+#psicoterapia .feature-card p {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#psicoterapia .feature-card .feature-icon {
+  transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease, border-color 260ms ease, box-shadow 420ms ease;
+}
+
+#psicoterapia .feature-card:hover,
+#psicoterapia .feature-card:focus-within {
+  transform: translateY(-10px) scale(1.012);
+  box-shadow: 0 28px 50px -26px rgba(var(--gradA), 0.58);
+  border-color: rgba(var(--gradA), 0.48);
+}
+
+#psicoterapia .feature-card:hover::before,
+#psicoterapia .feature-card:focus-within::before {
+  opacity: 1;
+  animation: testimonial-shine 1.05s ease both;
+}
+
+#psicoterapia .feature-card:hover .feature-icon,
+#psicoterapia .feature-card:focus-within .feature-icon {
+  transform: translateY(-3px) scale(1.14) rotate(-2deg);
+  filter: saturate(1.14) contrast(1.05);
+  border-color: rgba(var(--gradA), 0.74);
+  box-shadow: 0 16px 26px -16px rgba(var(--gradA), 0.88);
+}
+
+#psicoterapia .feature-card:hover h3,
+#psicoterapia .feature-card:focus-within h3,
+#psicoterapia .feature-card:hover p,
+#psicoterapia .feature-card:focus-within p {
+  transform: translateY(-1px);
+}
+
 .steps {
   list-style: none;
   padding: 0;
@@ -1194,6 +1367,133 @@ html.fx-ready .hero-media img {
   color: rgba(96, 234, 188, 0.95);
 }
 
+.journey-shell {
+  border-color: rgba(var(--gradA), 0.22);
+}
+
+.journey-stepper {
+  display: grid;
+  gap: 1rem;
+}
+
+.journey-step {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--stroke-soft);
+  border-radius: var(--r1);
+  background: linear-gradient(180deg, rgba(var(--gradA), 0.09), rgba(var(--gradC), 0.06));
+  padding: 1rem;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 360ms cubic-bezier(0.22, 1, 0.36, 1), border-color 240ms ease;
+}
+
+.journey-step::before {
+  content: "";
+  position: absolute;
+  inset: -55% -75% auto;
+  height: 72%;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.18) 50%, transparent 70%);
+  transform: translate3d(-40%, 0, 0) rotate(-8deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.journey-step:hover,
+.journey-step:focus-within {
+  transform: translateY(-8px) scale(1.012);
+  border-color: rgba(var(--gradA), 0.5);
+  box-shadow: 0 24px 42px -24px rgba(var(--gradA), 0.5);
+}
+
+.journey-step:hover::before,
+.journey-step:focus-within::before {
+  opacity: 1;
+  animation: testimonial-shine 1s ease both;
+}
+
+.journey-step-before {
+  background: linear-gradient(180deg, rgba(var(--gradA), 0.1), rgba(var(--gradC), 0.05));
+  border-color: rgba(var(--gradA), 0.28);
+}
+
+.journey-step-after {
+  background: linear-gradient(180deg, rgba(var(--gradA), 0.12), rgba(var(--gradA), 0.05));
+  border-color: rgba(var(--gradA), 0.34);
+}
+
+.journey-step-before .journey-kicker {
+  color: rgba(var(--gradA), 0.82);
+}
+
+.journey-step-after .journey-kicker {
+  color: rgb(var(--gradA));
+}
+
+.journey-step-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.journey-kicker {
+  color: rgb(var(--gradA));
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.journey-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: var(--muted);
+}
+
+.journey-divider-line {
+  display: block;
+  width: 2px;
+  height: 38px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(var(--gradA), 0.24), rgba(var(--gradA), 0.92), rgba(var(--gradC), 0.24));
+}
+
+.journey-divider-icon {
+  font-size: 1rem;
+}
+
+.journey-step[id] {
+  scroll-margin-top: 120px;
+}
+
+@media (min-width: 992px) {
+  .journey-stepper {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .journey-step {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .journey-divider {
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .journey-divider-line {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(var(--gradA), 0.24), rgba(var(--gradA), 0.92), rgba(var(--gradC), 0.24));
+  }
+
+  .journey-divider-icon {
+    transform: rotate(-90deg);
+  }
+}
+
 .avatar {
   width: 64px;
   height: 64px;
@@ -1226,6 +1526,185 @@ html.fx-ready .hero-media img {
   line-height: 1;
   color: rgba(var(--gradA), 0.92);
   margin-bottom: 0.25rem;
+}
+
+.testimonials-grid {
+  margin-top: 1.35rem;
+}
+
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(var(--gradA), 0.26);
+  background: linear-gradient(180deg, rgba(var(--gradA), 0.14), rgba(var(--gradC), 0.07));
+  border-radius: var(--r1);
+  box-shadow: 0 18px 34px -30px rgba(var(--gradA), 0.5);
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms ease;
+  will-change: transform;
+}
+
+.testimonial-card::before {
+  content: "";
+  position: absolute;
+  inset: -45% -65% auto;
+  height: 70%;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translate3d(-35%, 0, 0) rotate(-8deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.testimonial-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-avatar {
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(var(--gradA), 0.44);
+  flex-shrink: 0;
+  box-shadow: 0 10px 22px -18px rgba(var(--gradA), 0.68);
+  transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease, border-color 260ms ease, box-shadow 420ms ease;
+}
+
+.testimonial-avatar-fallback {
+  display: inline-grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(var(--gradA), 0.25);
+}
+
+.testimonial-meta {
+  display: grid;
+  gap: 0.08rem;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.testimonial-name {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.testimonial-role {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.testimonial-quote {
+  color: var(--muted);
+  line-height: 1.55;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), color 220ms ease;
+}
+
+#depoimentos .testimonial-card:hover,
+#depoimentos .testimonial-card:focus-within {
+  transform: translateY(-10px) scale(1.012);
+  box-shadow: 0 28px 50px -26px rgba(var(--gradA), 0.58);
+  border-color: rgba(var(--gradA), 0.48);
+}
+
+#depoimentos .testimonial-card:hover::before,
+#depoimentos .testimonial-card:focus-within::before {
+  opacity: 1;
+  animation: testimonial-shine 1.05s ease both;
+}
+
+#depoimentos .testimonial-card:hover .testimonial-avatar,
+#depoimentos .testimonial-card:focus-within .testimonial-avatar {
+  transform: translateY(-3px) scale(1.14) rotate(-2deg);
+  filter: saturate(1.14) contrast(1.05);
+  border-color: rgba(var(--gradA), 0.74);
+  box-shadow: 0 16px 26px -16px rgba(var(--gradA), 0.88);
+}
+
+#depoimentos .testimonial-card:hover .testimonial-meta,
+#depoimentos .testimonial-card:focus-within .testimonial-meta {
+  transform: translateY(-1px);
+}
+
+#depoimentos .testimonial-card:hover .testimonial-quote,
+#depoimentos .testimonial-card:focus-within .testimonial-quote {
+  transform: translateY(-1px);
+}
+
+@keyframes testimonial-card-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.965);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes testimonial-shine {
+  0% {
+    transform: translate3d(-48%, 0, 0) rotate(-8deg);
+  }
+
+  100% {
+    transform: translate3d(34%, 0, 0) rotate(-8deg);
+  }
+}
+
+@keyframes emotion-photo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-metrics .metric {
+    animation: testimonial-card-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .hero-metrics .metric:nth-child(1) {
+    animation-delay: 140ms;
+  }
+
+  .hero-metrics .metric:nth-child(2) {
+    animation-delay: 220ms;
+  }
+
+  .hero-metrics .metric:nth-child(3) {
+    animation-delay: 300ms;
+  }
+
+  #depoimentos .testimonial-card {
+    animation: testimonial-card-enter 680ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation-delay: var(--testimonial-enter-delay, 0ms);
+  }
+
+  #psicoterapia .row > [class*="col"] .feature-card {
+    animation: testimonial-card-enter 680ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  #psicoterapia .row > [class*="col"]:nth-child(1) .feature-card { animation-delay: 140ms; }
+  #psicoterapia .row > [class*="col"]:nth-child(2) .feature-card { animation-delay: 200ms; }
+  #psicoterapia .row > [class*="col"]:nth-child(3) .feature-card { animation-delay: 260ms; }
+  #psicoterapia .row > [class*="col"]:nth-child(4) .feature-card { animation-delay: 320ms; }
+  #psicoterapia .row > [class*="col"]:nth-child(5) .feature-card { animation-delay: 380ms; }
+  #psicoterapia .row > [class*="col"]:nth-child(6) .feature-card { animation-delay: 440ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-card::before {
+    display: none;
+  }
 }
 
 .cta-box {
@@ -2030,9 +2509,9 @@ html[data-theme="light"][data-niche="psicologia"] body {
 }
 
 html[data-theme="light"][data-niche="emotion"] body {
-  --light-bg0: #fdeff3;
-  --light-bg1: #fae4eb;
-  --light-bg2: #f5d7e2;
+  --light-bg0: #fbe1ec;
+  --light-bg1: #f9d8e6;
+  --light-bg2: #f6cedf;
   --light-accent-rgb: 199, 102, 136;
   --light-accent-strong-rgb: 120, 61, 86;
   --light-surface-rgb: 255, 246, 250;
@@ -2442,9 +2921,9 @@ html[data-theme="light"] code {
 
 /* Emotion custom palette (based on public/assets/img/img_1.jpg) */
 html[data-niche="emotion"] {
-  --bg0: #f7bfdc;
-  --bg1: #f7bfdc;
-  --bg2: #f7bfdc;
+  --bg0: #f9d3e5;
+  --bg1: #f9d3e5;
+  --bg2: #f9d3e5;
   --text: #2f2229;
   --muted: rgba(110, 79, 93, 0.9);
   --emotion-muted-solid: #6e5361;
@@ -2679,9 +3158,65 @@ html[data-niche="emotion"] .emotional-section-highlight {
   font-weight: 600;
 }
 
+html[data-niche="emotion"] .journey-shell {
+  border-color: rgba(var(--emotion-primary-rgb), 0.24);
+}
+
+html[data-niche="emotion"] .journey-step {
+  border-color: rgba(var(--emotion-primary-rgb), 0.24);
+  background: linear-gradient(180deg, rgba(var(--emotion-primary-rgb), 0.16), rgba(var(--emotion-primary-rgb), 0.06));
+}
+
+html[data-niche="emotion"] .journey-step-before {
+  background: linear-gradient(180deg, rgba(var(--emotion-primary-rgb), 0.22), rgba(var(--emotion-primary-rgb), 0.08));
+  border-color: rgba(var(--emotion-primary-rgb), 0.34);
+}
+
+html[data-niche="emotion"] .journey-step-after {
+  background: linear-gradient(180deg, rgba(var(--emotion-primary-rgb), 0.28), rgba(var(--emotion-primary-rgb), 0.1));
+  border-color: rgba(var(--emotion-primary-rgb), 0.4);
+}
+
+html[data-niche="emotion"] .journey-kicker {
+  color: var(--emotion-title-strong);
+}
+
+html[data-niche="emotion"] .journey-step-before .journey-kicker {
+  color: rgba(255, 225, 241, 0.9);
+}
+
+html[data-niche="emotion"] .journey-step-after .journey-kicker {
+  color: rgba(255, 223, 240, 0.98);
+}
+
+html[data-niche="emotion"] .testimonial-card {
+  border-color: rgba(var(--emotion-primary-rgb), 0.34);
+  background: linear-gradient(180deg, rgba(var(--emotion-primary-rgb), 0.22), rgba(var(--emotion-primary-rgb), 0.08));
+  box-shadow: 0 18px 34px -30px rgba(var(--emotion-primary-rgb), 0.52);
+}
+
+html[data-niche="emotion"] .testimonial-name {
+  color: #3f2431;
+}
+
+html[data-niche="emotion"] .testimonial-role {
+  color: rgba(77, 45, 59, 0.92);
+  font-weight: 600;
+}
+
+html[data-niche="emotion"] .testimonial-quote {
+  color: rgba(77, 45, 59, 0.9);
+}
+
+html[data-niche="emotion"] #depoimentos .testimonial-card:hover,
+html[data-niche="emotion"] #depoimentos .testimonial-card:focus-within {
+  border-color: rgba(var(--emotion-primary-rgb), 0.54);
+  box-shadow: 0 24px 44px -26px rgba(var(--emotion-primary-rgb), 0.64);
+}
+
 html[data-niche="emotion"] .about-jersika-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 520px) minmax(320px, 1fr);
+  grid-template-columns: minmax(300px, 620px) minmax(320px, 1fr);
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: center;
 }
@@ -2689,7 +3224,7 @@ html[data-niche="emotion"] .about-jersika-grid {
 html[data-niche="emotion"] .about-jersika-media {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 620px;
   margin-inline: auto;
 }
 
@@ -2722,12 +3257,26 @@ html[data-niche="emotion"] .about-jersika-photo {
   border-radius: 36px;
   overflow: hidden;
   box-shadow: 0 32px 60px rgba(102, 62, 78, 0.16);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html[data-niche="emotion"] .about-jersika-photo img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1), filter 360ms ease;
+}
+
+html[data-niche="emotion"] .about-jersika-media:hover .about-jersika-photo,
+html[data-niche="emotion"] .about-jersika-media:focus-within .about-jersika-photo {
+  transform: translateY(-6px);
+  box-shadow: 0 38px 70px rgba(102, 62, 78, 0.24);
+}
+
+html[data-niche="emotion"] .about-jersika-media:hover .about-jersika-photo img,
+html[data-niche="emotion"] .about-jersika-media:focus-within .about-jersika-photo img {
+  transform: scale(1.04);
+  filter: saturate(1.05) contrast(1.03);
 }
 
 html[data-niche="emotion"] .about-jersika-content {
@@ -2814,11 +3363,25 @@ html[data-niche="emotion"] .couple-therapy-accordion-button {
   font-weight: 500;
   letter-spacing: 0.005em;
   background: transparent !important;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease;
 }
 
 html[data-niche="emotion"] .couple-therapy-accordion-button i {
   color: var(--emotion-icon-soft) !important;
   font-size: 1rem;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), filter 300ms ease;
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-button:hover,
+html[data-niche="emotion"] .couple-therapy-accordion-button:focus-visible {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 14px 26px -18px rgba(var(--emotion-primary-rgb), 0.55);
+}
+
+html[data-niche="emotion"] .couple-therapy-accordion-button:hover i,
+html[data-niche="emotion"] .couple-therapy-accordion-button:focus-visible i {
+  transform: translateY(-1px) scale(1.12) rotate(-4deg);
+  filter: saturate(1.12) contrast(1.04);
 }
 
 html[data-niche="emotion"] .couple-therapy-accordion-button:not(.collapsed) {
@@ -2877,12 +3440,47 @@ html[data-niche="emotion"] .couple-therapy-photo {
   border-radius: 36px;
   overflow: hidden;
   box-shadow: 0 32px 60px rgba(102, 62, 78, 0.16);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html[data-niche="emotion"] .couple-therapy-photo img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1), filter 360ms ease;
+}
+
+html[data-niche="emotion"] .couple-therapy-media:hover .couple-therapy-photo,
+html[data-niche="emotion"] .couple-therapy-media:focus-within .couple-therapy-photo {
+  transform: translateY(-6px);
+  box-shadow: 0 38px 70px rgba(102, 62, 78, 0.24);
+}
+
+html[data-niche="emotion"] .couple-therapy-media:hover .couple-therapy-photo img,
+html[data-niche="emotion"] .couple-therapy-media:focus-within .couple-therapy-photo img {
+  transform: scale(1.04);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-niche="emotion"].fx-ready .about-jersika-photo {
+    animation: emotion-photo-float 7.4s ease-in-out infinite;
+  }
+
+  html[data-niche="emotion"].fx-ready .couple-therapy-photo {
+    animation: emotion-photo-float 8.2s ease-in-out infinite;
+    animation-delay: -1.1s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-niche="emotion"] .about-jersika-photo,
+  html[data-niche="emotion"] .couple-therapy-photo,
+  html[data-niche="emotion"] .about-jersika-photo img,
+  html[data-niche="emotion"] .couple-therapy-photo img {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -2916,7 +3514,23 @@ html[data-niche="emotion"] .couple-therapy-photo img {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html[data-niche="emotion"] .couple-therapy-accordion-button,
+  html[data-niche="emotion"] .couple-therapy-accordion-button i {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
 @media (max-width: 575.98px) {
+  html[data-niche="emotion"] .about-jersika-content {
+    padding-inline: clamp(0.3rem, 3.6vw, 0.8rem);
+  }
+
+  html[data-niche="emotion"] .about-jersika-description {
+    margin-inline: 0;
+  }
+
   html[data-niche="emotion"] .about-jersika-photo {
     border-radius: 28px;
   }
