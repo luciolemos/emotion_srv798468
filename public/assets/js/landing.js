@@ -579,6 +579,29 @@
     setStep(hasStep2Errors ? 2 : 1, false);
   }
 
+  // Testimonials toggle (show more / show less)
+  const testimonialsToggle = document.querySelector("[data-testimonials-toggle]");
+  if (testimonialsToggle) {
+    const hiddenCards = Array.from(document.querySelectorAll("[data-testimonial-extra=\"true\"]"));
+    if (!hiddenCards.length) {
+      testimonialsToggle.hidden = true;
+    } else {
+      let expanded = false;
+      const renderTestimonials = () => {
+        hiddenCards.forEach((card) => {
+          card.hidden = !expanded;
+        });
+        testimonialsToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+        testimonialsToggle.textContent = expanded ? "Ver menos depoimentos" : "Ver mais depoimentos";
+      };
+      testimonialsToggle.addEventListener("click", () => {
+        expanded = !expanded;
+        renderTestimonials();
+      });
+      renderTestimonials();
+    }
+  }
+
   // Mobile menu (hidden + class state, without Bootstrap collapse height animation)
   const nav = document.getElementById("topNav");
   const toggler = document.querySelector('.navbar-toggler[aria-controls="topNav"]');

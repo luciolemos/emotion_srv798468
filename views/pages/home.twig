@@ -49,6 +49,12 @@
 {% set structure = content.structure|default({}) %}
 {% set psychotherapy = content.psychotherapy|default({}) %}
 {% set couple_therapy = content.couple_therapy|default({}) %}
+{% set testimonials = content.testimonials|default({}) %}
+{% set testimonials_items = testimonials.items|default([
+  {'avatar': 'assets/img/avatars/face2_160.webp', 'name': 'Paciente A', 'role': 'Atendimento individual', 'quote': 'A terapia me ajudou a entender meus limites e a cuidar melhor de mim.'},
+  {'avatar': 'assets/img/avatars/face3_160.webp', 'name': 'Paciente B', 'role': 'Atendimento individual', 'quote': 'Passei a me comunicar com mais clareza e a lidar melhor com a ansiedade.'},
+  {'avatar': 'assets/img/avatars/face4_160.webp', 'name': 'Paciente C', 'role': 'Atendimento individual', 'quote': 'Senti acolhimento desde a primeira sessão e consegui retomar minha autoestima.'}
+]) %}
 {% set cta = content.cta|default({}) %}
 {% set form = content.form|default({}) %}
 {% set form_fields = form.fields|default({}) %}
@@ -185,8 +191,94 @@
   </div>
 </header>
 
+<section id="vivendo-assim" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="journey-shell glass p-4 p-lg-5">
+      <div class="section-heading text-center mb-4 mb-lg-5">
+        <h2 class="fw-normal mb-3">Uma jornada em duas etapas</h2>
+        <p class="text-secondary-emphasis mb-0">
+          Antes de iniciar a terapia e o que começa a mudar quando você se escolhe.
+        </p>
+      </div>
+
+      <div class="journey-stepper">
+        <article class="journey-step journey-step-before">
+          <div class="journey-step-head">
+            <span class="step-num">1</span>
+            <div>
+              <p class="journey-kicker mb-1">Antes</p>
+              <h3 class="h5 fw-semibold mb-0">Talvez você esteja vivendo assim…</h3>
+            </div>
+          </div>
+
+          <div class="row g-4 align-items-start mt-1">
+            <div class="col-lg-6">
+              <ul class="checklist emotional-checklist mb-0">
+                <li><i class="bi bi-heart"></i><span>Você sente que precisa dar conta de tudo.</span></li>
+                <li><i class="bi bi-heart"></i><span>Se cobra constantemente.</span></li>
+                <li><i class="bi bi-heart"></i><span>Tem dificuldade em descansar sem culpa.</span></li>
+                <li><i class="bi bi-heart"></i><span>Cuida de todos, mas quase nunca consegue cuidar de si.</span></li>
+                <li><i class="bi bi-heart"></i><span>Mesmo fazendo tanto, ainda se sente insuficiente.</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
+                Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.
+              </p>
+              <p class="text-secondary-emphasis mb-0">
+                E, aos poucos, vai deixando de se enxergar para além das suas funções.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <div class="journey-divider" aria-hidden="true">
+          <span class="journey-divider-line"></span>
+          <i class="bi bi-arrow-down journey-divider-icon"></i>
+        </div>
+
+        <article id="escolher-se" class="journey-step journey-step-after">
+          <div class="journey-step-head">
+            <span class="step-num">2</span>
+            <div>
+              <p class="journey-kicker mb-1">Depois</p>
+              <h3 class="h5 fw-semibold mb-0">O que muda quando você começa a se escolher</h3>
+            </div>
+          </div>
+
+          <div class="row g-3 g-lg-4 mt-1">
+            <div class="col-md-6">
+              <ul class="checklist emotional-checklist mb-0">
+                <li><i class="bi bi-check2-circle"></i><span>A reconhecer suas necessidades sem culpa.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A entender que seu valor não depende apenas do quanto você produz, entrega ou cuida dos outros.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A desenvolver relações mais saudáveis.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A estabelecer limites com mais segurança.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A confiar mais na própria voz.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A se posicionar sem sentir que está decepcionando alguém.</span></li>
+                <li><i class="bi bi-check2-circle"></i><span>A construir uma relação mais gentil consigo mesma.</span></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
+                O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.
+              </p>
+              <p class="text-secondary-emphasis mb-3">
+                Porque quando uma mulher se reconecta com sua essência, ela deixa de viver apenas para corresponder às expectativas dos outros e passa a construir uma vida que também faz sentido para ela.
+              </p>
+              <p class="mb-0 emotional-section-highlight">
+                Você merece ocupar seu espaço sem precisar se esquecer de si mesma.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="sobre-mim" class="py-5 py-lg-6 section-tech">
   <div class="container">
+    <div id="badge-sobre-mim" class="section-nav-badge">SOBRE MIM</div>
     {% set about_image = how.image|default({}) %}
     {% set about_image_src = about_image.src|default('assets/img/about/about-desktop-640.webp') %}
     {% set about_sources = about_image.sources|default([]) %}
@@ -243,41 +335,9 @@
   </div>
 </section>
 
-<section id="vivendo-assim" class="py-5 py-lg-6 section-tech">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10 col-xl-9">
-        <div class="glass p-4 p-lg-5 emotional-section-card">
-          <div class="section-heading text-center mb-4">
-            <h2 class="fw-normal mb-3">Talvez você esteja vivendo assim…</h2>
-          </div>
-          <div class="row g-4 align-items-start">
-            <div class="col-lg-6">
-              <ul class="checklist emotional-checklist mb-0">
-                <li><i class="bi bi-heart"></i><span>Você sente que precisa dar conta de tudo.</span></li>
-                <li><i class="bi bi-heart"></i><span>Se cobra constantemente.</span></li>
-                <li><i class="bi bi-heart"></i><span>Tem dificuldade em descansar sem culpa.</span></li>
-                <li><i class="bi bi-heart"></i><span>Cuida de todos, mas quase nunca consegue cuidar de si.</span></li>
-                <li><i class="bi bi-heart"></i><span>Mesmo fazendo tanto, ainda se sente insuficiente.</span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
-                Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.
-              </p>
-              <p class="text-secondary-emphasis mb-0">
-                E, aos poucos, vai deixando de se enxergar para além das suas funções.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="psicoterapia" class="py-5 py-lg-6 section-tech">
   <div class="container">
+    <div id="badge-psicoterapia" class="section-nav-badge">PSICOTERAPIA</div>
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ psychotherapy.title|default('Psicoterapia') }}</h2>
       <p class="text-secondary-emphasis mb-0">
@@ -299,50 +359,9 @@
   </div>
 </section>
 
-<section id="escolher-se" class="py-5 py-lg-6 section-tech">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-11 col-xl-10">
-        <div class="glass p-4 p-lg-5 emotional-section-card">
-          <div class="section-heading text-center mb-4">
-            <h2 class="fw-normal mb-3">O que muda quando você começa a se escolher</h2>
-            <p class="text-secondary-emphasis mb-0">
-              O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.
-            </p>
-          </div>
-
-          <div class="row g-3 g-lg-4">
-            <div class="col-md-6">
-              <ul class="checklist emotional-checklist mb-0">
-                <li><i class="bi bi-check2-circle"></i><span>A reconhecer suas necessidades sem culpa.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A entender que seu valor não depende apenas do quanto você produz, entrega ou cuida dos outros.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A desenvolver relações mais saudáveis.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A estabelecer limites com mais segurança.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A confiar mais na própria voz.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A se posicionar sem sentir que está decepcionando alguém.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A construir uma relação mais gentil consigo mesma.</span></li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
-                O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.
-              </p>
-              <p class="text-secondary-emphasis mb-3">
-                Porque quando uma mulher se reconecta com sua essência, ela deixa de viver apenas para corresponder às expectativas dos outros e passa a construir uma vida que também faz sentido para ela.
-              </p>
-              <p class="mb-0 emotional-section-highlight">
-                Você merece ocupar seu espaço sem precisar se esquecer de si mesma.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="terapia-casal" class="py-5 py-lg-6 section-tech">
   <div class="container">
+    <div id="badge-terapia-casal" class="section-nav-badge">TERAPIA DE CASAL</div>
     {% set couple_image_src = couple_therapy.image_src|default('assets/img/terapia/terapia-desktop-640.webp') %}
     {% set couple_sources = couple_therapy.sources|default([
       {'path': 'assets/img/terapia/terapia-desktop-640.webp', 'width': 640},
@@ -441,6 +460,60 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="depoimentos" class="py-5 py-lg-6 section-tech">
+  <div class="container">
+    <div class="section-nav-badge">TESTEMUNHOS</div>
+    <div class="section-heading text-center mb-4 mb-lg-5">
+      <h2 class="fw-normal mb-3">{{ testimonials.title|default('Depoimentos e testemunhos') }}</h2>
+      <p class="text-secondary-emphasis mb-0">
+        {{ testimonials.text|default('Relatos de quem vivenciou um processo terapêutico com acolhimento, escuta e transformação emocional.') }}
+      </p>
+    </div>
+
+    {% if testimonials_items %}
+    <div class="row g-3 g-lg-4 testimonials-grid" data-testimonials-grid>
+      {% for person in testimonials_items %}
+      {% set person_name = person.name|default('Paciente') %}
+      {% set person_avatar = person.avatar|default('') %}
+      {% set person_alt = person.alt|default(person_name) %}
+      {% set testimonial_delay = person.delay|default(160 + (loop.index0 * 60)) %}
+      <div class="col-md-6 col-lg-4" style="--testimonial-enter-delay: {{ testimonial_delay }}ms;"{% if loop.index > 3 %} hidden data-testimonial-extra="true"{% endif %}>
+        <article class="testimonial-card hover-lift glass h-100 p-4">
+          <div class="testimonial-head">
+            {% if person_avatar %}
+            <img
+              class="testimonial-avatar"
+              src="{{ base_url }}/{{ person_avatar }}"
+              alt="{{ person_alt }}"
+              width="50"
+              height="50"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+            >
+            {% else %}
+            <span class="testimonial-avatar testimonial-avatar-fallback" aria-hidden="true">{{ person_name|slice(0, 1)|upper }}</span>
+            {% endif %}
+            <div class="testimonial-meta">
+              <strong class="testimonial-name">{{ person_name }}</strong>
+              <span class="testimonial-role">{{ person.role|default('Paciente') }}</span>
+            </div>
+          </div>
+          <p class="testimonial-quote mb-0">"{{ person.quote|default('Depoimento em atualização.') }}"</p>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if testimonials_items|length > 3 %}
+    <div class="d-flex justify-content-center mt-4">
+      <button class="btn btn-primary px-4" type="button" data-testimonials-toggle aria-expanded="false">Ver mais depoimentos</button>
+    </div>
+    {% endif %}
+    {% endif %}
   </div>
 </section>
 

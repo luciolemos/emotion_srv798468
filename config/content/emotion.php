@@ -56,7 +56,17 @@ return [
             ['icon' => 'chat-heart', 'label' => 'Escuta clínica'],
         ],
         'proof' => [
-            'title' => 'Atendimento profissional com presença e continuidade',
+            'avatar' => [
+                'src' => 'assets/img/avatars/face7_160.webp',
+                'sources' => [
+                    ['path' => 'assets/img/avatars/face7_96.webp', 'width' => 96],
+                    ['path' => 'assets/img/avatars/face7_160.webp', 'width' => 160],
+                ],
+                'sizes' => '56px',
+                'width' => 56,
+                'height' => 56,
+            ],
+            'title' => 'Karoline e Marcelo',
             'lines' => [
                 'Jersika Carvalho é uma profissional extremamente competente, sensível e acolhedora, dedicada ao cuidado e ao fortalecimento emocional de mulheres.',
                 'Em cada sessão, uma escuta atenta, um acompanhamento cuidadoso em um espaço realmente seguro e acolhedor.',
@@ -123,6 +133,40 @@ return [
             ['icon' => 'emoji-neutral', 'title' => 'Lidar melhor com culpa e ansiedade', 'text' => 'Compreender suas emoções e desenvolver recursos para enfrentar desafios com mais equilíbrio e tranquilidade.'],
             ['icon' => 'people', 'title' => 'Construir relações mais saudáveis', 'text' => 'Fortalecer a comunicação, o respeito aos próprios limites e a qualidade dos vínculos afetivos.'],
             ['icon' => 'person-heart', 'title' => 'Reconectar-se com sua identidade', 'text' => 'Resgatar quem você é além dos papéis e responsabilidades, fortalecendo sua autenticidade e seu senso de direção.'],
+        ],
+    ],
+    'testimonials' => [
+        'title' => 'Depoimentos e testemunhos',
+        'text' => 'Relatos de mulheres e casais que iniciaram seus processos terapêuticos e passaram a viver com mais clareza, leveza e autoestima.',
+        'items' => [
+            [
+                'avatar' => 'assets/img/avatars/face2_160.webp',
+                'alt' => 'Gabriela Lima',
+                'name' => 'Gabriela Lima',
+                'role' => 'Designer de moda',
+                'quote' => 'Encontrar a Jersika foi um presente. Sua escuta atenta, seu olhar humano e sua forma acolhedora de conduzir cada sessão me fizeram sentir segura para falar sobre questões que carreguei por muitos anos. Hoje me sinto mais forte, mais leve e muito mais conectada comigo mesma.',
+            ],
+            [
+                'avatar' => 'assets/img/avatars/face3_160.webp',
+                'alt' => 'Alícia Sanchez',
+                'name' => 'Alícia Sanchez',
+                'role' => 'Engenheira de software',
+                'quote' => 'Em cada encontro com a Jersika, encontrei acolhimento, respeito e direcionamento. Ela conduz o processo terapêutico com muita sensibilidade e profissionalismo, ajudando a transformar momentos difíceis em oportunidades de crescimento e autoconhecimento.',
+            ],
+            [
+                'avatar' => 'assets/img/avatars/face5_160.webp',
+                'alt' => 'Jília dos Santos',
+                'name' => 'Jília dos Santos',
+                'role' => 'Analista',
+                'quote' => 'A terapia com a Jersika me ensinou que cuidar da saúde emocional não é sinal de fraqueza, mas de coragem. Seu acompanhamento me ajudou a desenvolver mais autoestima, segurança e equilíbrio para enfrentar os desafios da vida com mais confiança.',
+            ],
+            [
+                'avatar' => 'assets/img/avatars/face7_160.webp',
+                'alt' => 'Karoline e Marcelo',
+                'name' => 'Karoline e Marcelo',
+                'role' => 'Empreendedores',
+                'quote' => 'A escuta durante as sessões trouxe mais diálogo e menos conflito na nossa rotina.',
+            ],
         ],
     ],
     'couple_therapy' => [
