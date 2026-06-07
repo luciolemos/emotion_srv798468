@@ -155,8 +155,8 @@ return [
             ],
             [
                 'avatar' => 'assets/img/avatars/face5_160.webp',
-                'alt' => 'Jília dos Santos',
-                'name' => 'Jília dos Santos',
+                'alt' => 'Júlia dos Santos',
+                'name' => 'Júlia dos Santos',
                 'role' => 'Analista',
                 'quote' => 'A terapia com a Jersika me ensinou que cuidar da saúde emocional não é sinal de fraqueza, mas de coragem. Seu acompanhamento me ajudou a desenvolver mais autoestima, segurança e equilíbrio para enfrentar os desafios da vida com mais confiança.',
             ],
@@ -170,7 +170,7 @@ return [
         ],
     ],
     'couple_therapy' => [
-        'title' => 'Terapia de Casal',
+        'title' => 'Construindo uma relação mais saudável',
         'text' => 'Todo relacionamento atravessa desafios. Com o tempo, desencontros, dificuldades de comunicação, mágoas acumuladas e mudanças na rotina podem gerar distanciamento e sofrimento para ambos. A terapia de casal é um espaço seguro para compreender essas dificuldades, fortalecer o diálogo e construir novas formas de se relacionar. Ao longo do processo, vocês poderão:',
         'image_src' => 'assets/img/terapia/terapia-desktop-640.webp',
         'sources' => [
