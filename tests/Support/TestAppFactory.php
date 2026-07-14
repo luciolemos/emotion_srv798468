@@ -42,6 +42,8 @@ final class TestAppFactory
         $twig->getEnvironment()->addGlobal('app_palette', $config['palette'] ?? 'blue');
         $twig->getEnvironment()->addGlobal('landing_content', $landingContent);
         $twig->getEnvironment()->addGlobal('show_palette_selector', $config['show_palette_selector'] ?? false);
+        $twig->getEnvironment()->addGlobal('show_testimonials', $config['show_testimonials'] ?? true);
+        $twig->getEnvironment()->addGlobal('journey_layout', $config['journey_layout'] ?? 'text');
         $twig->getEnvironment()->addGlobal('recaptcha_enabled', $config['recaptcha_enabled'] ?? false);
         $twig->getEnvironment()->addGlobal('recaptcha_site_key', $config['recaptcha_site_key'] ?? '');
         $twig->getEnvironment()->addGlobal('recaptcha_action', $config['recaptcha_action'] ?? 'contact_submit');

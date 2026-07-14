@@ -254,6 +254,152 @@ final class HomeRoutesTest extends TestCase
         self::assertStringContainsString('palette-dot-emerald active', $html);
     }
 
+    public function testHomeRendersSplitJourneySectionsFromContent(): void
+    {
+        $app = TestAppFactory::create([
+            'base_url' => '/emotion',
+            'journey_layout' => 'text',
+            'landing_content' => [
+                'journey' => [
+                    'intro' => [
+                        'title' => 'Uma nova jornada',
+                        'text' => 'Dois blocos para separar dor e transformação.',
+                    ],
+                    'before' => [
+                        'title' => 'Antes do processo',
+                        'lead' => 'Sobrecarga constante.',
+                        'text' => 'Você foi se afastando de si.',
+                        'image' => [
+                            'src' => 'assets/img/hero/hero-desktop-640.webp',
+                            'alt' => 'Imagem antes',
+                        ],
+                        'items' => [
+                            ['icon' => 'heart', 'text' => 'Tudo parece pesado.'],
+                        ],
+                    ],
+                    'transition' => [
+                        'text' => 'Existe um jeito mais leve de seguir.',
+                        'label' => 'Quero ver o depois',
+                        'href' => '#escolher-se',
+                    ],
+                    'after' => [
+                        'title' => 'Depois do processo',
+                        'lead' => 'Mais clareza e presença.',
+                        'text' => 'Sua vida deixa de ser só reação.',
+                        'highlight' => 'Você pode se escolher com mais verdade.',
+                        'image' => [
+                            'src' => 'assets/img/about/about-desktop-640.webp',
+                            'alt' => 'Imagem depois',
+                        ],
+                        'items' => [
+                            ['icon' => 'check2-circle', 'text' => 'Limites mais claros.'],
+                        ],
+                        'cta' => [
+                            'label' => 'Quero me escolher',
+                            'href' => '#agendar',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $response = $this->request($app, 'GET', '/emotion/');
+        $html = (string) $response->getBody();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertStringContainsString('id="vivendo-assim"', $html);
+        self::assertStringContainsString('id="escolher-se"', $html);
+        self::assertStringContainsString('Uma nova jornada', $html);
+        self::assertStringContainsString('Antes do processo', $html);
+        self::assertStringContainsString('Existe um jeito mais leve de seguir.', $html);
+        self::assertStringContainsString('Depois do processo', $html);
+        self::assertStringContainsString('Quero me escolher', $html);
+        self::assertStringContainsString('/emotion/assets/img/hero/hero-desktop-640.webp', $html);
+        self::assertStringContainsString('/emotion/assets/img/about/about-desktop-640.webp', $html);
+        self::assertStringContainsString('data-cta-id="journey_after_primary"', $html);
+    }
+
+    public function testHomeRendersJourneyPanelsLayoutWhenConfigured(): void
+    {
+        $app = TestAppFactory::create([
+            'base_url' => '/emotion',
+            'journey_layout' => 'panels',
+            'landing_content' => [
+                'journey' => [
+                    'intro' => [
+                        'title' => 'Uma nova jornada',
+                        'text' => 'Dois painéis para apresentar a transformação.',
+                    ],
+                    'transition' => [
+                        'text' => 'Existe um jeito mais leve de seguir.',
+                    ],
+                    'after' => [
+                        'cta' => [
+                            'label' => 'Quero me escolher',
+                            'href' => '#agendar',
+                        ],
+                    ],
+                    'panels' => [
+                        'before' => [
+                            'src' => 'assets/img/antes.png',
+                            'alt' => 'Painel antes',
+                            'width' => 1024,
+                            'height' => 1536,
+                        ],
+                        'after' => [
+                            'src' => 'assets/img/depois.png',
+                            'alt' => 'Painel depois',
+                            'width' => 1024,
+                            'height' => 1536,
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $response = $this->request($app, 'GET', '/emotion/');
+        $html = (string) $response->getBody();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertStringContainsString('id="vivendo-assim"', $html);
+        self::assertStringContainsString('id="escolher-se"', $html);
+        self::assertStringContainsString('Uma nova jornada', $html);
+        self::assertStringContainsString('/emotion/assets/img/antes.png', $html);
+        self::assertStringContainsString('/emotion/assets/img/depois.png', $html);
+        self::assertStringNotContainsString('Existe um jeito mais leve de seguir.', $html);
+        self::assertStringNotContainsString('data-cta-id="journey_after_primary"', $html);
+    }
+
+    public function testHomeHidesTestimonialsSectionWhenDisabled(): void
+    {
+        $app = TestAppFactory::create([
+            'base_url' => '/medico',
+            'show_testimonials' => false,
+        ]);
+
+        $response = $this->request($app, 'GET', '/medico/');
+        $html = (string) $response->getBody();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertStringNotContainsString('id="depoimentos"', $html);
+        self::assertStringNotContainsString('Depoimentos e testemunhos', $html);
+    }
+
+    public function testHomeRendersTestimonialsSectionWhenEnabled(): void
+    {
+        $app = TestAppFactory::create([
+            'base_url' => '/medico',
+            'show_testimonials' => true,
+        ]);
+
+        $response = $this->request($app, 'GET', '/medico/');
+        $html = (string) $response->getBody();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertStringContainsString('id="depoimentos"', $html);
+        self::assertStringContainsString('Depoimentos e testemunhos', $html);
+    }
+
     public function testHomeRendersRecaptchaAssetsWhenEnabled(): void
     {
         $app = TestAppFactory::create([

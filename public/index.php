@@ -88,6 +88,11 @@ if ($base === '') {
 $appEnv = strtolower((string) ($_ENV['APP_ENV'] ?? 'production'));
 $isDev = in_array($appEnv, ['dev', 'development', 'local'], true);
 $showPaletteSelector = filter_var($_ENV['APP_SHOW_PALETTE_SELECTOR'] ?? false, FILTER_VALIDATE_BOOLEAN);
+$showTestimonials = filter_var($_ENV['APP_SHOW_TESTIMONIALS'] ?? true, FILTER_VALIDATE_BOOLEAN);
+$journeyLayout = strtolower(trim((string) ($_ENV['APP_JOURNEY_LAYOUT'] ?? 'text')));
+if (!in_array($journeyLayout, ['text', 'panels'], true)) {
+    $journeyLayout = 'text';
+}
 $recaptchaEnabled = filter_var($_ENV['RECAPTCHA_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $recaptchaSiteKey = trim((string) ($_ENV['RECAPTCHA_SITE_KEY'] ?? ''));
 $recaptchaAction = trim((string) ($_ENV['RECAPTCHA_ACTION'] ?? 'contact_submit'));
@@ -139,6 +144,8 @@ $twig->getEnvironment()->addGlobal('app_badge', $_ENV['APP_BADGE'] ?? ($landingC
 $twig->getEnvironment()->addGlobal('app_palette', $_ENV['APP_PALETTE'] ?? 'blue');
 $twig->getEnvironment()->addGlobal('landing_content', $landingContent);
 $twig->getEnvironment()->addGlobal('show_palette_selector', $showPaletteSelector);
+$twig->getEnvironment()->addGlobal('show_testimonials', $showTestimonials);
+$twig->getEnvironment()->addGlobal('journey_layout', $journeyLayout);
 $twig->getEnvironment()->addGlobal('recaptcha_enabled', $recaptchaEnabled && $recaptchaSiteKey !== '');
 $twig->getEnvironment()->addGlobal('recaptcha_site_key', $recaptchaSiteKey);
 $twig->getEnvironment()->addGlobal('recaptcha_action', $recaptchaAction !== '' ? $recaptchaAction : 'contact_submit');
