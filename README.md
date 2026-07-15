@@ -122,6 +122,7 @@ Copie `.env.example` para `.env` e ajuste:
 - `APP_CONTENT_FILE`: arquivo de conteúdo em `config/content/` sem a extensão `.php`; use `landing` para uma landing por repositório.
 - `APP_CANONICAL_URL`: URL pública canônica da landing, com domínio e subcaminho; quando vazio, o app deriva do host da requisição.
 - `APP_BASE`: subcaminho de publicação, por exemplo `/medico`, `/pediatria` ou `/odontologia`.
+- `APP_NOINDEX`: use `true` em homologação pública ou URLs que não devem ser indexadas; o app envia `X-Robots-Tag` e `<meta name="robots" content="noindex, nofollow">`.
 - `APP_PALETTE`: paleta padrão da landing (`blue`, `red`, `emerald`, `amber` ou `violet`).
 - `APP_SHOW_PALETTE_SELECTOR`: use `true` em catálogo/demo para mostrar o seletor de cores; mantenha `false` na landing final.
 - `APP_SHOW_TESTIMONIALS`: use `false` para ocultar a seção de depoimentos sem remover o código; use `true` quando quiser reativá-la.
@@ -137,6 +138,28 @@ Copie `.env.example` para `.env` e ajuste:
 - `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, `RECAPTCHA_MIN_SCORE`, `RECAPTCHA_ALLOWED_HOSTNAME` e `RECAPTCHA_ACTION`: configuram o reCAPTCHA v3 do formulário; mantenha os segredos somente no `.env` não versionado da produção.
 
 O arquivo `.env` não é versionado. Não coloque chaves secretas de SMTP/reCAPTCHA em `.env.example`, README ou arquivos de backup versionados.
+
+## Fluxo de ambientes
+
+Fluxo Git recomendado para este projeto:
+
+- `emotion`: desenvolvimento em `https://srv798468.hstgr.cloud/emotion/`
+- `homolog`: homologação em `https://homolog.jersikacarvalhopsicologa.com/`
+- `main`: produção em `https://jersikacarvalhopsicologa.com/`
+
+Promoção:
+
+1. Desenvolva e valide na branch `emotion`.
+2. Faça merge de `emotion` para `homolog` e publique a homologação.
+3. Após validação, faça merge de `homolog` para `main`.
+
+Configuração sugerida por ambiente:
+
+- Desenvolvimento (`emotion`): `APP_BASE="/emotion"`, `APP_CANONICAL_URL="https://srv798468.hstgr.cloud/emotion/"`, `APP_ENV="dev"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
+- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="staging"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
+- Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
+
+Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.
 
 ## Execução Local
 

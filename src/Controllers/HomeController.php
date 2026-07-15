@@ -39,6 +39,7 @@ final class HomeController
     {
         $queryParams = $request->getQueryParams();
         $hasSeoVariantQuery = $this->hasSeoVariantQuery($queryParams);
+        $shouldNoindex = $hasSeoVariantQuery || (bool) ($this->config['app_noindex'] ?? false);
 
         $paletteFromQuery = strtolower((string) ($queryParams['palette'] ?? ''));
         $paletteFromCookie = strtolower((string) ($_COOKIE[self::PALETTE_COOKIE_NAME] ?? ''));
@@ -57,7 +58,7 @@ final class HomeController
         $this->persistPaletteCookie($palette);
 
         $flash = $this->pullFormFlash();
-        if ($hasSeoVariantQuery) {
+        if ($shouldNoindex) {
             $response = $response->withHeader('X-Robots-Tag', 'noindex, nofollow');
         }
 
@@ -79,7 +80,7 @@ final class HomeController
             'recaptcha_site_key' => $this->recaptchaVerifier->siteKey(),
             'recaptcha_action' => $this->recaptchaVerifier->action(),
             'canonical_url' => $seoMeta['canonical_url'],
-            'should_noindex' => $hasSeoVariantQuery,
+            'should_noindex' => $shouldNoindex,
             'csrf_token' => $this->issueContactCsrfToken(),
             'allowed_palettes' => self::ALLOWED_PALETTES,
             'form_status' => $flash['status'] ?? null,

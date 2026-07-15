@@ -152,6 +152,21 @@ final class HomeRoutesTest extends TestCase
         self::assertStringContainsString('<meta name="robots" content="noindex, nofollow">', $html);
     }
 
+    public function testHomeHonorsAppNoindexConfig(): void
+    {
+        $app = TestAppFactory::create([
+            'base_url' => '/medico',
+            'app_noindex' => true,
+        ]);
+
+        $response = $this->request($app, 'GET', '/medico/');
+        $html = (string) $response->getBody();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame('noindex, nofollow', $response->getHeaderLine('X-Robots-Tag'));
+        self::assertStringContainsString('<meta name="robots" content="noindex, nofollow">', $html);
+    }
+
     public function testHomeRendersUpdatedClinicHeroCopyAndPaletteStateFromQueryString(): void
     {
         $app = TestAppFactory::create([
