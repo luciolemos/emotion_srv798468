@@ -5,7 +5,7 @@ SSH_HOST="212.85.6.236"
 SSH_PORT="65002"
 SSH_USER="u372181157"
 REMOTE_APP_DIR="/home/u372181157/apps/emotion-prod/current"
-REMOTE_PUBLIC_DIR="/home/u372181157/public_html"
+REMOTE_PUBLIC_DIR="/home/u372181157/domains/jersikacarvalhopsicologa.com/public_html"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
