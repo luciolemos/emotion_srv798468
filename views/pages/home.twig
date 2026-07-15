@@ -43,6 +43,46 @@
 {% block content %}
 
 {% set moments = content.moments|default({}) %}
+{% set journey = content.journey|default({}) %}
+{% set journey_intro = journey.intro|default({}) %}
+{% set journey_before = journey.before|default({}) %}
+{% set journey_before_items = journey_before.items|default([
+  {'icon': 'heart', 'text': 'Você sente que precisa dar conta de tudo.'},
+  {'icon': 'heart', 'text': 'Se cobra constantemente.'},
+  {'icon': 'heart', 'text': 'Tem dificuldade em descansar sem culpa.'},
+  {'icon': 'heart', 'text': 'Cuida de todos, mas quase nunca consegue cuidar de si.'},
+  {'icon': 'heart', 'text': 'Mesmo fazendo tanto, ainda se sente insuficiente.'}
+]) %}
+{% set journey_before_image = journey_before.image|default({}) %}
+{% set journey_before_image_src = journey_before_image.src|default('') %}
+{% set journey_before_image_sources = journey_before_image.sources|default([]) %}
+{% set journey_before_image_sizes = journey_before_image.sizes|default('(max-width: 991.98px) 92vw, 520px') %}
+{% set journey_before_mobile = journey_before_image.mobile|default({}) %}
+{% set journey_before_mobile_sources = journey_before_mobile.sources|default([]) %}
+{% set journey_before_mobile_media = journey_before_mobile.media|default('(max-width: 576px)') %}
+{% set journey_transition = journey.transition|default({}) %}
+{% set journey_after = journey.after|default({}) %}
+{% set journey_after_items = journey_after.items|default([
+  {'icon': 'check2-circle', 'text': 'A reconhecer suas necessidades sem culpa.'},
+  {'icon': 'check2-circle', 'text': 'A entender que seu valor não depende apenas do quanto você produz, entrega ou cuida dos outros.'},
+  {'icon': 'check2-circle', 'text': 'A desenvolver relações mais saudáveis.'},
+  {'icon': 'check2-circle', 'text': 'A estabelecer limites com mais segurança.'},
+  {'icon': 'check2-circle', 'text': 'A confiar mais na própria voz.'},
+  {'icon': 'check2-circle', 'text': 'A se posicionar sem sentir que está decepcionando alguém.'},
+  {'icon': 'check2-circle', 'text': 'A construir uma relação mais gentil consigo mesma.'}
+]) %}
+{% set journey_after_image = journey_after.image|default({}) %}
+{% set journey_after_image_src = journey_after_image.src|default('') %}
+{% set journey_after_image_sources = journey_after_image.sources|default([]) %}
+{% set journey_after_image_sizes = journey_after_image.sizes|default('(max-width: 991.98px) 92vw, 520px') %}
+{% set journey_after_mobile = journey_after_image.mobile|default({}) %}
+{% set journey_after_mobile_sources = journey_after_mobile.sources|default([]) %}
+{% set journey_after_mobile_media = journey_after_mobile.media|default('(max-width: 576px)') %}
+{% set journey_after_cta = journey_after.cta|default({}) %}
+{% set journey_variant = journey_layout|default('text') %}
+{% set journey_panels = journey.panels|default({}) %}
+{% set journey_panel_before = journey_panels.before|default({}) %}
+{% set journey_panel_after = journey_panels.after|default({}) %}
 {% set services = content.services.items|default([]) %}
 {% set services_section = content.services|default({}) %}
 {% set how = content.how|default({}) %}
@@ -191,90 +231,196 @@
   </div>
 </header>
 
-<section id="vivendo-assim" class="py-5 py-lg-6 section-tech">
+<section id="vivendo-assim" class="py-5 py-lg-6 section-tech journey-section journey-section-before">
   <div class="container">
-    <div class="journey-shell glass p-4 p-lg-5">
-      <div class="section-heading text-center mb-4 mb-lg-5">
-        <h2 class="fw-normal mb-3">Uma jornada em duas etapas</h2>
-        <p class="text-secondary-emphasis mb-0">
-          Antes de iniciar a terapia e o que começa a mudar quando você se escolhe.
-        </p>
-      </div>
+    <div id="badge-vivendo-assim" class="section-nav-badge">{{ journey_intro.eyebrow|default('Jornada terapêutica') }}</div>
+    <div class="journey-overview section-heading text-center mb-4 mb-lg-5">
+      <h2 class="fw-normal mb-3">{{ journey_intro.title|default('Uma jornada em duas etapas') }}</h2>
+      <p class="text-secondary-emphasis mb-0">
+        {{ journey_intro.text|default('Antes de iniciar a terapia e o que começa a mudar quando você se escolhe.') }}
+      </p>
+    </div>
 
-      <div class="journey-stepper">
-        <article class="journey-step journey-step-before">
-          <div class="journey-step-head">
-            <span class="step-num">1</span>
-            <div>
-              <p class="journey-kicker mb-1">Antes</p>
-              <h3 class="h5 fw-semibold mb-0">Talvez você esteja vivendo assim…</h3>
-            </div>
-          </div>
-
-          <div class="row g-4 align-items-start mt-1">
-            <div class="col-lg-6">
-              <ul class="checklist emotional-checklist mb-0">
-                <li><i class="bi bi-heart"></i><span>Você sente que precisa dar conta de tudo.</span></li>
-                <li><i class="bi bi-heart"></i><span>Se cobra constantemente.</span></li>
-                <li><i class="bi bi-heart"></i><span>Tem dificuldade em descansar sem culpa.</span></li>
-                <li><i class="bi bi-heart"></i><span>Cuida de todos, mas quase nunca consegue cuidar de si.</span></li>
-                <li><i class="bi bi-heart"></i><span>Mesmo fazendo tanto, ainda se sente insuficiente.</span></li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
-                Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.
-              </p>
-              <p class="text-secondary-emphasis mb-0">
-                E, aos poucos, vai deixando de se enxergar para além das suas funções.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <div class="journey-divider" aria-hidden="true">
-          <span class="journey-divider-line"></span>
-          <i class="bi bi-arrow-down journey-divider-icon"></i>
+    {% if journey_variant == 'panels' %}
+    <div class="journey-panels-grid">
+      {% if journey_panel_before.src|default('') %}
+      <figure class="journey-panel journey-panel-before">
+        <img
+          src="{{ base_url }}/{{ journey_panel_before.src }}"
+          alt="{{ journey_panel_before.alt|default('Painel da fase anterior ao processo terapêutico') }}"
+          loading="lazy"
+          decoding="async"
+          width="{{ journey_panel_before.width|default(1024) }}"
+          height="{{ journey_panel_before.height|default(1536) }}"
+        >
+      </figure>
+      {% endif %}
+      {% if journey_panel_after.src|default('') %}
+      <figure id="escolher-se" class="journey-panel journey-panel-after">
+        <img
+          src="{{ base_url }}/{{ journey_panel_after.src }}"
+          alt="{{ journey_panel_after.alt|default('Painel da fase de reconexão e transformação terapêutica') }}"
+          loading="lazy"
+          decoding="async"
+          width="{{ journey_panel_after.width|default(1024) }}"
+          height="{{ journey_panel_after.height|default(1536) }}"
+        >
+      </figure>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="journey-stage-layout journey-stage-layout-before">
+      <article class="journey-card journey-card-before journey-card-plain d-grid gap-4 align-content-start">
+        {% if journey_before_image_src %}
+        <div class="journey-card-media journey-card-media-before">
+          <picture>
+            {% if journey_before_mobile.src|default('') %}
+            <source
+              type="image/webp"
+              media="{{ journey_before_mobile_media }}"
+              srcset="{% for source in journey_before_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+              sizes="{{ journey_before_mobile.sizes|default('92vw') }}"
+            >
+            {% endif %}
+            {% if journey_before_image_sources|length > 0 %}
+            <source
+              type="image/webp"
+              srcset="{% for source in journey_before_image_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+              sizes="{{ journey_before_image_sizes }}"
+            >
+            {% endif %}
+            <img
+              src="{{ base_url }}/{{ journey_before_image_src }}"
+              alt="{{ journey_before_image.alt|default('Imagem ilustrativa sobre sobrecarga emocional') }}"
+              loading="lazy"
+              decoding="async"
+              width="{{ journey_before_image.width|default(640) }}"
+              height="{{ journey_before_image.height|default(427) }}"
+            >
+          </picture>
         </div>
+        {% endif %}
+      </article>
 
-        <article id="escolher-se" class="journey-step journey-step-after">
-          <div class="journey-step-head">
-            <span class="step-num">2</span>
+      <aside class="journey-points-card journey-points-card-before journey-points-card-plain journey-results journey-results-before">
+        <div class="d-grid gap-3">
+          <div class="journey-card-head mb-0">
             <div>
-              <p class="journey-kicker mb-1">Depois</p>
-              <h3 class="h5 fw-semibold mb-0">O que muda quando você começa a se escolher</h3>
+              <h3 class="h4 fw-semibold mb-0">{{ journey_before.title|default('Talvez você esteja vivendo assim...') }}</h3>
             </div>
           </div>
+          <p class="journey-copy journey-copy-lead emotional-section-highlight mb-0">
+            {{ journey_before.lead|default('Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.') }}
+          </p>
+          <p class="text-secondary-emphasis mb-0">
+            {{ journey_before.text|default('E, aos poucos, vai deixando de se enxergar para além das suas funções.') }}
+          </p>
+        </div>
+        <p class="journey-points-title journey-results-title mb-0">
+          {{ journey_before.list_title|default('Sinais que costumam aparecer no dia a dia') }}
+        </p>
+        <ul class="checklist emotional-checklist journey-checklist mb-0">
+          {% for item in journey_before_items %}
+          {% set journey_item_text = item.text|default(item) %}
+          <li><i class="bi bi-{{ item.icon|default('heart') }}"></i><span>{{ journey_item_text }}</span></li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+    {% endif %}
+  </div>
+</section>
 
-          <div class="row g-3 g-lg-4 mt-1">
-            <div class="col-md-6">
-              <ul class="checklist emotional-checklist mb-0">
-                <li><i class="bi bi-check2-circle"></i><span>A reconhecer suas necessidades sem culpa.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A entender que seu valor não depende apenas do quanto você produz, entrega ou cuida dos outros.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A desenvolver relações mais saudáveis.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A estabelecer limites com mais segurança.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A confiar mais na própria voz.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A se posicionar sem sentir que está decepcionando alguém.</span></li>
-                <li><i class="bi bi-check2-circle"></i><span>A construir uma relação mais gentil consigo mesma.</span></li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <p class="text-secondary-emphasis mb-3 emotional-section-highlight">
-                O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.
-              </p>
-              <p class="text-secondary-emphasis mb-3">
-                Porque quando uma mulher se reconecta com sua essência, ela deixa de viver apenas para corresponder às expectativas dos outros e passa a construir uma vida que também faz sentido para ela.
-              </p>
-              <p class="mb-0 emotional-section-highlight">
-                Você merece ocupar seu espaço sem precisar se esquecer de si mesma.
-              </p>
-            </div>
-          </div>
-        </article>
-      </div>
+{% if journey_variant != 'panels' %}
+<section class="section-tech journey-transition-wrap">
+  <div class="container">
+    <div class="journey-transition glass">
+      <span class="journey-transition-line" aria-hidden="true"></span>
+      <p class="journey-transition-text mb-0">
+        {{ journey_transition.text|default('Você não precisa continuar sustentando tudo sozinha.') }}
+      </p>
+      <a class="journey-transition-link" href="{{ journey_transition.href|default('#escolher-se') }}">
+        {{ journey_transition.label|default('Ver o que começa a mudar') }} <i class="bi bi-arrow-down-right"></i>
+      </a>
     </div>
   </div>
 </section>
+{% endif %}
+
+{% if journey_variant != 'panels' %}
+<section id="escolher-se" class="py-5 py-lg-6 section-tech journey-section journey-section-after">
+  <div class="container">
+    <div class="journey-stage-layout journey-stage-layout-after">
+      <div class="journey-results journey-results-after">
+        <div class="d-grid gap-3">
+          <div class="journey-card-head mb-0">
+            <div>
+              <h3 class="h4 fw-semibold mb-0">{{ journey_after.title|default('O que muda quando você começa a se escolher') }}</h3>
+            </div>
+          </div>
+          <p class="journey-copy journey-copy-lead emotional-section-highlight mb-0">
+            {{ journey_after.lead|default('O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.') }}
+          </p>
+          <p class="text-secondary-emphasis mb-0">
+            {{ journey_after.text|default('Porque quando uma mulher se reconecta com sua essência, ela deixa de viver apenas para corresponder às expectativas dos outros e passa a construir uma vida que também faz sentido para ela.') }}
+          </p>
+          <p class="journey-highlight mb-0">
+            {{ journey_after.highlight|default('Você merece ocupar seu espaço sem precisar se esquecer de si mesma.') }}
+          </p>
+        </div>
+        <p class="journey-points-title journey-results-title mb-0">
+          {{ journey_after.list_title|default('Mudanças que começam a aparecer') }}
+        </p>
+        <ul class="checklist emotional-checklist journey-checklist journey-checklist-after mb-0">
+          {% for item in journey_after_items %}
+          {% set journey_item_text = item.text|default(item) %}
+          <li class="journey-checklist-item"><i class="bi bi-{{ item.icon|default('check2-circle') }}" aria-hidden="true"></i><span>{{ journey_item_text }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <article class="journey-card journey-card-after journey-card-plain d-grid gap-4 align-content-start">
+        {% if journey_after_image_src %}
+        <div class="journey-card-media journey-card-media-after">
+          <picture>
+            {% if journey_after_mobile.src|default('') %}
+            <source
+              type="image/webp"
+              media="{{ journey_after_mobile_media }}"
+              srcset="{% for source in journey_after_mobile_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+              sizes="{{ journey_after_mobile.sizes|default('92vw') }}"
+            >
+            {% endif %}
+            {% if journey_after_image_sources|length > 0 %}
+            <source
+              type="image/webp"
+              srcset="{% for source in journey_after_image_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+              sizes="{{ journey_after_image_sizes }}"
+            >
+            {% endif %}
+            <img
+              src="{{ base_url }}/{{ journey_after_image_src }}"
+              alt="{{ journey_after_image.alt|default('Imagem ilustrativa sobre reconexao e leveza emocional') }}"
+              loading="lazy"
+              decoding="async"
+              width="{{ journey_after_image.width|default(640) }}"
+              height="{{ journey_after_image.height|default(512) }}"
+            >
+          </picture>
+        </div>
+        {% endif %}
+        {% if journey_after_cta.label|default('') %}
+        <div>
+          <a class="btn btn-primary px-4 cta-track" href="{{ journey_after_cta.href|default('#agendar') }}" data-cta-id="journey_after_primary">
+            {{ journey_after_cta.label }} <i class="bi bi-arrow-right-short"></i>
+          </a>
+        </div>
+        {% endif %}
+      </article>
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <section id="sobre-mim" class="py-5 py-lg-6 section-tech">
   <div class="container">
@@ -463,6 +609,7 @@
   </div>
 </section>
 
+{% if show_testimonials ?? true %}
 <section id="depoimentos" class="py-5 py-lg-6 section-tech">
   <div class="container">
     <div class="section-nav-badge">TESTEMUNHOS</div>
@@ -516,6 +663,7 @@
     {% endif %}
   </div>
 </section>
+{% endif %}
 
 <section id="agendar" class="py-5 py-lg-6 section-tech">
   <div class="container">

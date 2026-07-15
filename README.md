@@ -124,6 +124,8 @@ Copie `.env.example` para `.env` e ajuste:
 - `APP_BASE`: subcaminho de publicação, por exemplo `/medico`, `/pediatria` ou `/odontologia`.
 - `APP_PALETTE`: paleta padrão da landing (`blue`, `red`, `emerald`, `amber` ou `violet`).
 - `APP_SHOW_PALETTE_SELECTOR`: use `true` em catálogo/demo para mostrar o seletor de cores; mantenha `false` na landing final.
+- `APP_SHOW_TESTIMONIALS`: use `false` para ocultar a seção de depoimentos sem remover o código; use `true` quando quiser reativá-la.
+- `APP_JOURNEY_LAYOUT`: use `panels` para exibir os painéis visuais da jornada ou `text` para reativar o layout editorial anterior.
 - `FACEBOOK_URL`: link oficial do Facebook.
 - `APP_WHATSAPP_NUMBER` e `APP_WHATSAPP_MESSAGE`: número e mensagem inicial usados para gerar o link oficial de WhatsApp.
 - `WHATSAPP_URL`: fallback legado de WhatsApp quando `APP_WHATSAPP_NUMBER` estiver vazio.
@@ -214,5 +216,7 @@ Os presets recomendados para cada nicho ficam em `config/presets/niches.php`. O 
 Os conteúdos de nicho versionados são `config/content/pediatria.php`, `config/content/odontologia.php`, `config/content/veterinaria.php`, `config/content/estetica.php` e `config/content/psicologia.php`. Eles herdam a estrutura base de `landing.php` e sobrescrevem textos, SEO, tipografia, serviços, FAQ e mensagens de formulário para cada área.
 
 As imagens principais seguem nomes padronizados: `public/assets/img/hero/{slug}-640.webp`, `{slug}-960.webp`, `{slug}-1896.webp`, `{slug}-mobile-640.webp` e `public/assets/img/social/{slug}-og.jpg`. O corte mobile é vertical para preservar o rosto/atendimento em telas estreitas. O gerador renomeia os placeholders para o slug novo; depois substitua esses arquivos por imagens finais do nicho.
+
+Quando a landing usar uma narrativa editorial em duas partes, configure `journey.intro`, `journey.before`, `journey.transition`, `journey.after` e, se quiser a variante visual, `journey.panels` no arquivo ativo de `config/content/`. A troca entre a versão editorial e a versão com painéis pode ser feita via `APP_JOURNEY_LAYOUT` sem editar o Twig.
 
 Após alterar templates em produção, limpe o cache Twig em `storage/cache/twig` ou rode o script de pós-update.
