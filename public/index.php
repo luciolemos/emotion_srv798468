@@ -87,6 +87,7 @@ if ($base === '') {
 }
 $appEnv = strtolower((string) ($_ENV['APP_ENV'] ?? 'production'));
 $isDev = in_array($appEnv, ['dev', 'development', 'local'], true);
+$appNoindex = filter_var($_ENV['APP_NOINDEX'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $showPaletteSelector = filter_var($_ENV['APP_SHOW_PALETTE_SELECTOR'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $showTestimonials = filter_var($_ENV['APP_SHOW_TESTIMONIALS'] ?? true, FILTER_VALIDATE_BOOLEAN);
 $journeyLayout = strtolower(trim((string) ($_ENV['APP_JOURNEY_LAYOUT'] ?? 'text')));
@@ -212,6 +213,7 @@ $controller = new HomeController($twig, [
     'canonical_url'        => $_ENV['APP_CANONICAL_URL'] ?? '',
     'landing_content'      => $landingContent,
     'palette'              => $_ENV['APP_PALETTE'] ?? 'blue',
+    'app_noindex'          => $appNoindex,
     'show_palette_selector' => $showPaletteSelector,
     'base_url'             => $base,
     'contact_to'           => $_ENV['CONTACT_TO'] ?? null,

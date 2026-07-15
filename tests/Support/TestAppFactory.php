@@ -109,6 +109,7 @@ final class TestAppFactory
             'canonical_url'         => $config['canonical_url'] ?? '',
             'landing_content'       => $landingContent,
             'palette'               => $config['palette'] ?? 'blue',
+            'app_noindex'           => $config['app_noindex'] ?? false,
             'show_palette_selector' => $config['show_palette_selector'] ?? false,
             'base_url'              => $base,
             'contact_to'            => array_key_exists('contact_to', $config) ? $config['contact_to'] : 'contato@example.com',
