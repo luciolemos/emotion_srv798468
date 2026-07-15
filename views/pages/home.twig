@@ -159,32 +159,6 @@
           {% endfor %}
         </div>
 
-        {% set proof = hero.proof|default({}) %}
-        {% set proof_avatar = proof.avatar|default({}) %}
-        {% set proof_avatar_sources = proof_avatar.sources|default([]) %}
-        <div class="hero-proof glass mt-3">
-          {% if proof_avatar.src|default('') %}
-          <div class="proof-avatars" aria-hidden="true">
-            <img
-              src="{{ base_url }}/{{ proof_avatar.src }}"
-              srcset="{% for source in proof_avatar_sources %}{{ base_url }}/{{ source.path }} {{ source.width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
-              sizes="{{ proof_avatar.sizes|default('56px') }}"
-              alt=""
-              width="{{ proof_avatar.width|default(56) }}"
-              height="{{ proof_avatar.height|default(56) }}"
-              loading="lazy"
-              decoding="async"
-              fetchpriority="low"
-            >
-          </div>
-          {% endif %}
-          <div class="proof-copy">
-            <strong>{{ proof.title|default('Atendimento com continuidade') }}</strong>
-            {% for line in proof.lines|default([]) %}
-            <span>{{ line }}</span>
-            {% endfor %}
-          </div>
-        </div>
       </div>
 
       <div class="col-lg-6">
