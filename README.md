@@ -99,6 +99,13 @@ bash scripts/smoke-frontend.sh --url "https://seudominio.com.br/psicologia/"
 bash scripts/smoke-contact.sh  --url "https://seudominio.com.br/psicologia/"
 ```
 
+Deploy SSH manual com a estrutura usada neste projeto:
+
+- Homologação: `bash scripts/deploy-homolog-ssh.sh`
+- Produção: `bash scripts/deploy-prod-ssh.sh`
+
+Esses scripts sincronizam o app completo para `~/apps/.../current`, enviam apenas `public/assets/` e `.htaccess` para o docroot público, e executam o pós-update no servidor remoto.
+
 5) Checklist final
 - Página abre rápido no celular, imagens carregam em WebP.
 - Formulário envia e chega no e-mail configurado em `CONTACT_TO`.
