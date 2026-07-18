@@ -60,6 +60,7 @@
 {% set journey_before_mobile = journey_before_image.mobile|default({}) %}
 {% set journey_before_mobile_sources = journey_before_mobile.sources|default([]) %}
 {% set journey_before_mobile_media = journey_before_mobile.media|default('(max-width: 576px)') %}
+{% set journey_before_badge = journey_before.eyebrow|default(journey_before.kicker|default(journey_intro.eyebrow|default('Jornada terapêutica'))) %}
 {% set journey_transition = journey.transition|default({}) %}
 {% set journey_after = journey.after|default({}) %}
 {% set journey_after_items = journey_after.items|default([
@@ -78,6 +79,7 @@
 {% set journey_after_mobile = journey_after_image.mobile|default({}) %}
 {% set journey_after_mobile_sources = journey_after_mobile.sources|default([]) %}
 {% set journey_after_mobile_media = journey_after_mobile.media|default('(max-width: 576px)') %}
+{% set journey_after_badge = journey_after.eyebrow|default(journey_after.kicker|default(journey_intro.eyebrow|default('Jornada terapêutica'))) %}
 {% set journey_after_cta = journey_after.cta|default({}) %}
 {% set journey_variant = journey_layout|default('text') %}
 {% set journey_panels = journey.panels|default({}) %}
@@ -207,12 +209,9 @@
 
 <section id="vivendo-assim" class="py-5 py-lg-6 section-tech journey-section journey-section-before">
   <div class="container">
-    <div id="badge-vivendo-assim" class="section-nav-badge">{{ journey_intro.eyebrow|default('Jornada terapêutica') }}</div>
+    <div id="badge-vivendo-assim" class="section-nav-badge">{{ journey_before_badge }}</div>
     <div class="journey-overview section-heading text-center mb-4 mb-lg-5">
-      <h2 class="fw-normal mb-3">{{ journey_intro.title|default('Uma jornada em duas etapas') }}</h2>
-      <p class="text-secondary-emphasis mb-0">
-        {{ journey_intro.text|default('Antes de iniciar a terapia e o que começa a mudar quando você se escolhe.') }}
-      </p>
+      <h2 class="fw-normal mb-0">{{ journey_before.title|default('Talvez você esteja vivendo assim...') }}</h2>
     </div>
 
     {% if journey_variant == 'panels' %}
@@ -226,18 +225,6 @@
           decoding="async"
           width="{{ journey_panel_before.width|default(1024) }}"
           height="{{ journey_panel_before.height|default(1536) }}"
-        >
-      </figure>
-      {% endif %}
-      {% if journey_panel_after.src|default('') %}
-      <figure id="escolher-se" class="journey-panel journey-panel-after">
-        <img
-          src="{{ base_url }}/{{ journey_panel_after.src }}"
-          alt="{{ journey_panel_after.alt|default('Painel da fase de reconexão e transformação terapêutica') }}"
-          loading="lazy"
-          decoding="async"
-          width="{{ journey_panel_after.width|default(1024) }}"
-          height="{{ journey_panel_after.height|default(1536) }}"
         >
       </figure>
       {% endif %}
@@ -278,11 +265,6 @@
 
       <aside class="journey-points-card journey-points-card-before journey-points-card-plain journey-results journey-results-before">
         <div class="d-grid gap-3">
-          <div class="journey-card-head mb-0">
-            <div>
-              <h3 class="h4 fw-semibold mb-0">{{ journey_before.title|default('Talvez você esteja vivendo assim...') }}</h3>
-            </div>
-          </div>
           <p class="journey-copy journey-copy-lead emotional-section-highlight mb-0">
             {{ journey_before.lead|default('Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.') }}
           </p>
@@ -321,17 +303,31 @@
 </section>
 {% endif %}
 
-{% if journey_variant != 'panels' %}
 <section id="escolher-se" class="py-5 py-lg-6 section-tech journey-section journey-section-after">
   <div class="container">
+    <div id="badge-escolher-se" class="section-nav-badge">{{ journey_after_badge }}</div>
+    <div class="journey-overview section-heading text-center mb-4 mb-lg-5">
+      <h2 class="fw-normal mb-0">{{ journey_after.title|default('O que muda quando você começa a se escolher') }}</h2>
+    </div>
+    {% if journey_variant == 'panels' %}
+    <div class="journey-panels-grid">
+      {% if journey_panel_after.src|default('') %}
+      <figure class="journey-panel journey-panel-after">
+        <img
+          src="{{ base_url }}/{{ journey_panel_after.src }}"
+          alt="{{ journey_panel_after.alt|default('Painel da fase de reconexão e transformação terapêutica') }}"
+          loading="lazy"
+          decoding="async"
+          width="{{ journey_panel_after.width|default(1024) }}"
+          height="{{ journey_panel_after.height|default(1536) }}"
+        >
+      </figure>
+      {% endif %}
+    </div>
+    {% else %}
     <div class="journey-stage-layout journey-stage-layout-after">
       <div class="journey-results journey-results-after">
         <div class="d-grid gap-3">
-          <div class="journey-card-head mb-0">
-            <div>
-              <h3 class="h4 fw-semibold mb-0">{{ journey_after.title|default('O que muda quando você começa a se escolher') }}</h3>
-            </div>
-          </div>
           <p class="journey-copy journey-copy-lead emotional-section-highlight mb-0">
             {{ journey_after.lead|default('O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.') }}
           </p>
@@ -392,9 +388,9 @@
         {% endif %}
       </article>
     </div>
+    {% endif %}
   </div>
 </section>
-{% endif %}
 
 <section id="sobre-mim" class="py-5 py-lg-6 section-tech">
   <div class="container">

@@ -281,6 +281,7 @@ final class HomeRoutesTest extends TestCase
                         'text' => 'Dois blocos para separar dor e transformação.',
                     ],
                     'before' => [
+                        'kicker' => 'Quando algo pede escuta',
                         'title' => 'Antes do processo',
                         'lead' => 'Sobrecarga constante.',
                         'text' => 'Você foi se afastando de si.',
@@ -298,6 +299,7 @@ final class HomeRoutesTest extends TestCase
                         'href' => '#escolher-se',
                     ],
                     'after' => [
+                        'kicker' => 'Quando você começa a se ouvir',
                         'title' => 'Depois do processo',
                         'lead' => 'Mais clareza e presença.',
                         'text' => 'Sua vida deixa de ser só reação.',
@@ -324,14 +326,18 @@ final class HomeRoutesTest extends TestCase
         self::assertSame(200, $response->getStatusCode());
         self::assertStringContainsString('id="vivendo-assim"', $html);
         self::assertStringContainsString('id="escolher-se"', $html);
-        self::assertStringContainsString('Uma nova jornada', $html);
+        self::assertStringContainsString('id="badge-vivendo-assim"', $html);
+        self::assertStringContainsString('id="badge-escolher-se"', $html);
+        self::assertStringContainsString('Quando algo pede escuta', $html);
         self::assertStringContainsString('Antes do processo', $html);
         self::assertStringContainsString('Existe um jeito mais leve de seguir.', $html);
+        self::assertStringContainsString('Quando você começa a se ouvir', $html);
         self::assertStringContainsString('Depois do processo', $html);
         self::assertStringContainsString('Quero me escolher', $html);
         self::assertStringContainsString('/emotion/assets/img/hero/hero-desktop-640.webp', $html);
         self::assertStringContainsString('/emotion/assets/img/about/about-desktop-640.webp', $html);
         self::assertStringContainsString('data-cta-id="journey_after_primary"', $html);
+        self::assertStringNotContainsString('Uma nova jornada', $html);
     }
 
     public function testHomeRendersJourneyPanelsLayoutWhenConfigured(): void
@@ -348,7 +354,13 @@ final class HomeRoutesTest extends TestCase
                     'transition' => [
                         'text' => 'Existe um jeito mais leve de seguir.',
                     ],
+                    'before' => [
+                        'kicker' => 'Quando algo pede escuta',
+                        'title' => 'Antes do processo',
+                    ],
                     'after' => [
+                        'kicker' => 'Quando você começa a se ouvir',
+                        'title' => 'Depois do processo',
                         'cta' => [
                             'label' => 'Quero me escolher',
                             'href' => '#agendar',
@@ -378,11 +390,15 @@ final class HomeRoutesTest extends TestCase
         self::assertSame(200, $response->getStatusCode());
         self::assertStringContainsString('id="vivendo-assim"', $html);
         self::assertStringContainsString('id="escolher-se"', $html);
-        self::assertStringContainsString('Uma nova jornada', $html);
+        self::assertStringContainsString('Quando algo pede escuta', $html);
+        self::assertStringContainsString('Antes do processo', $html);
+        self::assertStringContainsString('Quando você começa a se ouvir', $html);
+        self::assertStringContainsString('Depois do processo', $html);
         self::assertStringContainsString('/emotion/assets/img/antes.png', $html);
         self::assertStringContainsString('/emotion/assets/img/depois.png', $html);
         self::assertStringNotContainsString('Existe um jeito mais leve de seguir.', $html);
         self::assertStringNotContainsString('data-cta-id="journey_after_primary"', $html);
+        self::assertStringNotContainsString('Uma nova jornada', $html);
     }
 
     public function testHomeHidesTestimonialsSectionWhenDisabled(): void

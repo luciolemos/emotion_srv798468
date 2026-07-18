@@ -3299,10 +3299,6 @@ html[data-niche="emotion"] #terapia-casal {
   overflow-x: clip;
 }
 
-html[data-niche="emotion"] #sobre-mim .container {
-  max-width: 1240px;
-}
-
 html[data-niche="emotion"] #psicoterapia .feature-card h3 {
   font-family: var(--font-body);
   font-size: 1.08rem;
