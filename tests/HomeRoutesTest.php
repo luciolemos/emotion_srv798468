@@ -330,7 +330,7 @@ final class HomeRoutesTest extends TestCase
         self::assertStringContainsString('id="badge-escolher-se"', $html);
         self::assertStringContainsString('Quando algo pede escuta', $html);
         self::assertStringContainsString('Antes do processo', $html);
-        self::assertStringContainsString('Existe um jeito mais leve de seguir.', $html);
+        self::assertStringNotContainsString('Existe um jeito mais leve de seguir.', $html);
         self::assertStringContainsString('Quando você começa a se ouvir', $html);
         self::assertStringContainsString('Depois do processo', $html);
         self::assertStringContainsString('Quero me escolher', $html);
