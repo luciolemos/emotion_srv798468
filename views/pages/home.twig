@@ -207,7 +207,7 @@
   </div>
 </header>
 
-<section id="vivendo-assim" class="py-5 py-lg-6 section-tech journey-section journey-section-before">
+<section id="vivendo-assim" class="py-5 py-lg-6 section-tech journey-section journey-section-before section-stack-linked">
   <div class="container">
     <div id="badge-vivendo-assim" class="section-nav-badge">{{ journey_before_badge }}</div>
     <div class="journey-overview section-heading text-center mb-4 mb-lg-5">
@@ -287,23 +287,7 @@
   </div>
 </section>
 
-{% if journey_variant != 'panels' %}
-<section class="section-tech journey-transition-wrap">
-  <div class="container">
-    <div class="journey-transition glass">
-      <span class="journey-transition-line" aria-hidden="true"></span>
-      <p class="journey-transition-text mb-0">
-        {{ journey_transition.text|default('Você não precisa continuar sustentando tudo sozinha.') }}
-      </p>
-      <a class="journey-transition-link" href="{{ journey_transition.href|default('#escolher-se') }}">
-        {{ journey_transition.label|default('Ver o que começa a mudar') }} <i class="bi bi-arrow-down-right"></i>
-      </a>
-    </div>
-  </div>
-</section>
-{% endif %}
-
-<section id="escolher-se" class="py-5 py-lg-6 section-tech journey-section journey-section-after">
+<section id="escolher-se" class="py-5 py-lg-6 section-tech journey-section journey-section-after section-stack-linked">
   <div class="container">
     <div id="badge-escolher-se" class="section-nav-badge">{{ journey_after_badge }}</div>
     <div class="journey-overview section-heading text-center mb-4 mb-lg-5">
@@ -392,7 +376,7 @@
   </div>
 </section>
 
-<section id="sobre-mim" class="py-5 py-lg-6 section-tech">
+<section id="sobre-mim" class="py-5 py-lg-6 section-tech section-stack-linked">
   <div class="container">
     <div id="badge-sobre-mim" class="section-nav-badge">SOBRE MIM</div>
     {% set about_image = how.image|default({}) %}
@@ -451,7 +435,7 @@
   </div>
 </section>
 
-<section id="psicoterapia" class="py-5 py-lg-6 section-tech">
+<section id="psicoterapia" class="py-5 py-lg-6 section-tech section-stack-linked">
   <div class="container">
     <div id="badge-psicoterapia" class="section-nav-badge">PSICOTERAPIA</div>
     <div class="text-center mb-4 mb-lg-5 section-heading">
@@ -475,7 +459,7 @@
   </div>
 </section>
 
-<section id="terapia-casal" class="py-5 py-lg-6 section-tech">
+<section id="terapia-casal" class="py-5 py-lg-6 section-tech section-stack-linked">
   <div class="container">
     <div id="badge-terapia-casal" class="section-nav-badge">TERAPIA DE CASAL</div>
     {% set couple_image_src = couple_therapy.image_src|default('assets/img/terapia/terapia-desktop-640.webp') %}
@@ -580,7 +564,7 @@
 </section>
 
 {% if show_testimonials ?? true %}
-<section id="depoimentos" class="py-5 py-lg-6 section-tech">
+<section id="depoimentos" class="py-5 py-lg-6 section-tech section-stack-linked">
   <div class="container">
     <div class="section-nav-badge">TESTEMUNHOS</div>
     <div class="section-heading text-center mb-4 mb-lg-5">
@@ -635,7 +619,7 @@
 </section>
 {% endif %}
 
-<section id="agendar" class="py-5 py-lg-6 section-tech">
+<section id="agendar" class="py-5 py-lg-6 section-tech section-stack-linked">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ cta.title|default('Agendar') }}</h2>
@@ -801,7 +785,7 @@
   </div>
 </section>
 
-<section id="form-orcamento" class="py-5 py-lg-6 section-tech">
+<section id="form-orcamento" class="py-5 py-lg-6 section-tech section-stack-linked">
   <div class="container">
     <div class="text-center mb-4 mb-lg-5 section-heading">
       <h2 class="fw-normal">{{ form.title|default('Solicite seu agendamento') }}</h2>
