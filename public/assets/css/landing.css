@@ -1644,6 +1644,24 @@ html.fx-ready .hero-media img {
   scroll-margin-top: 120px;
 }
 
+.section-stack-linked {
+  padding-top: 0 !important;
+}
+
+.section-stack-linked::before {
+  content: "";
+  display: block;
+  width: min(92vw, 1120px);
+  height: 1px;
+  margin: 0 auto 1.6rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    var(--section-divider-mid),
+    rgba(255, 255, 255, 0)
+  );
+}
+
 @media (min-width: 992px) {
   .journey-stage-layout-before {
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -3297,10 +3315,6 @@ html[data-niche="emotion"] #terapia-casal {
 html[data-niche="emotion"] #sobre-mim,
 html[data-niche="emotion"] #terapia-casal {
   overflow-x: clip;
-}
-
-html[data-niche="emotion"] #sobre-mim .container {
-  max-width: 1240px;
 }
 
 html[data-niche="emotion"] #psicoterapia .feature-card h3 {

@@ -119,7 +119,7 @@ return [
         ],
         'before' => [
             'step' => '1',
-            'kicker' => 'Antes',
+            'kicker' => 'Quando algo pede escuta',
             'title' => 'Talvez você esteja vivendo assim...',
             'lead' => 'Talvez você tenha aprendido a ser forte o tempo inteiro e, agora, esteja emocionalmente cansada de sustentar tudo sozinha.',
             'text' => 'E, aos poucos, vai deixando de se enxergar para além das suas funções.',
@@ -145,7 +145,7 @@ return [
         ],
         'after' => [
             'step' => '2',
-            'kicker' => 'Depois',
+            'kicker' => 'Quando você começa a se ouvir',
             'title' => 'O que muda quando você começa a se escolher',
             'lead' => 'O processo terapêutico não muda quem você é. Ele ajuda você a voltar para si.',
             'text' => 'Porque quando uma mulher se reconecta com sua essência, ela deixa de viver apenas para corresponder às expectativas dos outros e passa a construir uma vida que também faz sentido para ela.',
