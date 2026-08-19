@@ -129,13 +129,28 @@ final class ContactMailer implements MailerInterface
         array $data,
         string $origin
     ): string {
+        $environmentLabel = $this->environmentMarkerLabel();
+        $originHref = rtrim($origin, '/');
+        $originLabel = $this->originDisplayLabel($origin);
+        $originSummary = $originLabel;
+        if ($originHref !== '' && $originHref !== $originLabel) {
+            $originSummary .= ' (' . $originHref . ')';
+        }
+
         $lines = [
             'NOVA SOLICITAÇÃO DE AGENDAMENTO',
             str_repeat('=', 34),
             'Protocolo: ' . $requestId,
             'ID do evento: ' . $eventId,
             'Data/Hora: ' . $submittedAt,
-            'Origem: ' . $origin,
+        ];
+
+        if ($environmentLabel !== null) {
+            $lines[] = 'Ambiente: ' . $environmentLabel;
+        }
+
+        $lines = array_merge($lines, [
+            'Site: ' . $originSummary,
             '',
             'DADOS DE CONTATO',
             '- Nome: ' . $data['nome'],
@@ -146,7 +161,7 @@ final class ContactMailer implements MailerInterface
             'MOTIVO DA CONSULTA',
             str_repeat('-', 34),
             $data['mensagem'],
-        ];
+        ]);
 
         return implode("\n", $lines);
     }
@@ -159,31 +174,71 @@ final class ContactMailer implements MailerInterface
         string $origin,
         string $brandName
     ): string {
-        $name           = htmlspecialchars((string) ($data['nome'] ?? '-'), ENT_QUOTES, 'UTF-8');
-        $phone          = htmlspecialchars((string) ($data['telefone'] ?? '-'), ENT_QUOTES, 'UTF-8');
-        $email          = htmlspecialchars((string) (($data['email'] ?? '') !== '' ? $data['email'] : '-'), ENT_QUOTES, 'UTF-8');
-        $notes          = htmlspecialchars((string) (($data['empresa'] ?? '') !== '' ? $data['empresa'] : '-'), ENT_QUOTES, 'UTF-8');
-        $message        = nl2br(htmlspecialchars((string) ($data['mensagem'] ?? ''), ENT_QUOTES, 'UTF-8'));
-        $safeEventId    = htmlspecialchars($eventId, ENT_QUOTES, 'UTF-8');
-        $safeRequestId  = htmlspecialchars($requestId, ENT_QUOTES, 'UTF-8');
+        $rawPhone = trim((string) ($data['telefone'] ?? ''));
+        $rawEmail = trim((string) ($data['email'] ?? ''));
+        $originHref = rtrim($origin, '/');
+        $originLabel = $this->originDisplayLabel($origin);
+        $environmentLabel = $this->environmentMarkerLabel();
+
+        $name = htmlspecialchars((string) ($data['nome'] ?? '-'), ENT_QUOTES, 'UTF-8');
+        $phone = htmlspecialchars($rawPhone !== '' ? $rawPhone : '-', ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars($rawEmail !== '' ? $rawEmail : '-', ENT_QUOTES, 'UTF-8');
+        $notes = htmlspecialchars((string) (($data['empresa'] ?? '') !== '' ? $data['empresa'] : '-'), ENT_QUOTES, 'UTF-8');
+        $message = nl2br(htmlspecialchars((string) ($data['mensagem'] ?? ''), ENT_QUOTES, 'UTF-8'));
+        $safeEventId = htmlspecialchars($eventId, ENT_QUOTES, 'UTF-8');
+        $safeRequestId = htmlspecialchars($requestId, ENT_QUOTES, 'UTF-8');
         $safeSubmittedAt = htmlspecialchars($submittedAt, ENT_QUOTES, 'UTF-8');
-        $safeOrigin     = htmlspecialchars($origin, ENT_QUOTES, 'UTF-8');
-        $safeBrandName  = htmlspecialchars($brandName, ENT_QUOTES, 'UTF-8');
-        $logoPath       = trim((string) ($this->config['mail_logo_light'] ?? 'assets/img/brand/jerssica-square-dark.png'));
-        $logoUrl        = $this->absoluteAssetUrl($logoPath, $origin);
-        $safeLogoUrl    = htmlspecialchars($logoUrl, ENT_QUOTES, 'UTF-8');
+        $safeOriginHref = htmlspecialchars($originHref !== '' ? $originHref : $origin, ENT_QUOTES, 'UTF-8');
+        $safeOriginLabel = htmlspecialchars($originLabel, ENT_QUOTES, 'UTF-8');
+        $safeBrandName = htmlspecialchars($brandName, ENT_QUOTES, 'UTF-8');
+        $logoPath = trim((string) ($this->config['mail_logo_light'] ?? 'assets/img/brand/jerssica-square-dark.png'));
+        $logoUrl = $this->absoluteAssetUrl($logoPath, $origin);
+        $safeLogoUrl = htmlspecialchars($logoUrl, ENT_QUOTES, 'UTF-8');
+        $textColor = '#2f2229';
+        $mutedColor = '#6e5361';
+        $linkColor = '#7b4b59';
+        $outerBackground = '#f9d3e5';
+        $panelBackground = '#fff7fb';
+        $panelBorder = '#e3b4c5';
+        $headerBackground = '#fffafc';
+        $cardBackground = '#fffafb';
+        $cardBorder = '#efcfdb';
+        $messageBackground = '#fdf0f6';
+        $messageBorder = '#e6bfd0';
+        $protocolBackground = '#7b4b59';
+        $protocolAccent = '#f2c1d7';
+        $protocolLabelColor = '#fde7f0';
+        $replyButtonBackground = '#c85e88';
+        $replyButtonText = '#ffffff';
 
         $normalizedWhatsapp = $this->resolveSupportWhatsappNumber((string) ($data['telefone'] ?? ''));
         $whatsMessage = rawurlencode('Olá! Recebemos sua solicitação de agendamento. Protocolo: ' . $requestId . '. Vamos continuar por aqui.');
-        $whatsHref    = $normalizedWhatsapp !== null ? 'https://wa.me/' . $normalizedWhatsapp . '?text=' . $whatsMessage : '#';
+        $whatsHref = $normalizedWhatsapp !== null ? 'https://wa.me/' . $normalizedWhatsapp . '?text=' . $whatsMessage : '#';
         $safeWhatsHref = htmlspecialchars($whatsHref, ENT_QUOTES, 'UTF-8');
-        $safeReplyHref = htmlspecialchars('mailto:' . (($data['email'] ?? '') !== '' ? $data['email'] : ''), ENT_QUOTES, 'UTF-8');
+        $replyHref = filter_var($rawEmail, FILTER_VALIDATE_EMAIL) ? 'mailto:' . $rawEmail : null;
+        $phoneHref = $this->telephoneHref($rawPhone);
+        $safeReplyHref = $replyHref !== null ? htmlspecialchars($replyHref, ENT_QUOTES, 'UTF-8') : null;
+        $safePhoneHref = $phoneHref !== null ? htmlspecialchars($phoneHref, ENT_QUOTES, 'UTF-8') : null;
+        $phoneHtml = $safePhoneHref !== null
+            ? '<a href="' . $safePhoneHref . '" style="color:' . $linkColor . ';text-decoration:underline;font-weight:600;">' . $phone . '</a>'
+            : $phone;
+        $emailHtml = $safeReplyHref !== null
+            ? '<a href="' . $safeReplyHref . '" style="color:' . $linkColor . ';text-decoration:underline;font-weight:600;">' . $email . '</a>'
+            : $email;
+        $environmentBadgeHtml = '';
+        if ($environmentLabel !== null) {
+            $safeEnvironmentLabel = htmlspecialchars($environmentLabel, ENT_QUOTES, 'UTF-8');
+            $environmentBadgeHtml = '<div style="display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;background:' . $protocolAccent . ';color:' . $linkColor . ';font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">' . $safeEnvironmentLabel . '</div>';
+        }
+        $replyButtonHtml = $safeReplyHref !== null
+            ? '<tr><td style="padding:0 0 10px 0;"><a href="' . $safeReplyHref . '" style="display:block;width:100%;box-sizing:border-box;padding:12px 14px;background:' . $replyButtonBackground . ';color:' . $replyButtonText . ';text-decoration:none;border-radius:8px;font-size:14px;font-weight:700;text-align:center;">Responder por email</a></td></tr>'
+            : '';
 
         return <<<HTML
-<div style="background:#f6f8fb;padding:16px;font-family:Arial,sans-serif;color:#111827;">
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+<div style="background:{$outerBackground};padding:16px;font-family:Arial,sans-serif;color:{$textColor};">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:680px;margin:0 auto;background:{$panelBackground};border:1px solid {$panelBorder};border-radius:12px;overflow:hidden;">
     <tr>
-      <td style="padding:16px;background:#ffffff;color:#111827;border-bottom:1px solid #e5e7eb;">
+      <td style="padding:16px;background:{$headerBackground};color:{$textColor};border-bottom:1px solid {$panelBorder};">
         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;">
           <tr>
             <td style="width:72px;vertical-align:middle;">
@@ -195,51 +250,51 @@ final class ContactMailer implements MailerInterface
           </tr>
         </table>
         <div style="font-size:18px;line-height:1.3;font-weight:700;margin-top:10px;">Nova solicitação de agendamento</div>
-        <div style="font-size:13px;color:#4b5563;margin-top:4px;">Contato recebido pelo site da clínica</div>
+        <div style="font-size:13px;color:{$mutedColor};margin-top:4px;">Contato recebido por <a href="{$safeOriginHref}" style="color:{$linkColor};text-decoration:underline;">{$safeOriginLabel}</a></div>
       </td>
     </tr>
 
     <tr>
       <td style="padding:16px;">
-        <div style="font-size:13px;color:#4b5563;margin-bottom:14px;line-height:1.45;">
-          <strong>Protocolo:</strong>
-          <span style="display:inline-block;padding:3px 8px;border:1px solid #d1d5db;border-radius:999px;background:#f3f4f6;color:#111827;font-family:Consolas,'Courier New',monospace;font-size:12px;">{$safeRequestId}</span><br>
-          <strong>ID:</strong> {$safeEventId}<br>
-          <strong>Data/Hora:</strong> {$safeSubmittedAt}<br>
-          <strong>Origem:</strong> {$safeOrigin}
+        <div style="margin-bottom:16px;padding:14px 16px;border-radius:10px;background:{$protocolBackground};border-left:6px solid {$protocolAccent};color:#ffffff;">
+          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:{$protocolLabelColor};font-weight:700;">Protocolo</div>
+          <div style="margin-top:4px;font-size:22px;line-height:1.2;font-weight:800;font-family:Consolas,'Courier New',monospace;">{$safeRequestId}</div>
+          {$environmentBadgeHtml}
         </div>
 
-        <div style="margin-bottom:12px;padding:12px;border:1px solid #eef2f7;border-radius:8px;background:#ffffff;">
-          <div style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Nome</div>
+        <div style="font-size:13px;color:{$mutedColor};margin-bottom:14px;line-height:1.45;">
+          <strong>ID:</strong> {$safeEventId}<br>
+          <strong>Data/Hora:</strong> {$safeSubmittedAt}<br>
+          <strong>Site:</strong> <a href="{$safeOriginHref}" style="color:{$linkColor};text-decoration:underline;">{$safeOriginLabel}</a>
+        </div>
+
+        <div style="margin-bottom:12px;padding:12px;border:1px solid {$cardBorder};border-radius:8px;background:{$cardBackground};">
+          <div style="font-size:12px;color:{$mutedColor};text-transform:uppercase;letter-spacing:.04em;">Nome</div>
           <div style="font-size:15px;line-height:1.4;">{$name}</div>
         </div>
 
-        <div style="margin-bottom:12px;padding:12px;border:1px solid #eef2f7;border-radius:8px;background:#ffffff;">
-          <div style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Telefone/WhatsApp</div>
-          <div style="font-size:15px;line-height:1.4;">{$phone}</div>
+        <div style="margin-bottom:12px;padding:12px;border:1px solid {$cardBorder};border-radius:8px;background:{$cardBackground};">
+          <div style="font-size:12px;color:{$mutedColor};text-transform:uppercase;letter-spacing:.04em;">Telefone/WhatsApp</div>
+          <div style="font-size:15px;line-height:1.4;word-break:break-word;">{$phoneHtml}</div>
         </div>
 
-        <div style="margin-bottom:12px;padding:12px;border:1px solid #eef2f7;border-radius:8px;background:#ffffff;">
-          <div style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Email</div>
-          <div style="font-size:15px;line-height:1.4;word-break:break-word;">{$email}</div>
+        <div style="margin-bottom:12px;padding:12px;border:1px solid {$cardBorder};border-radius:8px;background:{$cardBackground};">
+          <div style="font-size:12px;color:{$mutedColor};text-transform:uppercase;letter-spacing:.04em;">Email</div>
+          <div style="font-size:15px;line-height:1.4;word-break:break-word;">{$emailHtml}</div>
         </div>
 
-        <div style="margin-bottom:16px;padding:12px;border:1px solid #eef2f7;border-radius:8px;background:#ffffff;">
-          <div style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;">Convênio/Observações</div>
+        <div style="margin-bottom:16px;padding:12px;border:1px solid {$cardBorder};border-radius:8px;background:{$cardBackground};">
+          <div style="font-size:12px;color:{$mutedColor};text-transform:uppercase;letter-spacing:.04em;">Convênio/Observações</div>
           <div style="font-size:15px;line-height:1.4;">{$notes}</div>
         </div>
 
         <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Motivo da consulta</div>
-        <div style="padding:12px;border:1px solid #e5e7eb;border-radius:8px;background:#f8fafc;line-height:1.6;font-size:14px;word-break:break-word;">
+        <div style="padding:12px;border:1px solid {$messageBorder};border-radius:8px;background:{$messageBackground};line-height:1.6;font-size:14px;word-break:break-word;">
           {$message}
         </div>
 
         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin-top:16px;border-collapse:collapse;">
-          <tr>
-            <td style="padding:0 0 10px 0;">
-              <a href="{$safeReplyHref}" style="display:block;width:100%;box-sizing:border-box;padding:12px 14px;background:#111827;color:#ffffff;text-decoration:none;border-radius:8px;font-size:14px;font-weight:700;text-align:center;">Responder por email</a>
-            </td>
-          </tr>
+          {$replyButtonHtml}
           <tr>
             <td style="padding:0;">
               <a href="{$safeWhatsHref}" style="display:block;width:100%;box-sizing:border-box;padding:12px 14px;background:#16a34a;color:#ffffff;text-decoration:none;border-radius:8px;font-size:14px;font-weight:700;text-align:center;">Abrir WhatsApp</a>
@@ -251,6 +306,47 @@ final class ContactMailer implements MailerInterface
   </table>
 </div>
 HTML;
+    }
+
+    private function originDisplayLabel(string $origin): string
+    {
+        $host = (string) parse_url($origin, PHP_URL_HOST);
+        if ($host !== '') {
+            return preg_replace('/^www\./i', '', $host) ?? $host;
+        }
+
+        $normalizedOrigin = preg_replace('#^https?://#i', '', rtrim($origin, '/'));
+        return $normalizedOrigin !== null && $normalizedOrigin !== '' ? $normalizedOrigin : $origin;
+    }
+
+    private function environmentMarkerLabel(): ?string
+    {
+        $appEnv = strtolower(trim((string) ($this->config['app_env'] ?? 'production')));
+        if ($appEnv === '' || in_array($appEnv, ['prod', 'production'], true)) {
+            return null;
+        }
+
+        return match ($appEnv) {
+            'homolog', 'staging' => 'Homologação',
+            'dev', 'development', 'local' => 'Desenvolvimento',
+            'test', 'testing' => 'Teste',
+            default => 'Ambiente: ' . ucfirst($appEnv),
+        };
+    }
+
+    private function telephoneHref(string $rawPhone): ?string
+    {
+        $normalizedPhone = $this->normalizeWhatsappNumber($rawPhone);
+        if ($normalizedPhone !== null) {
+            return 'tel:+' . $normalizedPhone;
+        }
+
+        $digits = preg_replace('/\D+/', '', $rawPhone);
+        if ($digits === '') {
+            return null;
+        }
+
+        return 'tel:' . $digits;
     }
 
     private function absoluteAssetUrl(string $assetPath, string $origin): string
