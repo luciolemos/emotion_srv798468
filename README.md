@@ -161,7 +161,7 @@ Promoção:
 2. Faça merge de `emotion` para `homolog` e publique a homologação.
 3. Após validação, faça merge de `homolog` para `main`.
 
-O checkout `/var/www/emotion` pode manter um `.env` local/base para desenvolvimento. Os ambientes publicados de `emotion`, `homolog` e `main` devem manter seus próprios `.env` fora do Git, alinhados à branch e ao worktree correspondente.
+O checkout `/var/www/emotion` deve refletir o ambiente de desenvolvimento publicado em `/emotion`. Os ambientes `homolog` e `main` devem manter seus próprios `.env` fora do Git, alinhados à branch e ao worktree correspondente.
 
 Configuração sugerida nos `.env` publicados por ambiente:
 
@@ -170,7 +170,7 @@ Configuração sugerida nos `.env` publicados por ambiente:
 - Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
 
 Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.
-Para localhost, use `bash scripts/dev-local.sh`; ele força temporariamente `APP_BASE=""` e `APP_ENV="dev"` e restaura o `.env` ao encerrar.
+Para localhost na raiz, use `bash scripts/dev-local.sh`; ele força temporariamente `APP_BASE=""` e `APP_ENV="dev"` e restaura o `.env` ao encerrar.
 
 ## Execução Local
 
