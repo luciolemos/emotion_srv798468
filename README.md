@@ -81,7 +81,7 @@ Passo a passo (rota recomendada: subdiretório `/psicologia`):
 
 2) Configuração do ambiente
 - Copie `.env.example` para `.env` e ajuste: `APP_NAME`, `APP_BASE`, `APP_CANONICAL_URL` (URL pública final), `CONTACT_TO`, `MAIL_DRIVER` e variáveis `SMTP_*` do seu provedor de e-mail.
-- Para a homologação em `https://homolog.jersikacarvalhopsicologa.com/`, use `.env.homolog.example` como base e copie o resultado para o `.env` na raiz do app publicado.
+- Para a homologação em `https://homolog.jersikacarvalhopsicologa.com/`, use `.env.homolog.example` como base e copie o resultado para o `.env` na raiz do app publicado. Em Hostinger pública, não use `127.0.0.1:1025` ou credenciais `sandbox`: isso só serve para SMTP local de desenvolvimento.
 - Para a produção deste projeto em `https://jersikacarvalhopsicologa.com/`, use `.env.production.example` como base e copie o resultado para o `.env` na raiz do app publicado.
 - Em produção real, habilite reCAPTCHA v3: `RECAPTCHA_ENABLED=true` e preencha `RECAPTCHA_SITE_KEY` e `RECAPTCHA_SECRET_KEY` do seu domínio.
 
@@ -142,7 +142,7 @@ Copie `.env.example` para `.env` e ajuste:
 - `APP_WHATSAPP_NUMBER` e `APP_WHATSAPP_MESSAGE`: número e mensagem inicial usados para gerar o link oficial de WhatsApp.
 - `WHATSAPP_URL`: fallback legado de WhatsApp quando `APP_WHATSAPP_NUMBER` estiver vazio.
 - `CONTACT_TO` e `CONTACT_FROM`: emails usados pelo formulário.
-- Configurações `SMTP_*`, se `MAIL_DRIVER="smtp"`.
+- Configurações `SMTP_*`, se `MAIL_DRIVER="smtp"`. Em Hostinger pública, use o SMTP real da caixa postal, por exemplo `smtp.hostinger.com:465` com `SMTP_ENCRYPTION="ssl"` e `SMTP_AUTH="true"`.
 - `LEAD_LOG_RETENTION_DAYS`: retenção dos logs de leads e fallback em `storage/`.
 - `LEAD_LOG_HASH_SALT`: sal usado para pseudonimizar IP, user-agent e hashes operacionais; defina um valor privado no `.env` real.
 - `RECAPTCHA_ENABLED`: mantenha `false` em homologação ou domínios ainda não cadastrados no Google; use `true` apenas no `.env` real de produção.
@@ -169,7 +169,7 @@ Use um único checkout local em `/var/www/emotion`. O fluxo esperado é trocar a
 Configuração sugerida nos `.env` publicados por ambiente:
 
 - Desenvolvimento (`emotion`): `APP_BASE="/emotion"`, `APP_CANONICAL_URL="https://srv798468.hstgr.cloud/emotion/"`, `APP_ENV="dev"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
-- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="homolog"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`. Use `.env.homolog.example` como base.
+- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="homolog"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`. Use `.env.homolog.example` como base e preencha o SMTP real do ambiente; não deixe valores de sandbox local.
 - Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
 
 Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.
