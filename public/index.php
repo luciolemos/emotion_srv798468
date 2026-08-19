@@ -76,15 +76,6 @@ if ($base !== '' && PHP_SAPI === 'cli-server') {
         $base = '';
     }
 }
-if ($base === '') {
-    $scriptName = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
-    $scriptDir = rtrim(str_replace('\\', '/', dirname($scriptName)), '/');
-    if ($scriptDir !== '' && $scriptDir !== '.' && $scriptDir !== '/') {
-        $base = $scriptDir;
-        $_ENV['APP_BASE'] = $base;
-        putenv('APP_BASE=' . $base);
-    }
-}
 $appEnv = strtolower((string) ($_ENV['APP_ENV'] ?? 'production'));
 $isDev = in_array($appEnv, ['dev', 'development', 'local'], true);
 $appNoindex = filter_var($_ENV['APP_NOINDEX'] ?? false, FILTER_VALIDATE_BOOLEAN);
@@ -133,9 +124,7 @@ try {
 
 $twig = Twig::create(__DIR__ . '/../views', [
     'cache'       => $twigCache,
-    // Keep cached templates fresh after Git/Hostinger deploys where cache
-    // cleanup is not guaranteed to run.
-    'auto_reload' => true,
+    'auto_reload' => $isDev,
 ]);
 $twig->getEnvironment()->addGlobal('base_url', $base);
 $twig->getEnvironment()->addGlobal('app_env', $_ENV['APP_ENV'] ?? 'production');
