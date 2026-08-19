@@ -22,6 +22,7 @@ final class TestAppFactory
     public static function create(array $config = []): App
     {
         $base = $config['base_url'] ?? '/medico';
+        $appEnv = $config['app_env'] ?? 'test';
         $landingContent = $config['landing_content'] ?? LandingContent::load(dirname(__DIR__, 2), '', 'landing');
 
         $twig = Twig::create(dirname(__DIR__, 2) . '/views', [
@@ -35,7 +36,7 @@ final class TestAppFactory
         ]);
 
         $twig->getEnvironment()->addGlobal('base_url', $base);
-        $twig->getEnvironment()->addGlobal('app_env', 'test');
+        $twig->getEnvironment()->addGlobal('app_env', $appEnv);
         $twig->getEnvironment()->addGlobal('app_name', $config['app_name'] ?? 'Clínica Médica');
         $twig->getEnvironment()->addGlobal('app_mark', $config['app_mark'] ?? 'M');
         $twig->getEnvironment()->addGlobal('app_badge', $config['app_badge'] ?? ($landingContent['nav']['badge'] ?? 'Clínica médica'));
@@ -77,6 +78,7 @@ final class TestAppFactory
         } else {
             $mailer = new ContactMailer([
                 'app_name'        => $config['app_name'] ?? 'Clínica Médica',
+                'app_env'         => $appEnv,
                 'contact_from'    => array_key_exists('contact_from', $config) ? $config['contact_from'] : 'no-reply@example.com',
                 'mail_driver'     => $config['mail_driver'] ?? 'smtp',
                 'smtp_host'       => $config['smtp_host'] ?? '',
