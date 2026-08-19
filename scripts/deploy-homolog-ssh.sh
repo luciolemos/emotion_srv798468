@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SSH_HOST="212.85.6.236"
+SSH_HOST="45.152.44.77"
 SSH_PORT="65002"
 SSH_USER="u372181157"
 REMOTE_APP_DIR="/home/u372181157/apps/emotion-homolog/current"
 REMOTE_PUBLIC_DIR="/home/u372181157/domains/jersikacarvalhopsicologa.com/public_html/homolog"
+EXPECTED_BRANCH="homolog"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 cd "$PROJECT_ROOT"
+
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$CURRENT_BRANCH" != "$EXPECTED_BRANCH" ]]; then
+  echo "[error] branch atual: ${CURRENT_BRANCH}. Para homologacao, use a branch ${EXPECTED_BRANCH} neste checkout." >&2
+  echo "[hint ] git checkout ${EXPECTED_BRANCH} && git pull --ff-only" >&2
+  exit 1
+fi
 
 echo "[step] Composer install (prod deps only)"
 composer install --no-dev --optimize-autoloader
