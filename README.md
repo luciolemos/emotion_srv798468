@@ -1,3 +1,4 @@
+Email: contato@jersikacarvalhopsicologa.com
 # Landing Médica (Psicologia, Pediatria, Odontologia)
 Uma landing page é uma página criada com o objetivo de levar o visitante a realizar uma ação específica, como comprar um produto, solicitar um orçamento, preencher um formulário, entrar em contato ou se cadastrar em algum serviço. Diferente de um site tradicional, que normalmente possui várias páginas e diferentes caminhos de navegação, a landing page é mais simples, direta e focada na conversão do usuário. Sua principal finalidade é transformar visitantes em clientes ou potenciais clientes, sendo muito utilizada em campanhas de marketing digital, anúncios em redes sociais e divulgação de produtos ou serviços.
 
@@ -160,13 +161,16 @@ Promoção:
 2. Faça merge de `emotion` para `homolog` e publique a homologação.
 3. Após validação, faça merge de `homolog` para `main`.
 
-Configuração sugerida por ambiente:
+O checkout `/var/www/emotion` pode manter um `.env` local/base para desenvolvimento. Os ambientes publicados de `emotion`, `homolog` e `main` devem manter seus próprios `.env` fora do Git, alinhados à branch e ao worktree correspondente.
+
+Configuração sugerida nos `.env` publicados por ambiente:
 
 - Desenvolvimento (`emotion`): `APP_BASE="/emotion"`, `APP_CANONICAL_URL="https://srv798468.hstgr.cloud/emotion/"`, `APP_ENV="dev"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
 - Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="staging"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
 - Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
 
 Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.
+Para localhost, use `bash scripts/dev-local.sh`; ele força temporariamente `APP_BASE=""` e `APP_ENV="dev"` e restaura o `.env` ao encerrar.
 
 ## Execução Local
 
