@@ -81,6 +81,7 @@ Passo a passo (rota recomendada: subdiretório `/psicologia`):
 
 2) Configuração do ambiente
 - Copie `.env.example` para `.env` e ajuste: `APP_NAME`, `APP_BASE`, `APP_CANONICAL_URL` (URL pública final), `CONTACT_TO`, `MAIL_DRIVER` e variáveis `SMTP_*` do seu provedor de e-mail.
+- Para a produção deste projeto em `https://jersikacarvalhopsicologa.com/`, use `.env.production.example` como base e copie o resultado para o `.env` na raiz do app publicado.
 - Em produção real, habilite reCAPTCHA v3: `RECAPTCHA_ENABLED=true` e preencha `RECAPTCHA_SITE_KEY` e `RECAPTCHA_SECRET_KEY` do seu domínio.
 
 3) Permissões e cache
