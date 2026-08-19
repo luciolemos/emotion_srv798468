@@ -81,6 +81,8 @@ Passo a passo (rota recomendada: subdiretório `/psicologia`):
 
 2) Configuração do ambiente
 - Copie `.env.example` para `.env` e ajuste: `APP_NAME`, `APP_BASE`, `APP_CANONICAL_URL` (URL pública final), `CONTACT_TO`, `MAIL_DRIVER` e variáveis `SMTP_*` do seu provedor de e-mail.
+- Para a homologação em `https://homolog.jersikacarvalhopsicologa.com/`, use `.env.homolog.example` como base e copie o resultado para o `.env` na raiz do app publicado.
+- Para a produção deste projeto em `https://jersikacarvalhopsicologa.com/`, use `.env.production.example` como base e copie o resultado para o `.env` na raiz do app publicado.
 - Em produção real, habilite reCAPTCHA v3: `RECAPTCHA_ENABLED=true` e preencha `RECAPTCHA_SITE_KEY` e `RECAPTCHA_SECRET_KEY` do seu domínio.
 
 3) Permissões e cache
@@ -100,12 +102,13 @@ bash scripts/smoke-frontend.sh --url "https://seudominio.com.br/psicologia/"
 bash scripts/smoke-contact.sh  --url "https://seudominio.com.br/psicologia/"
 ```
 
-Deploy SSH manual com a estrutura usada neste projeto:
+Deploy SSH manual com checkout único em `/var/www/emotion`:
 
-- Homologação: `bash scripts/deploy-homolog-ssh.sh`
-- Produção: `bash scripts/deploy-prod-ssh.sh`
+- Homologação: `git checkout homolog && git pull --ff-only && bash scripts/deploy-homolog-ssh.sh`
+- Produção: `git checkout main && git pull --ff-only && bash scripts/deploy-prod-ssh.sh`
+- Retorno ao desenvolvimento: `git checkout emotion`
 
-Esses scripts sincronizam o app completo para `~/apps/.../current`, enviam apenas `public/assets/` e `.htaccess` para o docroot público, e executam o pós-update no servidor remoto.
+Neste host específico da Hostinger, não existe `~/apps/.../current`. A homologação usa o vhost `~/domains/homolog.jersikacarvalhopsicologa.com/public_html` e a produção usa `~/domains/jersikacarvalhopsicologa.com/public_html`. Os scripts sincronizam o app completo para esses diretórios reais, enviam `public/assets/` e `.htaccess` para o docroot do respectivo domínio, e executam o pós-update no servidor remoto.
 
 5) Checklist final
 - Página abre rápido no celular, imagens carregam em WebP.
@@ -161,12 +164,12 @@ Promoção:
 2. Faça merge de `emotion` para `homolog` e publique a homologação.
 3. Após validação, faça merge de `homolog` para `main`.
 
-O checkout `/var/www/emotion` deve refletir o ambiente de desenvolvimento publicado em `/emotion`. Os ambientes `homolog` e `main` devem manter seus próprios `.env` fora do Git, alinhados à branch e ao worktree correspondente.
+Use um único checkout local em `/var/www/emotion`. O fluxo esperado é trocar a branch nesse diretório conforme a etapa (`emotion`, `homolog`, `main`) e manter o `.env` correto apenas no servidor de cada ambiente.
 
 Configuração sugerida nos `.env` publicados por ambiente:
 
 - Desenvolvimento (`emotion`): `APP_BASE="/emotion"`, `APP_CANONICAL_URL="https://srv798468.hstgr.cloud/emotion/"`, `APP_ENV="dev"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
-- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="staging"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
+- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="homolog"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`. Use `.env.homolog.example` como base.
 - Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
 
 Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.

@@ -77,7 +77,8 @@ if ($base !== '' && PHP_SAPI === 'cli-server') {
     }
 }
 $appEnv = strtolower((string) ($_ENV['APP_ENV'] ?? 'production'));
-$isDev = in_array($appEnv, ['dev', 'development', 'local'], true);
+$isDebugEnv = in_array($appEnv, ['dev', 'development', 'local'], true);
+$isTemplateAutoReloadEnv = $isDebugEnv || in_array($appEnv, ['homolog', 'staging'], true);
 $appNoindex = filter_var($_ENV['APP_NOINDEX'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $showPaletteSelector = filter_var($_ENV['APP_SHOW_PALETTE_SELECTOR'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $showTestimonials = filter_var($_ENV['APP_SHOW_TESTIMONIALS'] ?? true, FILTER_VALIDATE_BOOLEAN);
@@ -88,7 +89,7 @@ if (!in_array($journeyLayout, ['text', 'panels'], true)) {
 $recaptchaEnabled = filter_var($_ENV['RECAPTCHA_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN);
 $recaptchaSiteKey = trim((string) ($_ENV['RECAPTCHA_SITE_KEY'] ?? ''));
 $recaptchaAction = trim((string) ($_ENV['RECAPTCHA_ACTION'] ?? 'contact_submit'));
-$twigCache = $isDev ? false : __DIR__ . '/../storage/cache/twig';
+$twigCache = $isTemplateAutoReloadEnv ? false : __DIR__ . '/../storage/cache/twig';
 if ($twigCache !== false) {
     if (!is_dir($twigCache)) {
         @mkdir($twigCache, 0775, true);
@@ -124,7 +125,7 @@ try {
 
 $twig = Twig::create(__DIR__ . '/../views', [
     'cache'       => $twigCache,
-    'auto_reload' => $isDev,
+    'auto_reload' => $isTemplateAutoReloadEnv,
 ]);
 $twig->getEnvironment()->addGlobal('base_url', $base);
 $twig->getEnvironment()->addGlobal('app_env', $_ENV['APP_ENV'] ?? 'production');
@@ -217,7 +218,7 @@ $app = AppFactory::create();
 $app->setBasePath($base);
 $app->add(TwigMiddleware::create($app, $twig));
 
-$app->addErrorMiddleware($isDev, $isDev, $isDev);
+$app->addErrorMiddleware($isDebugEnv, $isDebugEnv, $isDebugEnv);
 $app->add(new SecurityHeadersMiddleware($cspNonce));
 
 $routes = require __DIR__ . '/../routes/web.php';
