@@ -4,8 +4,8 @@ set -euo pipefail
 SSH_HOST="45.152.44.77"
 SSH_PORT="65002"
 SSH_USER="u372181157"
-REMOTE_APP_DIR="/home/u372181157/apps/emotion-homolog/current"
-REMOTE_PUBLIC_DIR="/home/u372181157/domains/jersikacarvalhopsicologa.com/public_html/homolog"
+REMOTE_APP_DIR="/home/u372181157/domains/homolog.jersikacarvalhopsicologa.com/public_html"
+REMOTE_PUBLIC_DIR="/home/u372181157/domains/homolog.jersikacarvalhopsicologa.com/public_html"
 EXPECTED_BRANCH="homolog"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -19,6 +19,10 @@ if [[ "$CURRENT_BRANCH" != "$EXPECTED_BRANCH" ]]; then
   echo "[hint ] git checkout ${EXPECTED_BRANCH} && git pull --ff-only" >&2
   exit 1
 fi
+
+echo "[step] Validando caminhos remotos de homolog"
+ssh -p "${SSH_PORT}" "${SSH_USER}@${SSH_HOST}" \
+  "test -d '${REMOTE_APP_DIR}' && test -d '${REMOTE_PUBLIC_DIR}'"
 
 echo "[step] Composer install (prod deps only)"
 composer install --no-dev --optimize-autoloader

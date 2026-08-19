@@ -107,7 +107,7 @@ Deploy SSH manual com checkout único em `/var/www/emotion`:
 - Produção: `git checkout main && git pull --ff-only && bash scripts/deploy-prod-ssh.sh`
 - Retorno ao desenvolvimento: `git checkout emotion`
 
-Esses scripts sincronizam o app completo para `~/apps/.../current`, enviam apenas `public/assets/` e `.htaccess` para o docroot público, e executam o pós-update no servidor remoto.
+Neste host específico da Hostinger, não existe `~/apps/.../current`. A homologação usa o vhost `~/domains/homolog.jersikacarvalhopsicologa.com/public_html` e a produção usa `~/domains/jersikacarvalhopsicologa.com/public_html`. Os scripts sincronizam o app completo para esses diretórios reais, enviam `public/assets/` e `.htaccess` para o docroot do respectivo domínio, e executam o pós-update no servidor remoto.
 
 5) Checklist final
 - Página abre rápido no celular, imagens carregam em WebP.
