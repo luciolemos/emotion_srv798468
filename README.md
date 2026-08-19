@@ -81,6 +81,7 @@ Passo a passo (rota recomendada: subdiretório `/psicologia`):
 
 2) Configuração do ambiente
 - Copie `.env.example` para `.env` e ajuste: `APP_NAME`, `APP_BASE`, `APP_CANONICAL_URL` (URL pública final), `CONTACT_TO`, `MAIL_DRIVER` e variáveis `SMTP_*` do seu provedor de e-mail.
+- Para a homologação em `https://homolog.jersikacarvalhopsicologa.com/`, use `.env.homolog.example` como base e copie o resultado para o `.env` na raiz do app publicado.
 - Para a produção deste projeto em `https://jersikacarvalhopsicologa.com/`, use `.env.production.example` como base e copie o resultado para o `.env` na raiz do app publicado.
 - Em produção real, habilite reCAPTCHA v3: `RECAPTCHA_ENABLED=true` e preencha `RECAPTCHA_SITE_KEY` e `RECAPTCHA_SECRET_KEY` do seu domínio.
 
@@ -168,7 +169,7 @@ Use um único checkout local em `/var/www/emotion`. O fluxo esperado é trocar a
 Configuração sugerida nos `.env` publicados por ambiente:
 
 - Desenvolvimento (`emotion`): `APP_BASE="/emotion"`, `APP_CANONICAL_URL="https://srv798468.hstgr.cloud/emotion/"`, `APP_ENV="dev"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
-- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="staging"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
+- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="homolog"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`. Use `.env.homolog.example` como base.
 - Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
 
 Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.
