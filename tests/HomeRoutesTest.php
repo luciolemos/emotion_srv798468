@@ -539,6 +539,7 @@ final class HomeRoutesTest extends TestCase
         $app = TestAppFactory::create([
             'app_name' => 'Clínica Pediátrica',
             'app_slug' => 'pediatria',
+            'app_env' => 'homolog',
             'request_prefix' => 'PED',
             'base_url' => '/pediatria',
             'storage_path' => $this->storagePath,
@@ -567,6 +568,11 @@ final class HomeRoutesTest extends TestCase
         self::assertMatchesRegularExpression('/^pediatria_\d{14}_[a-f0-9]{12}$/', $capturedMessage['event_id'] ?? '');
         self::assertStringContainsString('Clínica Pediátrica | Nova solicitação de agendamento', $capturedMessage['subject'] ?? '');
         self::assertStringContainsString('Nova solicitação de agendamento', $capturedMessage['html_body'] ?? '');
+        self::assertStringContainsString('href="tel:+5584999999999"', $capturedMessage['html_body'] ?? '');
+        self::assertStringContainsString('href="mailto:lucio@example.com"', $capturedMessage['html_body'] ?? '');
+        self::assertStringContainsString('Homologação', $capturedMessage['html_body'] ?? '');
+        self::assertStringContainsString('>localhost<', $capturedMessage['html_body'] ?? '');
+        self::assertStringContainsString('Site: localhost (http://localhost/pediatria)', $capturedMessage['text_body'] ?? '');
         self::assertFileDoesNotExist($this->storagePath . '/logs/contatos-fallback.log');
         self::assertFileExists($this->storagePath . '/logs/lead-events.log');
         $leadLog = file_get_contents($this->storagePath . '/logs/lead-events.log') ?: '';
