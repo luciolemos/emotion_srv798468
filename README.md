@@ -101,10 +101,11 @@ bash scripts/smoke-frontend.sh --url "https://seudominio.com.br/psicologia/"
 bash scripts/smoke-contact.sh  --url "https://seudominio.com.br/psicologia/"
 ```
 
-Deploy SSH manual com a estrutura usada neste projeto:
+Deploy SSH manual com checkout único em `/var/www/emotion`:
 
-- Homologação: `bash scripts/deploy-homolog-ssh.sh`
-- Produção: `bash scripts/deploy-prod-ssh.sh`
+- Homologação: `git checkout homolog && git pull --ff-only && bash scripts/deploy-homolog-ssh.sh`
+- Produção: `git checkout main && git pull --ff-only && bash scripts/deploy-prod-ssh.sh`
+- Retorno ao desenvolvimento: `git checkout emotion`
 
 Esses scripts sincronizam o app completo para `~/apps/.../current`, enviam apenas `public/assets/` e `.htaccess` para o docroot público, e executam o pós-update no servidor remoto.
 
@@ -162,7 +163,7 @@ Promoção:
 2. Faça merge de `emotion` para `homolog` e publique a homologação.
 3. Após validação, faça merge de `homolog` para `main`.
 
-O checkout `/var/www/emotion` deve refletir o ambiente de desenvolvimento publicado em `/emotion`. Os ambientes `homolog` e `main` devem manter seus próprios `.env` fora do Git, alinhados à branch e ao worktree correspondente.
+Use um único checkout local em `/var/www/emotion`. O fluxo esperado é trocar a branch nesse diretório conforme a etapa (`emotion`, `homolog`, `main`) e manter o `.env` correto apenas no servidor de cada ambiente.
 
 Configuração sugerida nos `.env` publicados por ambiente:
 
