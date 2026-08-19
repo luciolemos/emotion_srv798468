@@ -169,7 +169,7 @@ Use um único checkout local em `/var/www/emotion`. O fluxo esperado é trocar a
 Configuração sugerida nos `.env` publicados por ambiente:
 
 - Desenvolvimento (`emotion`): `APP_BASE="/emotion"`, `APP_CANONICAL_URL="https://srv798468.hstgr.cloud/emotion/"`, `APP_ENV="dev"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`.
-- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="homolog"`, `RECAPTCHA_ENABLED="false"`. Use `.env.homolog.example` como base.
+- Homologação (`homolog`): `APP_BASE=""`, `APP_CANONICAL_URL="https://homolog.jersikacarvalhopsicologa.com/"`, `APP_ENV="homolog"`, `APP_NOINDEX="true"`, `RECAPTCHA_ENABLED="false"`. Use `.env.homolog.example` como base.
 - Produção (`main`): `APP_BASE=""`, `APP_CANONICAL_URL="https://jersikacarvalhopsicologa.com/"`, `APP_ENV="production"`, `APP_NOINDEX="false"`, `RECAPTCHA_ENABLED="true"`.
 
 Cada ambiente deve ter seu próprio `.env` no servidor. Não compartilhe o mesmo arquivo entre desenvolvimento, homologação e produção.
